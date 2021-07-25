@@ -299,10 +299,10 @@
         <!--Creation of the subcategory for the dual DC Motor block-->
         <category name="Dual" toolboxitemid="motorCategory2">
           <block type="setMotorInputDual">
-            <value name="input1">
+            <value name="power1">
               <shadow type="math_number"></shadow>
             </value>
-            <value name="input2">
+            <value name="power2">
               <shadow type="math_number"></shadow>
             </value>
           </block>
@@ -590,9 +590,42 @@
       } else if (value == "backRight") {
         encoderValue = motorEncoders[Object.keys(motorEncoders)[3]];
       }
-      alert(encoderValue);
-      // return [encoderValue, Blockly.JavaScript.ORDER_MEMBER];
-      return encoderValue;
+      var order = encoderValue >= 0 ? Blockly.JavaScript.ORDER_ATOMIC :
+        Blockly.JavaScript.ORDER_UNARY_NEGATION;
+      return [encoderValue, order];
+    };
+
+    Blockly.JavaScript['setMotorInputDual'] = function (block) {
+      var value = block.getFieldValue('motorName1');
+      var value2 = Blockly.JavaScript.valueToCode(block, 'power1', Blockly.JavaScript.ORDER_ATOMIC) || '0'
+      value2 = parseFloat(value2);
+
+      if (value == "frontLeft") {
+        motorPowers = { "motor1": value2, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      } else if (value == "frontRight") {
+        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": value2, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      } else if (value == "backLeft") {
+        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": value2, "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      } else if (value == "backRight") {
+        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": value2 };
+      }
+
+      value = block.getFieldValue('motorName2');
+      value2 = Blockly.JavaScript.valueToCode(block, 'power2', Blockly.JavaScript.ORDER_ATOMIC) || '0'
+      value2 = parseFloat(value2);
+
+      if (value == "frontLeft") {
+        motorPowers = { "motor1": value2, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      } else if (value == "frontRight") {
+        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": value2, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      } else if (value == "backLeft") {
+        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": value2, "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      } else if (value == "backRight") {
+        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": value2 };
+      }
+
+      localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
+      return 'Move In Direction Called';
     };
 
     Blockly.JavaScript['pause'] = function (block) {
@@ -754,7 +787,7 @@
           },
           {
             "type": "input_value",
-            "name": "input1",
+            "name": "power1",
             "align": "RIGHT"
           },
           {
@@ -773,7 +806,7 @@
           },
           {
             "type": "input_value",
-            "name": "input2",
+            "name": "power2",
             "align": "RIGHT"
           }
         ]
