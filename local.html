@@ -378,6 +378,7 @@
     </category>
     <category name="Text" colour="150" toolboxitemid="textCategory">
       <block type="text"></block>
+      <block type="text_print"></block>
       <block type="text_join"></block>
       <block type="text_append"></block>
       <block type="text_length"></block>
@@ -536,8 +537,9 @@
     function startProgram() {
       motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0 };
       var code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
+      console.log(code);
       var myInterpreter = new Interpreter(code);
-      // myInterpreter.run();
+      myInterpreter.run();
       // nextStep();
     }
 
@@ -554,26 +556,40 @@
     }
 
     Blockly.JavaScript['onOpmodeStart'] = function (block) {
-      return 'Started Program';
+      return ''
     };
 
     Blockly.JavaScript['setMotorInput'] = function (block) {
-      var value = block.getFieldValue('motorName');
-      var value2 = block.getFieldValue('power');
+      // var value = block.getFieldValue('motorName');
+      // var value2 = block.getFieldValue('power');
 
-      if (value == "frontLeft") {
-        motorPowers = { "motor1": value2, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
-      } else if (value == "frontRight") {
-        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": value2, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
-      } else if (value == "backLeft") {
-        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": value2, "motor4": motorPowers[Object.keys(motorPowers)[3]] };
-      } else if (value == "backRight") {
-        motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": value2 };
-      }
+      // if (value == "frontLeft") {
+      //   motorPowers = { "motor1": value2, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      // } else if (value == "frontRight") {
+      //   motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": value2, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      // } else if (value == "backLeft") {
+      //   motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": value2, "motor4": motorPowers[Object.keys(motorPowers)[3]] };
+      // } else if (value == "backRight") {
+      //   motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": value2 };
+      // }
 
-      console.log(JSON.stringify(motorPowers));
-      localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
-      return 'Move In Direction Called';
+      // motorEncoders = JSON.parse(localStorage.getItem('motorEncoders'));
+
+      // encoderValue = 0;
+      // if (value == "frontLeft") {
+      //   encoderValue = motorEncoders[Object.keys(motorEncoders)[0]];
+      // } else if (value == "frontRight") {
+      //   encoderValue = motorEncoders[Object.keys(motorEncoders)[1]];
+      // } else if (value == "backLeft") {
+      //   encoderValue = motorEncoders[Object.keys(motorEncoders)[2]];
+      // } else if (value == "backRight") {
+      //   encoderValue = motorEncoders[Object.keys(motorEncoders)[3]];
+      // }
+      // console.log("encpos " + encoderValue);
+
+      // console.log(JSON.stringify(motorPowers));
+      // localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
+      return ';\n';
     };
 
     Blockly.JavaScript['getMotorData'] = function (block) {
@@ -590,6 +606,7 @@
       } else if (value == "backRight") {
         encoderValue = motorEncoders[Object.keys(motorEncoders)[3]];
       }
+      console.log("encpos " + encoderValue);
       var order = encoderValue >= 0 ? Blockly.JavaScript.ORDER_ATOMIC :
         Blockly.JavaScript.ORDER_UNARY_NEGATION;
       return [encoderValue, order];
@@ -630,6 +647,7 @@
 
     Blockly.JavaScript['pause'] = function (block) {
       delayTime = block.getFieldValue('delayTime');
+      //async wait
       return 'Delay';
     };
 
