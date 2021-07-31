@@ -11,7 +11,7 @@ function check() {
             alreadySetPlayMode = true;
         }
         if (playMode == "Autonomous") {
-            setTimeout(writeMotorPowers, 100);
+            setTimeout(writeMotorPowers, 1);
         }
     } else {
         setTimeout(check, 500);
