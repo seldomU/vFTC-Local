@@ -234,6 +234,7 @@
         <div class="center-horizontal">
           <button class="button1" onclick="startProgram()">Start Program</button>
           <button class="button1" onclick="stopProgram()">Stop Program</button>
+          <button class="button1" onclick="reloadPage()">Reset</button>
         </div>
         <div class="center-horizontal">
           <button class="button1" onclick="prepareUiToSaveProgram()">Save Program</button>
@@ -243,8 +244,6 @@
             </select>
           </div>
         </div>
-
-
         <div class="center-horizontal" id="saveProgramDiv" style="display: none;">
           <form onSubmit="return false;">
             <input type="text" id="saveProgramName">
@@ -536,6 +535,10 @@
         var xml = Blockly.Xml.textToDom(localStorage.getItem(nameOfProject));
         Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
       }
+    }
+
+    function reloadPage() {
+      location.reload();
     }
 
     function initApi(interpreter, globalObject) {
