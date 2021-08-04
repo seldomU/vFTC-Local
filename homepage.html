@@ -54,8 +54,6 @@
 
 
         .button1 {
-            background-color: white;
-            /* Green */
             border-radius: 12px;
             color: #242424;
             padding: 16px 32px;
@@ -64,41 +62,86 @@
             font-weight: bold;
             text-decoration: none;
             display: inline-block;
-            /* font-size: 26px;
-            margin: 20px 20px; */
             font-size: 20px;
             margin: 10px 10px;
             transition-duration: 0.4s;
             cursor: pointer;
             padding: 10px;
-        }
-
-        .button1 {
-            background-color: #242424;
             color: white;
+            background-color: transparent;
             border: 2px solid white;
         }
 
         .button1:hover {
-            background-color: white;
-            color: #242424;
+            color: #fcd199;
         }
 
         .button1:focus {
             outline: none;
             box-shadow: none;
         }
+
+        .xButton {
+            height: 15px;
+            width: 15px;
+            position: absolute;
+            display: inline-block;
+        }
+
+        .xButton:after {
+            position: absolute;
+            content: "\2A2F";
+            color: #FFFFFF;
+            font-size: 50px;
+            line-height: 5px;
+        }
     </style>
 </head>
 
 <body>
+
+    <div style="display: flex;">
+        <span onclick="quitApp(); return false" class="xButton"></span>
+    </div>
+
+
     <div class="center-horizontal">
         <h1>Welcome to the Virtual Robot Simulator Platform</h1>
     </div>
-    <div class="center-horizontal">
-        <a href="local.html"><button class="button1">Autonomous</button></a>
-        <a href="multiplayer.html"><button class="button1">TeleOp</button></a>
+    <div style="width: 100%;">
+        <div style="width: 50%; float: left;">
+            <div class="center-horizontal">
+                <a href="local.html"><button id="localButton" class="button1">Autonomous</button></a>
+            </div>
+        </div>
+        <div style="margin-left: 50%;">
+            <div class="center-horizontal">
+                <a href="multiplayer.html"><button id="multiplayerButton" class="button1">TeleOp</button></a>
+            </div>
+        </div>
     </div>
+
+    <div class="center-horizontal">
+        <a href="settings.html"><button class="button1">Settings</button></a>
+    </div>
+
+    <script>
+        document.getElementById('localButton').style.backgroundImage = "url('./local.png')";
+        document.getElementById('localButton').style.backgroundRepeat = "no-repeat";
+
+        document.getElementById('multiplayerButton').style.backgroundImage = "url('./multiplayer.png')";
+        document.getElementById('multiplayerButton').style.backgroundRepeat = "no-repeat";
+
+        document.getElementById('localButton').style.width = screen.width / 2 - 44 + "px";
+        document.getElementById('multiplayerButton').style.width = screen.width / 2 - 44 + "px";
+
+        document.getElementById('localButton').style.height = screen.height / 1.2 - 44 + "px";
+        document.getElementById('multiplayerButton').style.height = screen.height / 1.2 - 44 + "px";
+
+        function quitApp() {
+            window.close();
+        }
+    </script>
 </body>
 
 </html>

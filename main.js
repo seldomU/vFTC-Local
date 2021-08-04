@@ -17,6 +17,7 @@ function createWindow() {
         // devTools: false,
         contextIsolation: false,
       },
+      fullscreen: true,
       frame: false,
       icon: 'logo.png'
     })
