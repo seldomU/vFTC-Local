@@ -123,27 +123,22 @@
 
     input[type=text] {
       width: 225px;
-      padding: 12px 20px;
-      margin: 8px 0;
       box-sizing: border-box;
       border: 2px solid white;
-      border-radius: 12px;
+      border-radius: 6px;
       font-family: Jura;
       text-align: center;
-      font-size: 20px;
+      font-size: 15px;
       background-color: #242424;
       color: white;
     }
 
     .dropdown-select {
       font-family: Jura;
-      /* font-size: 26px; */
-      font-size: 20px;
+      font-size: 15px;
       position: relative;
       font-weight: bold;
-      padding: 10px;
       border: 0;
-      border-radius: 12px;
     }
 
     .dropdown-select>option {
@@ -219,6 +214,22 @@
     <button class="button1" onclick="stopProgram()">Stop Program</button>
     <div style="width: 10px; display: inline-block;"></div>
     <button class="button1" onclick="reloadPage()">Reset</button>
+    <div style="width: 10px; display: inline-block;"></div>
+    <div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF;">
+      <select id="programSelect" class="dropdown-select" onchange="loadProgram()">
+        <option value="">Load Program</option>
+      </select>
+    </div>
+    <div style="width: 10px; display: inline-block;"></div>
+    <button class="button1" onclick="prepareUiToSaveProgram()">Save Program</button>
+    <div style="width: 10px; display: inline-block;"></div>
+    <div class="center-horizontal" id="saveProgramDiv" style="display: none;">
+      <form onSubmit="return false;" style="display: inline-block;">
+        <input type="text" id="saveProgramName">
+      </form>
+      <div style="width: 5px; display: inline-block;"></div>
+      <button class="button1" onclick="saveProgram()">OK</button>
+    </div>
   </div>
 
 
@@ -230,23 +241,6 @@
     <div style="width: 50%; background-color: #242424; padding-left: 10px;">
       <div id="controlPanel" style="height: 50%; background-color: #242424; border:1px solid white;">
         <h1>Telemetry</h1>
-        <div style="background-color: #424242">
-
-        </div>
-        <div class="center-horizontal">
-          <button class="button1" onclick="prepareUiToSaveProgram()">Save Program</button>
-          <div class="dropdown dropdown-dark">
-            <select id="programSelect" class="dropdown-select" onchange="loadProgram()">
-              <option value="">Load Program</option>
-            </select>
-          </div>
-        </div>
-        <div class="center-horizontal" id="saveProgramDiv" style="display: none;">
-          <form onSubmit="return false;">
-            <input type="text" id="saveProgramName">
-          </form>
-          <button class="button1" onclick="saveProgram()">OK</button>
-        </div>
       </div>
 
       <div id="fieldView" style="height: 50%; margin-top: 10px; background-color: #000000;">
@@ -490,9 +484,12 @@
       editor.setCursor(cursor);
     }
 
+    var isSavingProgram = false;
+
     function prepareUiToSaveProgram() {
-      if (document.getElementById("saveProgramDiv").style.length > 0) {
-        document.getElementById("saveProgramDiv").style = null;
+      isSavingProgram = !isSavingProgram;
+      if (isSavingProgram) {
+        document.getElementById("saveProgramDiv").style = "display: inline;";
       } else {
         document.getElementById("saveProgramDiv").style = "display: none;";
       }
