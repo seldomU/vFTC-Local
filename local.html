@@ -25,7 +25,8 @@
     }
 
     h2 {
-      font-size: 10px;
+      font-size: 20px;
+      padding-left: 35px;
       font-family: Jura;
       color: white;
     }
@@ -251,10 +252,10 @@
       <h1 id="loadingOBJText">HI</h1>
     </div>
     <div style="width: 50%; background-color: #242424; padding-left: 10px;">
-      <div id="controlPanel" style="height: 50%; background-color: #242424; border:1px solid white;">
+      <div id="controlPanel" style="height: 50%; overflow:scroll; background-color: #242424; border:1px solid white;">
         <h1>Telemetry</h1>
-        <div style="width:100%; overflow:auto;">
-          <h1 id="telemetryText">Hello</h1>
+        <div style="width:100%; overflow:hidden; background-color: #323232;">
+          <h2 id="telemetryText"></h2>
         </div>
       </div>
 
@@ -283,6 +284,14 @@
     <category css-icon="customIcon fa fa-caret-right" name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
       <category name="Telemetry">
         <block type="telemetryUpdate"></block>
+        <block type="telemetryAddData">
+          <value name="key">
+            <shadow type="text"></shadow>
+          </value>
+          <value name="data">
+            <shadow type="text"></shadow>
+          </value>
+        </block>
       </category>
     </category>
 
@@ -581,6 +590,7 @@
       // Add an API function for the alert() block.
       var wrapper = function (text) {
         localStorage.setItem('startMatch', true);
+        document.getElementById("telemetryText").innerText = "Program Started \n";
         return console.log(arguments.length ? text : '');
       };
       interpreter.setProperty(globalObject, 'alert', interpreter.createNativeFunction(wrapper));
@@ -692,6 +702,11 @@
         return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       };
       interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
+
+      var wrapper = function (key, data) {
+        return (document.getElementById("telemetryText").innerText = document.getElementById("telemetryText").innerText + key + ": " + data + "\n");
+      };
+      interpreter.setProperty(globalObject, 'addTelemetryData', interpreter.createNativeFunction(wrapper));
     }
 
     var myInterpreter = null;
@@ -747,6 +762,10 @@
 
     Blockly.JavaScript['setMotorInputDual'] = function (block) {
       return 'setDualPower(\"' + block.getFieldValue('motorName1') + '\", ' + parseFloat(Blockly.JavaScript.valueToCode(block, 'power1', Blockly.JavaScript.ORDER_NONE)) + ', \"' + block.getFieldValue('motorName2') + '\", ' + parseFloat(Blockly.JavaScript.valueToCode(block, 'power2', Blockly.JavaScript.ORDER_NONE)) + ');\n'
+    };
+
+    Blockly.JavaScript['telemetryAddData'] = function (block) {
+      return 'addTelemetryData(\"' + Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_NONE) + '\", \"' + Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_NONE) + '\");\n'
     };
 
     Blockly.JavaScript['pause'] = function (block) {
@@ -1566,6 +1585,44 @@
         "colour": "230",
         "nextStatement": null,
         "previousStatement": null,
+      },
+
+
+      {
+        "type": "telemetryAddData",
+        "message0": "call %1 . %2 %3 key %4 %5 data %6",
+        "tooltip": "Add Data to active telemetry",
+        "colour": "250",
+        "nextStatement": null,
+        "previousStatement": null,
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "Telemetry",
+            "text": "Telemetry"
+          },
+          {
+            "type": "field_input",
+            "name": "addData",
+            "text": "addData"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "input_value",
+            "name": "key",
+            "align": "RIGHT"
+          },
+          {
+            "type": "input_dummy"
+          },
+          {
+            "type": "input_value",
+            "name": "data",
+            "align": "RIGHT"
+          }
+        ]
       },
 
     ]);
