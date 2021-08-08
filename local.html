@@ -269,6 +269,20 @@
 
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <category name="LinearOpMode" colour="30" toolboxitemid="linearOpModeCategory">
+      <block type="pause"></block>
+    </category>
+
+    <category name="Gamepad" colour="1" toolboxitemid="gamepadCategory">
+      <block type="gamepadInputs"></block>
+    </category>
+
+    <category name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
+      <category name="Telemetry">
+        <block type="telemetryUpdate"></block>
+      </category>
+    </category>
+
     <category name="Actuators" colour="#f58a42" toolboxitemid="motorCategory">
       <category name="DcMotor">
         <block type="getMotorData">
@@ -302,8 +316,6 @@
         </block>
 
         <block type="isMotorBusy"></block>
-        <block type="telemetryUpdate"></block>
-
         <!--Creation of the subcategory for the dual DC Motor block-->
         <category name="Dual" toolboxitemid="motorCategory2">
           <block type="setMotorInputDual">
@@ -412,7 +424,6 @@
     <category name="Variables" colour="#a3392c" custom="VARIABLE" toolboxitemid="variablesCategory"></category>
     <category name="Functions" colour="285" custom="PROCEDURE" toolboxitemid="functionsCategory"></category>
     <category name="Miscellaneous" colour="230" toolboxitemid="miscellaneousCategory">
-      <block type="pause"></block>
     </category>
   </xml>
 
@@ -763,7 +774,7 @@
         "type": "pause",
         "message0": "Wait for %1 milliseconds",
         "tooltip": "Waits for a time in milliseconds",
-        "colour": "230",
+        "colour": "30",
         "nextStatement": null,
         "previousStatement": null,
         "args0": [
@@ -779,6 +790,53 @@
       // Define the parameters for how the physical blocks will look and function in the program
 
 
+      {
+        "type": "gamepadInputs",
+        "message0": "%1 . %2",
+        "tooltip": "Provides inputs from the gamepads",
+        "colour": "1",
+        "output": null,
+        "args0": [
+          {
+            "type": "field_dropdown",
+            "name": "gamepadSelection",
+            "options": [
+              ["gamepad1", "gamepad1"],
+              ["gamepad2", "gamepad2"]
+            ]
+          },
+          {
+            "type": "field_dropdown",
+            "name": "controller_component",
+            "options": [
+              ["A", "A"],
+              ["AtRest", "atRest"],
+              ["B", "B"],
+              ["Back", "back"],
+              ["Circle", "circle"],
+              ["Cross", "Cross"],
+              ["DpadDown", "dpadDown"],
+              ["DpadLeft", "dpadLeft"],
+              ["DpadRight", "dpadRight"],
+              ["DpadUp", "dpadUp"],
+              ["Guide", "guide"],
+              ["LeftBumper", "leftBumper"],
+              ["LeftStickButton", "leftStickButton"],
+              ["Options", "options"],
+              ["PS", "PS"],
+              ["RightBumper", "rightBumper"],
+              ["RightStickButton", "rightStickButton"],
+              ["Share", "share"],
+              ["Square", "square"],
+              ["Start", "start"],
+              ["Touchpad", "touchpad"],
+              ["Triangle", "triangle"],
+              ["X", "X"],
+              ["Y", "Y"]
+            ]
+          }
+        ]
+      },
       // Experimental block for incorporating both the set power and set target position blocks in one block
       {
         "type": "setMotorInput",
@@ -1436,7 +1494,7 @@
         "type": "telemetryUpdate",
         "message0": "call %1 . %2",
         "tooltip": "Update all active telemetry",
-        "colour": "#985ba5",
+        "colour": "250",
         "nextStatement": null,
         "previousStatement": null,
         "args0": [
