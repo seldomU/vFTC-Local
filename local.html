@@ -765,7 +765,7 @@
     };
 
     Blockly.JavaScript['telemetryAddData'] = function (block) {
-      return 'addTelemetryData(\"' + Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_NONE) + '\", \"' + Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_NONE) + '\");\n'
+      return 'addTelemetryData(' + Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_NONE) + ', ' + Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_NONE) + ');\n'
     };
 
     Blockly.JavaScript['pause'] = function (block) {
