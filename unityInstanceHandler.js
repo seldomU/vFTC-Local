@@ -34,9 +34,9 @@ function writeMotorPowers() {
     UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontRightVel", motor2);
     UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackLeftVel", motor3);
     UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackRightVel", motor4);
-    // UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor5", motor5);
-    // UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor6", motor6);
-    // UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor7", motor7);
-    // UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor8", motor8);
+    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor5", motor5);
+    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor6", motor6);
+    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor7", motor7);
+    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor8", motor8);
     check();
 }
