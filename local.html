@@ -206,7 +206,9 @@
   <script src="./codemirror/mode/clike/clike.js"></script>
   <script src="./codemirror/lib/util/formatting.js"></script>
 
+  <link rel="stylesheet" href="toolbox_style.css">
 
+  <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
 
   <div style="display: flex; display: inline;">
     <a href="homepage.html" id="backButton"><span class="chevron left"></span></a>
@@ -269,22 +271,23 @@
 
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <category name="LinearOpMode" colour="30" toolboxitemid="linearOpModeCategory">
+    <category css-icon="customIcon fa fa-long-arrow-right" name="LinearOpMode" colour="30"
+      toolboxitemid="linearOpModeCategory">
       <block type="pause"></block>
     </category>
 
-    <category name="Gamepad" colour="1" toolboxitemid="gamepadCategory">
+    <category css-icon="customIcon fa fa-gamepad" name="Gamepad" colour="1" toolboxitemid="gamepadCategory">
       <block type="gamepadInputs"></block>
     </category>
 
-    <category name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
+    <category css-icon="customIcon fa fa-caret-right" name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
       <category name="Telemetry">
         <block type="telemetryUpdate"></block>
       </category>
     </category>
 
-    <category name="Actuators" colour="#f58a42" toolboxitemid="motorCategory">
-      <category name="DcMotor">
+    <category css-icon="customIcon fa fa-caret-right" name="Actuators" colour="#f58a42" toolboxitemid="motorCategory">
+      <category css-icon="customIcon fa fa-caret-right" name="DcMotor">
         <block type="getMotorData">
           <field name="motorOption">["TargetPosition","targetPosition"]</field>
         </block>
@@ -424,6 +427,7 @@
     <category name="Variables" colour="#a3392c" custom="VARIABLE" toolboxitemid="variablesCategory"></category>
     <category name="Functions" colour="285" custom="PROCEDURE" toolboxitemid="functionsCategory"></category>
     <category name="Miscellaneous" colour="230" toolboxitemid="miscellaneousCategory">
+      <block type="comment"></block>
     </category>
   </xml>
 
@@ -1509,6 +1513,22 @@
             "text": "update"
           }
         ]
+      },
+
+      {
+        "type": "comment",
+        "message0": "%1",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "commentText",
+            "text": "Enter your comment here!"
+          }
+        ],
+        "tooltip": "Update all active telemetry",
+        "colour": "230",
+        "nextStatement": null,
+        "previousStatement": null,
       },
 
     ]);
