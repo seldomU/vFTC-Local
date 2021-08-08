@@ -449,9 +449,9 @@
     var isUsingBlocks = true;
     var delayTime = 0;
     var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
-    var motorEncoderBaseValues = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
-    // TODO: THESE TWO VALUES (ENCBASE, REVERSE) NEED TO BE STORED IN LOCALSTORAGE
-    var motorReverseValues = { "m1": 1.0, "m2": 1.0, "m3": 1.0, "m4": 1.0, "m5": 1.0, "m6": 1.0, "m7": 1.0, "m8": 1.0 };
+    // var motorEncoderBaseValues = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
+    // // TODO: THESE TWO VALUES (ENCBASE, REVERSE) NEED TO BE STORED IN LOCALSTORAGE
+    // var motorReverseValues = { "m1": 1.0, "m2": 1.0, "m3": 1.0, "m4": 1.0, "m5": 1.0, "m6": 1.0, "m7": 1.0, "m8": 1.0 };
 
     localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
     localStorage.setItem('playMode', "Autonomous")
@@ -598,28 +598,28 @@
 
       wrapper = function (motorName, power) {
         if (motorName == "frontLeft") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": power, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "frontRight") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": power, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "backLeft") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": power, "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "backRight") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": power, "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "ringCollection") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": power, "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "ringLoader") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": power, "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "ringLauncher") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": power, "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motorName == "wobbleActuator") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power };
         }
         return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
@@ -650,54 +650,54 @@
 
       wrapper = function (motor1Name, power, motor2Name, power2) {
         if (motor1Name == "frontLeft") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": power, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "frontRight") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": power, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "backLeft") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": power, "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "backRight") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": power, "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "ringCollection") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": power, "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "ringLoader") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": power, "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "ringLauncher") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": power, "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor1Name == "wobbleActuator") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power };
         }
 
         if (motor2Name == "frontLeft") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": power2, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "frontRight") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": power2, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "backLeft") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": power2, "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "backRight") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": power2, "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "ringCollection") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": power2, "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "ringLoader") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": power2, "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "ringLauncher") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": power2, "motor8": motorPowers[Object.keys(motorPowers)[7]] };
         } else if (motor2Name == "wobbleActuator") {
-          power = power * motorReverseValues[Object.keys(motorPowers)[0]];
+          // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power2 };
         }
         return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));

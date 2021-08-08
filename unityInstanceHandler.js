@@ -22,13 +22,13 @@ check();
 
 function writeMotorPowers() {
     if (localStorage.getItem('startMatch') == 'true') {
-        UnityInstance.SendMessage("FieldManager", "buttonStartGame", motor1);
+        UnityInstance.SendMessage("FieldManager", "buttonStartGame");
         localStorage.setItem('startMatch', false);
     } else if (localStorage.getItem('stopMatch') == 'true') {
-        UnityInstance.SendMessage("FieldManager", "buttonStopGame", motor1);
+        UnityInstance.SendMessage("FieldManager", "buttonStopGame");
         localStorage.setItem('stopMatch', false);
     } else if (localStorage.getItem('resetField') == 'true') {
-        UnityInstance.SendMessage("FieldManager", "resetField", motor1);
+        UnityInstance.SendMessage("FieldManager", "resetField");
         localStorage.setItem('resetField', false);
     }
 
