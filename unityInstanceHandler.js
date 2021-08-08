@@ -21,6 +21,17 @@ function check() {
 check();
 
 function writeMotorPowers() {
+    if (localStorage.getItem('startMatch') == 'true') {
+        UnityInstance.SendMessage("FieldManager", "buttonStartGame", motor1);
+        localStorage.setItem('startMatch', false);
+    } else if (localStorage.getItem('stopMatch') == 'true') {
+        UnityInstance.SendMessage("FieldManager", "buttonStopGame", motor1);
+        localStorage.setItem('stopMatch', false);
+    } else if (localStorage.getItem('resetField') == 'true') {
+        UnityInstance.SendMessage("FieldManager", "resetField", motor1);
+        localStorage.setItem('resetField', false);
+    }
+
     var motorPowers = JSON.parse(localStorage.getItem('motorPowers'));
     var motor1 = motorPowers[Object.keys(motorPowers)[0]];
     var motor2 = motorPowers[Object.keys(motorPowers)[1]];
