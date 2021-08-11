@@ -211,6 +211,9 @@
 
   <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
 
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+
   <div style="display: flex; display: inline;">
     <a href="homepage.html" id="backButton"><span class="chevron left"></span></a>
     <div style="width: 50px; display: inline-block;"></div>
@@ -259,12 +262,103 @@
         </div>
       </div>
 
-      <div id="fieldView" style="height: 50%; margin-top: 10px; background-color: #000000;">
-        <iframe scrolling="no" src="./webgl/index.html" id="fieldViewiframe" width="100%" height="100%" frameBorder="0"
-          hidden></iframe>
-        <div class="center" id="loadingTextDiv">
-          <h1 id="loadingText">Loading Field</h1>
+      <div id="fieldView" style="height: 50%; margin-top: 10px; background-color: #000000; overflow: hidden;" disabled>
+        <div id="unity-container" class="unity-desktop">
+          <canvas id="unity-canvas"></canvas>
+          <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+              <div id="unity-progress-bar-full"></div>
+            </div>
+          </div>
+          <div id="unity-mobile-warning">
+            WebGL builds are not supported on mobile devices.
+          </div>
+          <div id="unity-footer">
+            <div id="unity-webgl-logo"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">Robot Simulator</div>
+          </div>
         </div>
+        <script>
+          var buildUrl = "webgl/Build";
+          var loaderUrl = buildUrl + "/Webgl.loader.js";
+          var config = {
+            dataUrl: buildUrl + "/Webgl.data",
+            frameworkUrl: buildUrl + "/Webgl.framework.js",
+            codeUrl: buildUrl + "/Webgl.wasm",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "VirtualFTC",
+            productName: "Robot Simulator",
+            productVersion: "0.1",
+          };
+
+          var container = document.querySelector("#unity-container");
+          var canvas = document.querySelector("#unity-canvas");
+          var loadingBar = document.querySelector("#unity-loading-bar");
+          var progressBarFull = document.querySelector("#unity-progress-bar-full");
+          var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+          var mobileWarning = document.querySelector("#unity-mobile-warning");
+
+          // By default Unity keeps WebGL canvas render target size matched with
+          // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+          // Set this to false if you want to decouple this synchronization from
+          // happening inside the engine, and you would instead like to size up
+          // the canvas DOM size and WebGL render target sizes yourself.
+          // config.matchWebGLToCanvasSize = false;
+
+          if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            container.className = "unity-mobile";
+            // Avoid draining fillrate performance on mobile devices,
+            // and default/override low DPI mode on mobile browsers.
+            config.devicePixelRatio = 1;
+            mobileWarning.style.display = "block";
+            setTimeout(() => {
+              mobileWarning.style.display = "none";
+            }, 5000);
+          } else {
+            canvas.style.width = "960px";
+            canvas.style.height = "600px";
+          }
+          loadingBar.style.display = "block";
+
+          var script = document.createElement("script");
+          script.src = loaderUrl;
+          script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+              progressBarFull.style.width = 100 * progress + "%";
+            }).then((unityInstance) => {
+              console.log("WROTE: " + unityInstance);
+              UnityInstance = unityInstance;
+
+              loadingBar.style.display = "none";
+              fullscreenButton.onclick = () => {
+                unityInstance.SetFullscreen(1);
+              };
+            }).catch((message) => {
+              alert(message);
+            });
+          };
+          document.body.appendChild(script);
+
+          var frontLeftEncoders = 0;
+          var frontRightEncoders = 0;
+          var backLeftEncoders = 0;
+          var backRightEncoders = 0;
+
+          function setFrontLeftEncoders(encoders) {
+            frontLeftEncoders = encoders;
+          }
+          function setFrontRightEncoders(encoders) {
+            frontRightEncoders = encoders;
+          }
+          function setBackLeftEncoders(encoders) {
+            backLeftEncoders = encoders;
+          }
+          function setBackRightEncoders(encoders) {
+            backRightEncoders = encoders;
+          }
+        </script>
       </div>
     </div>
   </div>
@@ -442,51 +536,48 @@
 
 
   <script>
-    localStorage.setItem('startMatch', false);
-    localStorage.setItem('stopMatch', false);
-    localStorage.setItem('resetField', false);
-
     var isUsingBlocks = true;
     var delayTime = 0;
     var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
     // var motorEncoderBaseValues = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
-    // // TODO: THESE TWO VALUES (ENCBASE, REVERSE) NEED TO BE STORED IN LOCALSTORAGE
     // var motorReverseValues = { "m1": 1.0, "m2": 1.0, "m3": 1.0, "m4": 1.0, "m5": 1.0, "m6": 1.0, "m7": 1.0, "m8": 1.0 };
 
-    localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
-    localStorage.setItem('playMode', "Autonomous")
+    var UnityInstance = null;
+    function check() {
+      if (UnityInstance != null) {
+        UnityInstance.SendMessage("Main Menu", "changeSinglePlayer");
+      } else {
+        setTimeout(check, 500);
+      }
+    }
+
+    check();
+
+    function writeMotorsToUnity() {
+      var motor1 = motorPowers[Object.keys(motorPowers)[0]];
+      var motor2 = motorPowers[Object.keys(motorPowers)[1]];
+      var motor3 = motorPowers[Object.keys(motorPowers)[2]];
+      var motor4 = motorPowers[Object.keys(motorPowers)[3]];
+      var motor5 = motorPowers[Object.keys(motorPowers)[4]];
+      var motor6 = motorPowers[Object.keys(motorPowers)[5]];
+      var motor7 = motorPowers[Object.keys(motorPowers)[6]];
+      var motor8 = motorPowers[Object.keys(motorPowers)[7]];
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontLeftVel", motor1);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontRightVel", motor2);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackLeftVel", motor3);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackRightVel", motor4);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor5", motor5);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor6", motor6);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor7", motor7);
+      UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor8", motor8);
+    }
+
 
     var shouldBeUpdatingLoadingText = true;
     var counterForLoadingText = 1;
     document.getElementById('controlPanel').style.height = screen.height / 2 - 30 + "px";
     document.getElementById('fieldView').style.height = screen.height / 2 - 30 + "px";
     document.getElementById('onBotJavaDiv').style.height = screen.height - 48 + "px";
-
-    setTimeout(function () {
-      shouldBeUpdatingLoadingText = false;
-      document.getElementById('fieldViewiframe').hidden = false;
-      document.getElementById('loadingText').remove();
-      document.getElementById('loadingTextDiv').remove();
-    }, 3000);
-
-    const delay = ms => new Promise(res => setTimeout(res, ms));
-
-
-    const updateLoadingText = async () => {
-      while (shouldBeUpdatingLoadingText) {
-        if (counterForLoadingText == 1) {
-          document.getElementById('loadingText').innerHTML = "Loading Field."
-        } else if (counterForLoadingText == 2) {
-          document.getElementById('loadingText').innerHTML = "Loading Field.."
-        } else if (counterForLoadingText == 3) {
-          document.getElementById('loadingText').innerHTML = "Loading Field..."
-          counterForLoadingText = 0;
-        }
-        counterForLoadingText++;
-        await delay(500);
-      }
-    }
-    updateLoadingText();
 
     function switchToBlocks() {
       document.getElementById('blocklyDiv').hidden = false;
@@ -584,13 +675,13 @@
     }
 
     function resetField() {
-      localStorage.setItem('resetField', true);
+      UnityInstance.SendMessage("FieldManager", "resetField");
     }
 
     function initApi(interpreter, globalObject) {
       // Add an API function for the alert() block.
       var wrapper = function (text) {
-        localStorage.setItem('startMatch', true);
+        UnityInstance.SendMessage("FieldManager", "buttonStartGame");
         document.getElementById("telemetryText").innerText = "Program Started \n";
         return console.log(arguments.length ? text : '');
       };
@@ -622,21 +713,21 @@
           // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power };
         }
-        return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
+        return writeMotorsToUnity();
       };
       interpreter.setProperty(globalObject, 'setPower', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motorName) {
-        motorEncoders = JSON.parse(localStorage.getItem('motorEncoders'));
+        console.log("asjdfasnlfajsfn");
         encoderValue = 0;
         if (motorName == "frontLeft") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[0]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
+          encoderValue = frontLeftEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
         } else if (motorName == "frontRight") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[1]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
+          encoderValue = frontRightEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
         } else if (motorName == "backLeft") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[2]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
+          encoderValue = backLeftEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
         } else if (motorName == "backRight") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[3]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
+          encoderValue = backRightEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
         }
         return encoderValue;
       };
@@ -700,7 +791,7 @@
           // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power2 };
         }
-        return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
+        return writeMotorsToUnity();
       };
       interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
 
@@ -734,10 +825,11 @@
 
     function nextStep() {
       if (myInterpreter.step()) {
-        setTimeout(nextStep, pauseTime);
-        if (pauseTime != 0) {
-          pauseTime = 0;
+        for (var i = 0; i < 1000; i++) {
+          localStorage.setItem("Hello", "hi");
+          localStorage.getItem("Hello");
         }
+        nextStep();
       } else {
         resetInterpreter();
       }
@@ -745,8 +837,8 @@
 
     function stopProgram() {
       var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
-      localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
-      localStorage.setItem('stopMatch', true);
+      writeMotorsToUnity();
+      UnityInstance.SendMessage("FieldManager", "buttonStopGame");
     }
 
     Blockly.JavaScript['onOpmodeStart'] = function (block) {
