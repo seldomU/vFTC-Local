@@ -346,7 +346,11 @@
           var backLeftEncoders = 0;
           var backRightEncoders = 0;
 
+          var count = 0;
+
           function setFrontLeftEncoders(encoders) {
+            // console.log(encoders + ', ' + count);
+            count += 1;
             frontLeftEncoders = encoders;
           }
           function setFrontRightEncoders(encoders) {
@@ -718,18 +722,16 @@
       interpreter.setProperty(globalObject, 'setPower', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motorName) {
-        console.log("asjdfasnlfajsfn");
-        encoderValue = 0;
+        console.log("encd s" + frontLeftEncoders);
         if (motorName == "frontLeft") {
-          encoderValue = frontLeftEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
+          return frontLeftEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
         } else if (motorName == "frontRight") {
-          encoderValue = frontRightEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
+          return frontRightEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
         } else if (motorName == "backLeft") {
-          encoderValue = backLeftEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
+          return backLeftEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
         } else if (motorName == "backRight") {
-          encoderValue = backRightEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
+          return backRightEncoders;// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
         }
-        return encoderValue;
       };
       interpreter.setProperty(globalObject, 'getEncoders', interpreter.createNativeFunction(wrapper));
 
@@ -796,7 +798,7 @@
       interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
 
       var wrapper = function (key, data) {
-        return (document.getElementById("telemetryText").innerText = document.getElementById("telemetryText").innerText + key + ": " + data + "\n");
+        return console.log("TELEMETRY: " + key + ", " + data); // (document.getElementById("telemetryText").innerText = document.getElementById("telemetryText").innerText + key + ": " + data + "\n");
       };
       interpreter.setProperty(globalObject, 'addTelemetryData', interpreter.createNativeFunction(wrapper));
     }
@@ -814,23 +816,31 @@
       }
     }
 
+    var blockStepInterval;
+
     function startProgram() {
       var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
       var code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
       console.log(code);
       myInterpreter = new Interpreter(code, initApi);
-      nextStep();
+      blockStepInterval = setInterval(nextStep, 1);
       return;
     }
 
+    var millis = 0;
+
     function nextStep() {
       if (myInterpreter.step()) {
-        for (var i = 0; i < 1000; i++) {
-          localStorage.setItem("Hello", "hi");
-          localStorage.getItem("Hello");
-        }
-        nextStep();
+        var d = new Date();
+        var m = d.getMilliseconds();
+        // console.log("ms: " + (m - millis));
+        millis = m;
+        // for (var i = 0; i < 1000; i++) {
+        //   localStorage.setItem("Hello", "hi");
+        //   localStorage.getItem("Hello");
+        // }
       } else {
+        clearInterval(blockStepInterval);
         resetInterpreter();
       }
     }
