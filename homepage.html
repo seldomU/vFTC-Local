@@ -95,6 +95,59 @@
             font-size: 50px;
             line-height: 35px;
         }
+		
+		
+		.title{
+			height: 10%;
+		}
+		
+		@keyframes titleReveal {
+			from {
+				height: 10%;
+			}
+			to {
+				height: 35%;
+			}
+		}
+		@keyframes titleHide {
+			from {
+				height: 35%;
+			}
+			to {
+				height: 10%;
+			}
+		}
+		
+		.desc{
+			color: #ffffff00;
+			text-shadow: 2px 2px 10px #00000000;
+			height: 0%;
+		}
+		
+		@keyframes descReveal {
+			from {
+				color: #ffffff00;
+				text-shadow: 2px 2px 10px #00000000;
+				height: 0%;
+			}
+			to {
+				color: #00fd72;
+				text-shadow: 2px 2px 10px #000000ff;
+				height: 65%;
+			}
+		}
+		@keyframes descHide {
+			from {
+				color: #00fd72;
+				text-shadow: 2px 2px 10px #000000ff;
+				height: 65%;
+			}
+			to {
+				color: #ffffff00;
+				text-shadow: 2px 2px 10px #00000000;
+				height: 0%;
+			}
+		}
     </style>
 </head>
 
@@ -106,22 +159,30 @@
 
 
     <div class="center-horizontal">
-        <h1>Welcome to the Virtual Robot Simulator Platform</h1>
+        <h1 style="margin-bottom: 12.5px;">Welcome to the Virtual Robot Simulator Platform</h1>
     </div>
 
-    <div class="center-horizontal">
-        <img src="./vrsLogo.png" height="300">
+    <div class="center-horizontal" style=" padding-bottom: 7.5px">
+		<div class="center-horizontal" style="width:350px;"><img src="./firstIllinoisLogo.png" height="100"></div>
+        <div class="center-horizontal" style="width:350px;"><img src="./vrsLogo.png" height="175"></div>
+        <div class="center-horizontal" style="width:350px;"><img src="./FTCLogo.png" height="100"></div>
     </div>
 
     <div style="width: 100%;">
         <div style="width: 50%; float: left;">
             <div class="center-horizontal">
-                <a href="local.html"><button id="localButton" class="button1">Autonomous</button></a>
+                <a href="local.html"><button id="localButton" class="button1" onmouseover="buttonHover(this, true)" onmouseout="buttonHover(this, false)">
+					<div class="title">Autonomous</div>
+					<div class="desc">Program your very own FTC robot using the popular and easy to use "Blockly" programming language.</div></button>
+				</a>
             </div>
         </div>
         <div style="margin-left: 50%;">
             <div class="center-horizontal">
-                <a href="multiplayer.html"><button id="multiplayerButton" class="button1">TeleOp</button></a>
+                <a href="multiplayer.html"><button id="multiplayerButton" class="button1" onmouseover="buttonHover(this, true)" onmouseout="buttonHover(this, false)">
+					<div class="title">TeleOp</div>
+					<div class="desc">Test your driving skills solo or with friends using the 2020-2021 FTC Ultimate Goal Field.</div></button>
+				</a>
             </div>
         </div>
     </div>
@@ -136,6 +197,9 @@
 
     <div class="center-horizontal">
         <a href="howToUse.html"><button class="button1">How To Use</button></a>
+        <a href="meetTheTeam.html"><button class="button1">Meet the Team</button></a>
+        <a href="contactUs.html"><button class="button1">Contact Us</button></a>
+        <a href="lessons.html"><button class="button1">Lessons</button></a>
     </div>
 
     <script>
@@ -148,12 +212,25 @@
         document.getElementById('localButton').style.width = screen.width / 2 - 44 + "px";
         document.getElementById('multiplayerButton').style.width = screen.width / 2 - 44 + "px";
 
-        document.getElementById('localButton').style.height = screen.height / 3 - 44 + "px";
-        document.getElementById('multiplayerButton').style.height = screen.height / 3 - 44 + "px";
+        document.getElementById('localButton').style.height = 1.55 * (screen.height / 3 - 44) + "px";
+        document.getElementById('multiplayerButton').style.height = 1.55 * (screen.height / 3 - 44) + "px";
 
         function quitApp() {
             window.close();
         }
+		
+		function buttonHover(x, hovered) {
+			if (hovered) {
+				x.firstElementChild.style.animation = "titleReveal .5s ease 1 normal forwards";
+				x.lastElementChild.style.animation = "descReveal .5s ease 1 normal forwards";
+			}
+			else {
+				x.firstElementChild.style.animation = "titleHide .5s ease 1 normal forwards";
+				x.lastElementChild.style.animation = "descHide .5s ease 1 normal forwards";
+			}
+			
+		}
+		
     </script>
 </body>
 

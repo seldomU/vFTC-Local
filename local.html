@@ -243,6 +243,25 @@
       <div style="width: 5px; display: inline-block;"></div>
       <button class="button1" onclick="saveProgram()">OK</button>
     </div>
+	<div class="center-horizontal" id="extraOptions" style="display: inline;">
+		<div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF;">
+			<select class="dropdown-select">
+				<option value="">Coding Lessons</option>
+				<option value="">Drive to White Line - 2 Motors</option>
+				<option value="">Drive to White Line - 4 Motors</option>
+				<option value="">Drive and Rotate 90 Degress</option>
+				<option value="">Drive and Rotate in a Square</option>
+				<option value="">Drive and Strafe in a Square</option>
+				<option value="">Wobble Goal - 1st Position</option>
+				<option value="">Wobble Goal - 2nd Position</option>
+				<option value="">Wobble Goal - 3rd Position</option>
+				<option value="">Drive and Shoot into High Goal</option>
+				<option value="">Drive and Shoot at Powershots</option>
+			</select>
+		</div>
+		<div style="width: 5px; display: inline-block;"></div>
+		<a href="programStuck.html"><button class="button1">Program Stuck?</button></a>	
+	</div>
   </div>
 
 
@@ -534,8 +553,10 @@
       isSavingProgram = !isSavingProgram;
       if (isSavingProgram) {
         document.getElementById("saveProgramDiv").style = "display: inline;";
+        document.getElementById("extraOptions").style = "display: none;";
       } else {
         document.getElementById("saveProgramDiv").style = "display: none;";
+		document.getElementById("extraOptions").style = "display: inline;";
       }
     }
 
@@ -565,6 +586,8 @@
       prepareUiToLoadProgram();
       document.getElementById('saveProgramName').value = "";
       document.getElementById("saveProgramDiv").style = "display: none;";
+      document.getElementById("extraOptions").style = "display: inline;";
+	  isSavingProgram = false;
     }
 
     function newProgram() {
