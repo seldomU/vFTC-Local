@@ -7,6 +7,8 @@
     <style>
         body {
             background-color: #242424;
+			margin-bottom: 0px;
+			overflow: hidden;
         }
 
         h1 {
@@ -20,8 +22,9 @@
 
         h2 {
             margin-top: 0%;
+            margin-bottom: 1%;
             font-weight: normal;
-            font-size: 30px;
+            font-size: 25px;
             font-family: Jura;
             color: white;
         }
@@ -77,6 +80,35 @@
         }
 
         .button1:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .button2 {
+            border-radius: 12px;
+            color: #242424;
+            text-align: center;
+            font-family: Jura;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 30px;
+            margin: 10px 10px;
+			margin-bottom: 0px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            padding: 7.5px 10px;
+            color: rgb(255, 255, 255);
+            background-color: transparent;
+            text-shadow: 2px 2px 10px #000000;
+            border: 2px solid rgb(255, 255, 255);
+        }
+
+        .button2:hover {
+            color: #00fd72;
+        }
+
+        .button2:focus {
             outline: none;
             box-shadow: none;
         }
@@ -181,6 +213,7 @@
             left: 0.25em;
             transform: rotate(-135deg);
         }
+		
     </style>
 </head>
 
@@ -192,10 +225,10 @@
 
 
     <div class="center-horizontal">
-        <h1 style="margin-bottom: 12.5px;">Welcome to the Virtual Robot Simulator Platform</h1>
+        <h1 style="margin-bottom: 7.5px;">Welcome to the Virtual Robot Simulator Platform</h1>
     </div>
 
-    <div class="center-horizontal" style=" padding-bottom: 7.5px">
+    <div class="center-horizontal" style=" padding-bottom: 2.5px">
 		<div class="center-horizontal" style="width:350px;"><img src="./firstIllinoisLogo.png" height="100"></div>
         <div class="center-horizontal" style="width:350px;"><img src="./vrsLogo.png" height="175"></div>
         <div class="center-horizontal" style="width:350px;"><img src="./FTCLogo.png" height="100"></div>
@@ -229,10 +262,10 @@
     </div>
 
     <div class="center-horizontal">
-        <button class="button1" onClick="overlay('https://www.youtube.com/embed/bKFBm2jqFpI', true)">How To Use</button>
-        <button class="button1" onClick="overlay('virtualftc_website/about-us.html', true)">Meet the Team</button>
-        <button class="button1" onClick="overlay('virtualftc_website/contact-us.html', true)">Contact Us</button>
-        <button class="button1" onClick="overlay('https://virtualftc.jasonbennett.work/courses/basic-movement-with-blocks/', true)">Lessons</button>
+        <button class="button2" onClick="overlay('https://www.youtube.com/embed/bKFBm2jqFpI', true)">How To Use</button>
+        <button class="button2" onClick="overlay('virtualftc_website/about-us.html', true)">Meet the Team</button>
+        <button class="button2" onClick="overlay('virtualftc_website/contact-us.html', true)">Contact Us</button>
+        <button class="button2" onClick="overlay('https://virtualftc.jasonbennett.work/courses/basic-movement-with-blocks/', true)">Lessons</button>
     </div>
 	
 	<div id="overlay">
@@ -257,15 +290,10 @@
 		
 		function overlay (link, open) {
 			document.getElementById('overlay').lastElementChild.firstElementChild.firstElementChild.firstElementChild.src = link;
-			if (open) {
+			if (open)
 				document.getElementById('overlay').style.visibility = "visible";
-				document.body.style.overflow = "hidden";
-			}
-			else {
+			else
 				document.getElementById('overlay').style.visibility = "hidden";
-				document.body.style.overflow = "inherit";
-			}
-			scroll(0, 0);
 			
 			if (link == 'virtualftc_website/contact-us.html')
 				document.getElementById('overlay').lastElementChild.firstElementChild.firstElementChild.firstElementChild.scrolling = "no";
