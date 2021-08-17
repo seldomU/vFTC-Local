@@ -152,32 +152,27 @@
 		}
 		
 		.desc{
-			color: #ffffff00;
-			text-shadow: 2px 2px 10px #00000000;
+			opacity: 0;
 			height: 0%;
 		}
 		
 		@keyframes descReveal {
 			from {
-				color: #ffffff00;
-				text-shadow: 2px 2px 10px #00000000;
+				opacity: 0;
 				height: 0%;
 			}
 			to {
-				color: #00fd72;
-				text-shadow: 2px 2px 10px #000000ff;
+				opacity: 1;
 				height: 65%;
 			}
 		}
 		@keyframes descHide {
 			from {
-				color: #00fd72;
-				text-shadow: 2px 2px 10px #000000ff;
+				opacity: 1;
 				height: 65%;
 			}
 			to {
-				color: #ffffff00;
-				text-shadow: 2px 2px 10px #00000000;
+				opacity: 0;
 				height: 0%;
 			}
 		}
