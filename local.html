@@ -20,12 +20,12 @@
       font-weight: normal;
       font-size: 35px;
       font-family: Jura;
-	  font-weight: bolder;
+      font-weight: bolder;
       color: white;
     }
 
     h2 {
-	  margin-top: 10px;
+      margin-top: 10px;
       margin-bottom: 10px;
       font-size: 17.5px;
       padding-left: 35px;
@@ -36,23 +36,23 @@
 
     .buttonText {
       top: 7.5px;
-	  position: relative;
+      position: relative;
       font-size: 30px;
-	  font-weight: bolder;
+      font-weight: bolder;
       font-family: Jura;
       color: white;
-	  cursor: default;
+      cursor: default;
     }
 
     .textNormal {
       color: grey;
-	  cursor: pointer;
-	  transition-duration: 0.4s;
+      cursor: pointer;
+      transition-duration: 0.4s;
     }
-	
-	.textNormal:hover {
-	  color: white;
-	}
+
+    .textNormal:hover {
+      color: white;
+    }
 
     .textDisabled {
       color: darkslategrey;
@@ -131,9 +131,9 @@
 
     .button1:disabled {
       border: 2px solid grey;
-	  background-color: transparent;
-	  color: grey;
-	  cursor: inherit;
+      background-color: transparent;
+      color: grey;
+      cursor: inherit;
     }
 
     .chevron::before {
@@ -149,7 +149,7 @@
       vertical-align: top;
       width: 0.45em;
       color: white;
-	  cursor: pointer;
+      cursor: pointer;
     }
 
     .chevron.left:before {
@@ -175,7 +175,7 @@
       position: relative;
       font-weight: bold;
       border: 0;
-	  cursor: pointer;
+      cursor: pointer;
     }
 
     .dropdown-select>option {
@@ -216,90 +216,98 @@
       background: transparent;
       /* make scrollbar transparent */
     }
-	
-	.divider {
-		width: 32.5px;
-		height: 2.5px;
-		display: inline-block;
-		background-color: white;
-		margin-left: 13.75px;
-		margin-right: 13.75px;
-		transform: rotate(90deg);
-		top: -3.5px;
-		position:relative;
-	}
-	
-	#videoTab {
-		display: none;
-		position: absolute;
-		top: 36.5px;
-		left: 50%;
-		margin-left: 6px;
-		padding: 8px;
-		padding-bottom: 10px;
-		background-color: #242424;
-		z-index: 100;
-		border: 1px solid white;
-	}
-	
-	#overlay {
-		visibility: hidden;
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		width: 100%;
-		height: 100%;
-		z-index: 100;
-		background-color: #00000044;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	#overlayInfo {
-		height: 50%;
-		background-color: #242424;
-		border:1px solid white;
-		height: 200px;
-		width: 400px;
-		margin-bottom: 150px;
-	}
-	
-	@keyframes showOverlay {
-		from {
-			visibility: hidden;
-			opacity: 0;
-		}
-		to {
-			visibility: visible;
-			opacity: 1;
-		}
-	}
-	@keyframes hideOverlay {
-		from {
-			visibility: visible;
-			opacity: 1;
-		}
-		to {
-			visibility: hidden;
-			opacity: 0;
-		}
-	}
-	@keyframes showOverlayInfo {
-		from {
-			margin-bottom: 250px;
-		}
-		to {
-			margin-bottom: 150px;
-		}
-	}
-	@keyframes hideOverlayInfo {
-		from {
-			margin-bottom: 150px;
-		}
-		to {
-			margin-bottom: 250px;
-		}
-	}
+
+    .divider {
+      width: 7.5px;
+      height: 7.5px;
+      display: inline-block;
+      background-color: white;
+      margin-left: 13.75px;
+      margin-right: 13.75px;
+      transform: rotate(90deg);
+      top: -3.5px;
+      position: relative;
+    }
+
+    #videoTab {
+      display: none;
+      position: absolute;
+      top: 36.5px;
+      left: 50%;
+      margin-left: 6px;
+      padding: 8px;
+      padding-bottom: 10px;
+      background-color: #242424;
+      z-index: 100;
+      border: 1px solid white;
+    }
+
+    #overlay {
+      visibility: hidden;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      background-color: #00000044;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #overlayInfo {
+      height: 50%;
+      background-color: #242424;
+      border: 1px solid white;
+      height: 200px;
+      width: 400px;
+      margin-bottom: 150px;
+    }
+
+    @keyframes showOverlay {
+      from {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      to {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    @keyframes hideOverlay {
+      from {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      to {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+
+    @keyframes showOverlayInfo {
+      from {
+        margin-bottom: 250px;
+      }
+
+      to {
+        margin-bottom: 150px;
+      }
+    }
+
+    @keyframes hideOverlayInfo {
+      from {
+        margin-bottom: 150px;
+      }
+
+      to {
+        margin-bottom: 250px;
+      }
+    }
   </style>
 </head>
 
@@ -337,13 +345,13 @@
     <button class="button1" onclick="switchToBlocks()">Blocks</button>
     <div style="width: 10px; display: inline-block;"></div>
     <button class="button1" onclick="switchToOnBotJava()">OnBotJava</button>
-	
+
     <div class="divider"></div>
-	
+
     <button class="button1" onclick="newProgram()">New Program</button>
     <div style="width: 10px; display: inline-block;"></div>
     <button class="button1" onclick="overlay(true, 0)">Save as...</button>
-	<div style="width: 10px; display: inline-block;"></div>
+    <div style="width: 10px; display: inline-block;"></div>
     <div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF;">
       <select id="programSelect" class="dropdown-select" onchange="loadProgram()">
         <option value="Load Program">Load Program</option>
@@ -351,21 +359,21 @@
     </div>
     <div style="width: 10px; display: inline-block;"></div>
     <button id="save" class="button1" onclick="autoSave()" disabled>Save</button>
-	<div style="width: 10px; display: inline-block;"></div>
+    <div style="width: 10px; display: inline-block;"></div>
     <button id="delete" class="button1" onclick="overlay(true, 1)" disabled>Delete</button>
-	<div style="width: 10px; display: inline-block;"></div>
+    <div style="width: 10px; display: inline-block;"></div>
     <button id="download" class="button1" disabled><i style="color: grey;">Download</i></button>
-	
+
     <div class="divider"></div>
-	
-	<button class="button1" onclick="startProgram()">Start Program</button>
-	<div style="width: 10px; display: inline-block;"></div>
-	<button class="button1" onclick="stopProgram()">Stop Program</button>
-	<div style="width: 10px; display: inline-block;"></div>
-	<button class="button1" onclick="resetField()">Reset Field</button>
-	
-	
-	<button class="button1" onClick="playVideo(false)" style="position: absolute; right: 25px;">Program Stuck?</button>
+
+    <button class="button1" onclick="startProgram()">Start Program</button>
+    <div style="width: 10px; display: inline-block;"></div>
+    <button class="button1" onclick="stopProgram()">Stop Program</button>
+    <div style="width: 10px; display: inline-block;"></div>
+    <button class="button1" onclick="resetField()">Reset Field</button>
+
+
+    <button class="button1" onClick="playVideo(false)" style="position: absolute; right: 25px;">Program Stuck?</button>
   </div>
 
 
@@ -374,54 +382,58 @@
     <div id="onBotJavaDiv" style="width: 50%;border:1px solid white;" hidden>
       <h1 id="loadingOBJText">HI</h1>
     </div>
-	
+
     <div style="width: 50%; background-color: #242424; padding-left: 10px;">
       <div id="controlPanel" style="height: 50%; background-color: #242424; border:1px solid white;">
         <div style="display: flex; display: inline;" class="buttonText">
-		    <div style="width: 20px; display: inline-block;"></div>
-			<div id="firstTab" style="display: inline-block;" onclick="switchTab(this, 0)">Telemetry</div>
-			<div class="divider"></div>
-			<div style="display: inline-block;" onclick="switchTab(this, 1)" class="textNormal">Lessons</div>
-			<div class="divider"></div>
-			<div style="display: inline-block;" onclick="switchTab(this, 2)" class="textNormal">LMS</div>
-			<div class="divider"></div>
-			<div id="videoButton" style="display: inline-block;" onclick="switchTab(this, 3)" class="textDisabled">Video</div>
-		</div>
-		<div style="width:100%; height: 10px; background-color: #4B4B4B; margin-top: 15px; margin-bottom: 20px;"></div>
-		<div id="tabOptions" style="height: 80%;">
-			<div style="height: 100%; overflow: scroll;">
-				<div style="width:100%; overflow:hidden; background-color: #323232;">
-					<h2 id="telemetryText" style="font-size: 20px;">-Telemetry Output-</h2>
-				</div>
-			</div>
-			<div style="display: none;">
-				<div style="display: flex; justify-content: center;">
-					<div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF;">
-						<select id="lessonSelect" class="dropdown-select" onChange="loadLesson()" style="font-size:20px;">
-							<option value=-1>Coding Lessons</option>
-							<option value=0>Drive to White Line - 2 Motors</option> <!-- Timing			-->
-							<option value=1>Drive to White Line - 4 Motors</option> <!-- Timing x2		-->
-							<option value=2>Drive and Rotate 90 Degress</option>	<!-- Precise Timing	-->
-							<option value=3>Drive and Rotate in a Square</option>	<!-- Loops			-->
-							<option value=4>Drive and Strafe in a Square</option>	<!-- Strafing		-->
-							<option value=5>Wobble Goal - 1st Position</option>		<!-- First Task		-->
-							<option value=6>Wobble Goal - 2nd Position</option>		<!-- Encoders		-->
-							<option value=7>Wobble Goal - 3rd Position</option>		<!-- Functions		-->
-							<option value=8>Drive and Shoot into High Goal</option>	<!-- New Motors		-->
-							<option value=9>Drive and Shoot at Powershots</option>	<!-- Complex task	-->
-						</select>
-					</div>
-				</div>
-				<div style="width:100%; overflow:hidden; background-color: #323232; margin-top: 10px;">
-					<h2 id="lessonText" style="font-size: 20px;">[Select a Lesson]</h2>
-				</div>
-				<div id="lessonButtons" style="padding-top: 12.5px; display: none;">
-					<button class="button1" style="position: relative; left: 105px; font-size: 20px;">Show the Task</button>			<!-- Hello Mihir -->
-					<button class="button1" onClick="playVideo(true)" style="position: absolute; right: 112.5px; font-size:20px;">Show Video Solution</button>
-				</div>
-			</div>
-			<iframe src="https://virtualftc.jasonbennett.work/courses/basic-movement-with-blocks/'" width="100%" height="100%" frameBorder="0" style="display: none;"></iframe>
-		</div>
+          <div style="width: 20px; display: inline-block;"></div>
+          <div id="firstTab" style="display: inline-block;" onclick="switchTab(this, 0)">Telemetry</div>
+          <div class="divider"></div>
+          <div style="display: inline-block;" onclick="switchTab(this, 1)" class="textNormal">Lessons</div>
+          <div class="divider"></div>
+          <div style="display: inline-block;" onclick="switchTab(this, 2)" class="textNormal">LMS</div>
+          <div class="divider"></div>
+          <div id="videoButton" style="display: inline-block;" onclick="switchTab(this, 3)" class="textDisabled">Video
+          </div>
+        </div>
+        <div style="width:100%; height: 10px; background-color: #4B4B4B; margin-top: 15px; margin-bottom: 20px;"></div>
+        <div id="tabOptions" style="height: 80%;">
+          <div style="height: 100%; overflow: scroll;">
+            <div style="width:100%; overflow:hidden; background-color: #323232;">
+              <h2 id="telemetryText" style="font-size: 20px;">-Telemetry Output-</h2>
+            </div>
+          </div>
+          <div style="display: none;">
+            <div style="display: flex; justify-content: center;">
+              <div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF;">
+                <select id="lessonSelect" class="dropdown-select" onChange="loadLesson()" style="font-size:20px;">
+                  <option value=-1>Coding Lessons</option>
+                  <option value=0>Drive to White Line - 2 Motors</option> <!-- Timing			-->
+                  <option value=1>Drive to White Line - 4 Motors</option> <!-- Timing x2		-->
+                  <option value=2>Drive and Rotate 90 Degress</option> <!-- Precise Timing	-->
+                  <option value=3>Drive and Rotate in a Square</option> <!-- Loops			-->
+                  <option value=4>Drive and Strafe in a Square</option> <!-- Strafing		-->
+                  <option value=5>Wobble Goal - 1st Position</option> <!-- First Task		-->
+                  <option value=6>Wobble Goal - 2nd Position</option> <!-- Encoders		-->
+                  <option value=7>Wobble Goal - 3rd Position</option> <!-- Functions		-->
+                  <option value=8>Drive and Shoot into High Goal</option> <!-- New Motors		-->
+                  <option value=9>Drive and Shoot at Powershots</option> <!-- Complex task	-->
+                </select>
+              </div>
+            </div>
+            <div style="width:100%; overflow:hidden; background-color: #323232; margin-top: 10px;">
+              <h2 id="lessonText" style="font-size: 20px;">[Select a Lesson]</h2>
+            </div>
+            <div id="lessonButtons" style="padding-top: 12.5px; display: none;">
+              <button class="button1" style="position: relative; left: 105px; font-size: 20px;">Show the Task</button>
+              <!-- Hello Mihir -->
+              <button class="button1" onClick="playVideo(true)"
+                style="position: absolute; right: 112.5px; font-size:20px;">Show Video Solution</button>
+            </div>
+          </div>
+          <iframe src="https://virtualftc.jasonbennett.work/courses/basic-movement-with-blocks/'" width="100%"
+            height="100%" frameBorder="0" style="display: none;"></iframe>
+        </div>
       </div>
 
       <div id="fieldView" style="height: 50%; margin-top: 10px; background-color: #000000;">
@@ -434,172 +446,174 @@
     </div>
   </div>
 
-	<div id="videoTab">
-		<div style="display: flex;">
-			<a onClick="switchTab(this, 3)" id="backButton"><span class="chevron left"></span></a>
-		</div>
+  <div id="videoTab">
+    <div style="display: flex;">
+      <a onClick="switchTab(this, 3)" id="backButton"><span class="chevron left"></span></a>
+    </div>
 
-		<div class="container" style="display: flex; padding-top: 5px;">
-			<div style="width: 100%; background-color: #242424;">
-				<div id="videoView" style="background-color: #000000;">
-					<iframe src="" width="100%" height="100%"
-						frameBorder="0"></iframe>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div id="overlay">
-	  <div id="overlayInfo">
-		  <div style="display: flex; padding-top: 2.5px;">
-			<a id="backButton" style="padding: 7.5px;" onClick="overlay(false, 0)"><span class="chevron left"></span></a>
-			<h1 id="overlayName" style="text-align: center; width: 347.6px; position: relative; top: 2.5px; margin-bottom: 10px;">Save Program</h1>
-		  </div>
-		  <div style="width:100%; height: 5%; background-color: #4B4B4B;"></div>
-		  <div id="overlayType">
-			<div>
-				<form onSubmit="return false;" style="display: flex; justify-content: center; margin-top: 32.5px;">
-					<input type="text" id="saveProgramName" style="font-size: 20px;" placeholder="Enter Name..." autocomplete="off">
-				</form>
-				<button class="button1" onclick="saveProgram()" style="font-size: 20px; margin-top: 35px; margin-left: 325px;">Save</button>
-			</div>
-			<div>
-				<img src="./trashProgram.png" style="width: 33%; padding-left: 33%; padding-top: 15px;"/>
-				<button class="button1" onclick="deleteProgram()" style="font-size: 20px; margin-top: 10px; margin-left: 315px;">Delete</button>
-			</div>
-		  </div>
-	  </div>
-	</div>
+    <div class="container" style="display: flex; padding-top: 5px;">
+      <div style="width: 100%; background-color: #242424;">
+        <div id="videoView" style="background-color: #000000;">
+          <iframe src="" width="100%" height="100%" frameBorder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        document.getElementById('videoView').style.height = .5 * (screen.height) - 69 + "px";
-        document.getElementById('videoTab').style.width = .5 * (document.body.clientWidth) - 24 + "px";
-		
-		var prevTabButton = document.getElementById('firstTab');
-		
-		function switchTab(button, tabNum) {
-			if (tabNum == 3) {
-				if (button.className == 'textNormal')
-					document.getElementById('videoTab').style.display = "inherit";
-				else
-					document.getElementById('videoTab').style.display = "none";
-			}
-			else if (button.className == 'textNormal') {
-				for (var i = 0; i < document.getElementById('tabOptions').children.length; i++)
-					document.getElementById('tabOptions').children[i].style.display = "none";
-				document.getElementById('tabOptions').children[tabNum].style.display = "inherit";
-				prevTabButton.classList.add('textNormal');
-				button.classList.remove('textNormal');
-				prevTabButton = button;
-			}
-		}
-		
-		function playVideo(lessonVideo) {
-			link = "";
-			if (lessonVideo) {
-				switch (document.getElementById('lessonSelect').value)
-				{
-					case "0":
-						link = "https://www.youtube.com/embed/zBjlgFOxw7A";
-						break;
-					case "1":
-						link = "https://www.youtube.com/embed/6VdMtwmT_Ms";
-						break;
-				}
-			}
-			else
-				link = 'https://www.youtube.com/embed/KXMlbdsr8fM';
-			document.getElementById('videoTab').lastElementChild.firstElementChild.firstElementChild.firstElementChild.src = link;
-			document.getElementById('videoButton').classList.remove('textDisabled');
-			document.getElementById('videoButton').classList.add('textNormal');
-			switchTab(document.getElementById('videoButton'), 3);
-		}
-		
-		function loadLesson() {
-			document.getElementById('lessonButtons').style.display = "inherit";
-			switch (document.getElementById('lessonSelect').value)
-			{
-				case "0":
-					document.getElementById('lessonText').innerText = "Difficulty: Easy\n" + 
-						"In this first lesson, you will need to power the Front Left and Front Right Wheels for a certain amount of time in order to get the robot on the White Line for +5 Points during Autonomous. Press the \"Show the Task\" button to see what you need to do." +
-						"\n\nYou'll Learn:\nBasic Motor Powering\nMovement Timing";
-					break;
-				case "1":
-					document.getElementById('lessonText').innerText = "Difficulty: Easy\n" + 
-						"The next stage will now be to add power to all 4 Wheels in your program. This will require a bit more precision, but will benefit with the added Torque and Speed the motors will provide. Your robot can have a max of 8 motors and 12 servos for full movement!" + 
-						"\n\nYou'll Learn:\nBalance between Speed and Reliability\nMore Motor Control";
-					break;
-				case "2":
-					document.getElementById('lessonText').innerText = "Difficulty: Easy\n" + 
-						"For this lesson, we will be adding more than just forwards and backwards and introducing rotation! This may require alot more precision than you initially think. If only there was a way of consistently moving..." + 
-						"\n\nYou'll Learn:\nThe Limits to using Timing\nRotation Basics";
-					break;
-				case "3":
-					document.getElementById('lessonText').innerText = "Difficulty: Medium\n" + 
-						"Let's make the robot go along the path of the strongest shape: the Square! Or was it the triangle? Either way it may be useful to use loops for this program so the code looks cleaner and changes can be made faster." +
-						"\n\nYou'll Learn:\nThe Joys of Clean Code\nUsing Loop Blocks";
-					break;
-				case "4":
-					document.getElementById('lessonText').innerText = "Difficulty: Medium\n" + 
-						"Are those mechanum wheels on your robot there? Great! That means you have another mode of movement called strafing where the robot can move directly left and right without turning. The wheels just need to spin a certain way..." +
-						"\n\nYou'll Learn:\nThe Art of Expirementing\nStrafing Movement";
-					break;
-				case "5":
-					document.getElementById('lessonText').innerText = "Difficulty: Medium\n" + 
-						"Alright, now let's start getting some actual autonomous points. First off, let's put the wobble goal in the first position earning +15 points. For right now, we can stick to timing but we can see it becomes a bit more unreliable the more we move." +
-						"\n\nYou'll Learn:\nHow to Handle Large Amounts of Code\nComplex Movement";
-					break;
-				case "6":
-					document.getElementById('lessonText').innerText = "Difficulty: Hard\n" + 
-						"Moving onto the next wobble goal position, we know we need a different system of navigation. Let's try out using motor encoders which can tell us the wheel's current position. Motors: 1440 Ticks per Revolution & Wheels: 4π Circumfrence." +
-						"\n\nYou'll Learn:\nMotor Encoders\nVariables";
-					break;
-				case "7":
-					document.getElementById('lessonText').innerText = "Difficulty: Hard\n" + 
-						"Great, we have cracked the code for motor encoders! But... the code looks all messy and complicated and would be a pain to make sight changes to. Let's try and compact the 3 main movements into 3 functions we can call." +
-						"\n\nYou'll Learn:\nKeeping Code Simple\nFunctions";
-					break;
-				case "8":
-					document.getElementById('lessonText').innerText = "Difficulty: Hard\n" + 
-						"Looks like the engineering team has just slapped a shooting mechanism onto your robot. Time to learn how that works. It seems they have wired in a new \"ringLoader\" and \"ringShooter\" motor. Let's get 3 rings into that Top Goal scoring +36 points." +
-						"\n\nYou'll Learn:\nHandling Multiple Tasks\nComplex Motors";
-					break;
-				case "9":
-					document.getElementById('lessonText').innerText = "Difficulty: Hard\n" + 
-						"You're Driving Team isn't looking too good during TeleOp. Looks like you'll have to step in to earn those extra points during autonomous. Try and shoot at each powershot for +45 points while either rotating or strafing to change targets." +
-						"\n\nYou'll Learn:\nScoring Big in Autonomous\nHow to Code! (hopefully...)";
-					break;
-				default:
-					document.getElementById('lessonButtons').style.display = "none";
-					document.getElementById('lessonText').innerText = "[Select Lesson]";
-					break;
-			}
-		}
-		
-		function overlay(show, activity) {
-			if (show) {
-				document.getElementById('overlay').style.animation = "showOverlay .25s ease 1 normal forwards";
-				document.getElementById('overlayInfo').style.animation = "showOverlayInfo .5s ease 1 normal forwards";
-				switch (activity) {
-					case 0:
-					  document.getElementById('saveProgramName').value = "";
-					  document.getElementById('overlayName').innerHTML = "Save Program";
-					  break;
-					case 1:
-					  document.getElementById('overlayName').innerHTML = "Delete Program?";
-					  break;
-				}
-				for (var i = 0; i < document.getElementById('overlayType').children.length; i++)
-					document.getElementById('overlayType').children[i].style.display = "none";
-				document.getElementById('overlayType').children[activity].style.display = "inherit";
-			}
-			else {
-				document.getElementById('overlay').style.animation = "hideOverlay .25s ease 1 normal forwards";
-				document.getElementById('overlayInfo').style.animation = "hideOverlayInfo .5s ease 1 normal forwards";
-			}
-		}
-		
-    </script>
+  <div id="overlay">
+    <div id="overlayInfo">
+      <div style="display: flex; padding-top: 2.5px;">
+        <a id="backButton" style="padding: 7.5px;" onClick="overlay(false, 0)"><span class="chevron left"></span></a>
+        <h1 id="overlayName"
+          style="text-align: center; width: 347.6px; position: relative; top: 2.5px; margin-bottom: 10px;">Save Program
+        </h1>
+      </div>
+      <div style="width:100%; height: 1px; background-color: #4B4B4B;"></div>
+      <div id="overlayType">
+        <div>
+          <form onSubmit="return false;" style="display: flex; justify-content: center; margin-top: 32.5px;">
+            <input type="text" id="saveProgramName" style="font-size: 20px;" placeholder="Enter Name..."
+              autocomplete="off">
+          </form>
+          <button class="button1" onclick="saveProgram()"
+            style="font-size: 20px; margin-top: 35px; margin-left: 325px;">Save</button>
+        </div>
+        <div>
+          <img src="./trashProgram.png" style="width: 33%; padding-left: 33%; padding-top: 15px;" />
+          <button class="button1" onclick="deleteProgram()"
+            style="font-size: 20px; margin-top: 10px; margin-left: 315px;">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('videoView').style.height = .5 * (screen.height) - 69 + "px";
+    document.getElementById('videoTab').style.width = .5 * (document.body.clientWidth) - 24 + "px";
+
+    var prevTabButton = document.getElementById('firstTab');
+
+    function switchTab(button, tabNum) {
+      if (tabNum == 3) {
+        if (button.className == 'textNormal')
+          document.getElementById('videoTab').style.display = "inherit";
+        else
+          document.getElementById('videoTab').style.display = "none";
+      }
+      else if (button.className == 'textNormal') {
+        for (var i = 0; i < document.getElementById('tabOptions').children.length; i++)
+          document.getElementById('tabOptions').children[i].style.display = "none";
+        document.getElementById('tabOptions').children[tabNum].style.display = "inherit";
+        prevTabButton.classList.add('textNormal');
+        button.classList.remove('textNormal');
+        prevTabButton = button;
+      }
+    }
+
+    function playVideo(lessonVideo) {
+      link = "";
+      if (lessonVideo) {
+        switch (document.getElementById('lessonSelect').value) {
+          case "0":
+            link = "https://www.youtube.com/embed/zBjlgFOxw7A";
+            break;
+          case "1":
+            link = "https://www.youtube.com/embed/6VdMtwmT_Ms";
+            break;
+        }
+      }
+      else
+        link = 'https://www.youtube.com/embed/KXMlbdsr8fM';
+      document.getElementById('videoTab').lastElementChild.firstElementChild.firstElementChild.firstElementChild.src = link;
+      document.getElementById('videoButton').classList.remove('textDisabled');
+      document.getElementById('videoButton').classList.add('textNormal');
+      switchTab(document.getElementById('videoButton'), 3);
+    }
+
+    function loadLesson() {
+      document.getElementById('lessonButtons').style.display = "inherit";
+      switch (document.getElementById('lessonSelect').value) {
+        case "0":
+          document.getElementById('lessonText').innerText = "Difficulty: Easy\n" +
+            "In this first lesson, you will need to power the Front Left and Front Right Wheels for a certain amount of time in order to get the robot on the White Line for +5 Points during Autonomous. Press the \"Show the Task\" button to see what you need to do." +
+            "\n\nYou'll Learn:\nBasic Motor Powering\nMovement Timing";
+          break;
+        case "1":
+          document.getElementById('lessonText').innerText = "Difficulty: Easy\n" +
+            "The next stage will now be to add power to all 4 Wheels in your program. This will require a bit more precision, but will benefit with the added Torque and Speed the motors will provide. Your robot can have a max of 8 motors and 12 servos for full movement!" +
+            "\n\nYou'll Learn:\nBalance between Speed and Reliability\nMore Motor Control";
+          break;
+        case "2":
+          document.getElementById('lessonText').innerText = "Difficulty: Easy\n" +
+            "For this lesson, we will be adding more than just forwards and backwards and introducing rotation! This may require alot more precision than you initially think. If only there was a way of consistently moving..." +
+            "\n\nYou'll Learn:\nThe Limits to using Timing\nRotation Basics";
+          break;
+        case "3":
+          document.getElementById('lessonText').innerText = "Difficulty: Medium\n" +
+            "Let's make the robot go along the path of the strongest shape: the Square! Or was it the triangle? Either way it may be useful to use loops for this program so the code looks cleaner and changes can be made faster." +
+            "\n\nYou'll Learn:\nThe Joys of Clean Code\nUsing Loop Blocks";
+          break;
+        case "4":
+          document.getElementById('lessonText').innerText = "Difficulty: Medium\n" +
+            "Are those mechanum wheels on your robot there? Great! That means you have another mode of movement called strafing where the robot can move directly left and right without turning. The wheels just need to spin a certain way..." +
+            "\n\nYou'll Learn:\nThe Art of Expirementing\nStrafing Movement";
+          break;
+        case "5":
+          document.getElementById('lessonText').innerText = "Difficulty: Medium\n" +
+            "Alright, now let's start getting some actual autonomous points. First off, let's put the wobble goal in the first position earning +15 points. For right now, we can stick to timing but we can see it becomes a bit more unreliable the more we move." +
+            "\n\nYou'll Learn:\nHow to Handle Large Amounts of Code\nComplex Movement";
+          break;
+        case "6":
+          document.getElementById('lessonText').innerText = "Difficulty: Hard\n" +
+            "Moving onto the next wobble goal position, we know we need a different system of navigation. Let's try out using motor encoders which can tell us the wheel's current position. Motors: 1440 Ticks per Revolution & Wheels: 4π Circumfrence." +
+            "\n\nYou'll Learn:\nMotor Encoders\nVariables";
+          break;
+        case "7":
+          document.getElementById('lessonText').innerText = "Difficulty: Hard\n" +
+            "Great, we have cracked the code for motor encoders! But... the code looks all messy and complicated and would be a pain to make sight changes to. Let's try and compact the 3 main movements into 3 functions we can call." +
+            "\n\nYou'll Learn:\nKeeping Code Simple\nFunctions";
+          break;
+        case "8":
+          document.getElementById('lessonText').innerText = "Difficulty: Hard\n" +
+            "Looks like the engineering team has just slapped a shooting mechanism onto your robot. Time to learn how that works. It seems they have wired in a new \"ringLoader\" and \"ringShooter\" motor. Let's get 3 rings into that Top Goal scoring +36 points." +
+            "\n\nYou'll Learn:\nHandling Multiple Tasks\nComplex Motors";
+          break;
+        case "9":
+          document.getElementById('lessonText').innerText = "Difficulty: Hard\n" +
+            "You're Driving Team isn't looking too good during TeleOp. Looks like you'll have to step in to earn those extra points during autonomous. Try and shoot at each powershot for +45 points while either rotating or strafing to change targets." +
+            "\n\nYou'll Learn:\nScoring Big in Autonomous\nHow to Code! (hopefully...)";
+          break;
+        default:
+          document.getElementById('lessonButtons').style.display = "none";
+          document.getElementById('lessonText').innerText = "[Select Lesson]";
+          break;
+      }
+    }
+
+    function overlay(show, activity) {
+      if (show) {
+        document.getElementById('overlay').style.animation = "showOverlay .25s ease 1 normal forwards";
+        document.getElementById('overlayInfo').style.animation = "showOverlayInfo .5s ease 1 normal forwards";
+        switch (activity) {
+          case 0:
+            document.getElementById('saveProgramName').value = "";
+            document.getElementById('overlayName').innerHTML = "Save Program";
+            break;
+          case 1:
+            document.getElementById('overlayName').innerHTML = "Delete Program?";
+            break;
+        }
+        for (var i = 0; i < document.getElementById('overlayType').children.length; i++)
+          document.getElementById('overlayType').children[i].style.display = "none";
+        document.getElementById('overlayType').children[activity].style.display = "inherit";
+      }
+      else {
+        document.getElementById('overlay').style.animation = "hideOverlay .25s ease 1 normal forwards";
+        document.getElementById('overlayInfo').style.animation = "hideOverlayInfo .5s ease 1 normal forwards";
+      }
+    }
+
+  </script>
 
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
@@ -614,7 +628,7 @@
 
     <category css-icon="customIcon fa fa-caret-right" name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
       <category name="Telemetry">
-	    <block type="telemetryAddData">
+        <block type="telemetryAddData">
           <value name="key">
             <shadow type="text"></shadow>
           </value>
@@ -880,13 +894,13 @@
     prepareUiToLoadProgram();
 
     function newProgram() {
-	  document.getElementById("programSelect").value = "Load Program";
-	  document.getElementById('save').disabled = true;
-	  document.getElementById('delete').disabled = true;
-	  document.getElementById('download').disabled = true;
+      document.getElementById("programSelect").value = "Load Program";
+      document.getElementById('save').disabled = true;
+      document.getElementById('delete').disabled = true;
+      document.getElementById('download').disabled = true;
       Blockly.mainWorkspace.clear();
       Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom('<xml><block type="onOpmodeStart" deletable="false" movable="true"></block></xml>'), workspace);
-	  document.getElementById("telemetryText").innerText = 'Cleared Blocks \n';
+      document.getElementById("telemetryText").innerText = 'Cleared Blocks \n';
     }
 
     function saveProgram() {
@@ -894,29 +908,29 @@
       var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
       localStorage.setItem("Program Name: " + programName, Blockly.Xml.domToText(xml));
       prepareUiToLoadProgram();
-	  document.getElementById("programSelect").value = document.getElementById('saveProgramName').value;
-	  document.getElementById('save').disabled = false;
-	  document.getElementById('delete').disabled = false;
-	  document.getElementById('download').disabled = false;
-	  overlay(false, 0);
-	  document.getElementById("telemetryText").innerText = 'Saved new "' + programName + '" Program \n';
+      document.getElementById("programSelect").value = document.getElementById('saveProgramName').value;
+      document.getElementById('save').disabled = false;
+      document.getElementById('delete').disabled = false;
+      document.getElementById('download').disabled = false;
+      overlay(false, 0);
+      document.getElementById("telemetryText").innerText = 'Saved new "' + programName + '" Program \n';
     }
 
-	function autoSave() {
-	  var programName = document.getElementById('programSelect').value;
+    function autoSave() {
+      var programName = document.getElementById('programSelect').value;
       var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
       localStorage.setItem("Program Name: " + programName, Blockly.Xml.domToText(xml));
-	  document.getElementById("telemetryText").innerText = 'Saved "' + programName + '" Program \n';
-	}
+      document.getElementById("telemetryText").innerText = 'Saved "' + programName + '" Program \n';
+    }
 
-	function deleteProgram() {
-	  var programName = document.getElementById('programSelect').value;
-	  localStorage.removeItem("Program Name: " + programName);
-	  newProgram();
-	  prepareUiToLoadProgram();
-	  document.getElementById("telemetryText").innerText = 'Deleted "' + programName + '" Program \n';
-	  overlay(false, 0);
-	}
+    function deleteProgram() {
+      var programName = document.getElementById('programSelect').value;
+      localStorage.removeItem("Program Name: " + programName);
+      newProgram();
+      prepareUiToLoadProgram();
+      document.getElementById("telemetryText").innerText = 'Deleted "' + programName + '" Program \n';
+      overlay(false, 0);
+    }
 
     function loadProgram() {
       Blockly.mainWorkspace.clear();
@@ -924,18 +938,18 @@
       if (nameOfProject == "Program Name: Load Program") {
         newProgram();
       } else if (typeof (Storage) !== "undefined") {
-		document.getElementById('save').disabled = false;
-		document.getElementById('delete').disabled = false;
-		document.getElementById('download').disabled = false;
+        document.getElementById('save').disabled = false;
+        document.getElementById('delete').disabled = false;
+        document.getElementById('download').disabled = false;
         var xml = Blockly.Xml.textToDom(localStorage.getItem(nameOfProject));
         Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
-	    document.getElementById("telemetryText").innerText = 'Loaded "' + document.getElementById("programSelect").value + '" Program \n';
+        document.getElementById("telemetryText").innerText = 'Loaded "' + document.getElementById("programSelect").value + '" Program \n';
       }
     }
 
     function resetField() {
       localStorage.setItem('resetField', true);
-	  document.getElementById("telemetryText").innerText = "Field Reset \n";
+      document.getElementById("telemetryText").innerText = "Field Reset \n";
     }
 
     function initApi(interpreter, globalObject) {
@@ -948,7 +962,7 @@
       interpreter.setProperty(globalObject, 'alert', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motorName, power) {
-		power = Math.min(1, Math.max(power, -1));
+        power = Math.min(1, Math.max(power, -1));
         if (motorName == "frontLeft") {
           // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": power, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
@@ -1001,8 +1015,8 @@
       interpreter.setProperty(globalObject, 'delay', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motor1Name, power, motor2Name, power2) {
-	    power = Math.min(1, Math.max(power, -1));
-	    power2 = Math.min(1, Math.max(power2, -1));
+        power = Math.min(1, Math.max(power, -1));
+        power2 = Math.min(1, Math.max(power2, -1));
         if (motor1Name == "frontLeft") {
           // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
           motorPowers = { "motor1": power, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
@@ -1062,18 +1076,18 @@
         return (telemetryData.push(key + ": " + data));
       };
       interpreter.setProperty(globalObject, 'addTelemetryData', interpreter.createNativeFunction(wrapper));
-	  
-	  var wrapper = function () {
-		var telemetryOutput = "";
-		for (var i = 0; i < telemetryData.length; i++)
-			telemetryOutput += telemetryData[i] + "\n";
-		telemetryData = [];
+
+      var wrapper = function () {
+        var telemetryOutput = "";
+        for (var i = 0; i < telemetryData.length; i++)
+          telemetryOutput += telemetryData[i] + "\n";
+        telemetryData = [];
         return (document.getElementById("telemetryText").innerText = telemetryOutput);
       };
       interpreter.setProperty(globalObject, 'updateTelemetry', interpreter.createNativeFunction(wrapper));
     }
 
-	var telemetryData = [];
+    var telemetryData = [];
 
     var myInterpreter = null;
     var runner;
@@ -1089,19 +1103,19 @@
     }
 
     function startProgram() {
-	  resetInterpreter();
-	  setTimeout(delayStartProgram, 100);
+      resetInterpreter();
+      setTimeout(delayStartProgram, 100);
     }
 
-	function delayStartProgram() {
-	  var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
+    function delayStartProgram() {
+      var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
       var code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
       console.log(code);
-	  telemetryData = [];
+      telemetryData = [];
       myInterpreter = new Interpreter(code, initApi);
       nextStep();
       return;
-	}
+    }
 
     function nextStep() {
       if (myInterpreter.step()) {
@@ -1111,7 +1125,7 @@
         }
       } else {
         resetInterpreter();
-		document.getElementById("telemetryText").innerText = "Program Ended \n";
+        document.getElementById("telemetryText").innerText = "Program Ended \n";
       }
     }
 
@@ -1119,8 +1133,8 @@
       var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
       localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       localStorage.setItem('stopMatch', true);
-	  resetInterpreter();
-	  document.getElementById("telemetryText").innerText = "Program Aborted \n";
+      resetInterpreter();
+      document.getElementById("telemetryText").innerText = "Program Aborted \n";
     }
 
     Blockly.JavaScript['onOpmodeStart'] = function (block) {
