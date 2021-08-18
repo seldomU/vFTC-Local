@@ -619,44 +619,72 @@
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <category css-icon="customIcon fa fa-long-arrow-right" name="LinearOpMode" colour="30"
       toolboxitemid="linearOpModeCategory">
-      <block type="pause"></block>
+	  <block type="waitForStart" disabled="true" editable="false"></block>
+      <block type="pause" editable="false">
+		<value name="delayTime"><shadow type="math_number"><field name="NUM">1000</field></shadow></value>
+	  </block>
+	  <block type="isStarted" disabled="true" editable="false"></block>
+	  <block type="getRuntime" disabled="true" editable="false"></block>
     </category>
 
     <category css-icon="customIcon fa fa-gamepad" name="Gamepad" colour="1" toolboxitemid="gamepadCategory">
-      <block type="gamepadInputs"></block>
-    </category>
-
-    <category css-icon="customIcon fa fa-caret-right" name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
-      <category name="Telemetry">
-        <block type="telemetryAddData">
-          <value name="key">
-            <shadow type="text"></shadow>
-          </value>
-          <value name="data">
-            <shadow type="text"></shadow>
-          </value>
-        </block>
-        <block type="telemetryUpdate"></block>
-      </category>
+	  <block type="gamepadBooleans"></block>
+	  <block type="gamepadBooleans"><field name="controller_component">-1, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">1, "Xbox"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">8, "Xbox"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">1, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">0, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">13, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">14, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">15, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">12, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">16, "Xbox"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">4, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">10, "Both"</field></block>
+	  <block type="gamepadFloats"></block>
+	  <block type="gamepadFloats"><field name="controller_component">1</field></block>
+	  <block type="gamepadFloats"><field name="controller_component">6</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">9, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">16, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">5, "Both"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">11, "Both"</field></block>
+	  <block type="gamepadFloats"><field name="controller_component">2</field></block>
+	  <block type="gamepadFloats"><field name="controller_component">3</field></block>
+	  <block type="gamepadFloats"><field name="controller_component">7</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">8, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">2, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">9, "Xbox"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">17, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">3, "P"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">2, "Xbox"</field></block>
+	  <block type="gamepadBooleans"><field name="controller_component">3, "Xbox"</field></block>
     </category>
 
     <category css-icon="customIcon fa fa-caret-right" name="Actuators" colour="#f58a42" toolboxitemid="motorCategory">
       <category css-icon="customIcon fa fa-caret-right" name="DcMotor">
         <block type="getMotorData">
-          <field name="motorOption">["TargetPosition","targetPosition"]</field>
+          <field name="motorOption"></field>
         </block>
 
-        <block type="setMotorDirection">
+        <block type="setMotorDirection" disabled="true">
           <value name="motorOption2">
             <shadow type="directionInput"></shadow>
           </value>
         </block>
 
-        <block type="getMotorDirection"></block>
+        <block type="getMotorDirection" disabled="true"></block>
 
-        <block type="setMotorRunMode">
+        <block type="setMotorRunMode" disabled="true">
           <value name="runMode">
             <shadow type="runModeOptions"></shadow>
+          </value>
+        </block>
+
+        <block type="getMotorRunMode" disabled="true"></block>
+
+        <block type="setMotorInput">
+          <value name="power">
+            <shadow type="math_number"><field name="NUM">1</field></shadow>
           </value>
         </block>
 
@@ -666,15 +694,29 @@
           </value>
         </block>
 
-        <block type="setMotorZeroPowerBehavior">
-          <value name="motorOption2">
-            <shadow type="zeroPowerBehaviorOptions"></shadow>
+        <block type="getMotorData" disabled="true"><field name="motorOption">power</field></block>
+
+        <block type="setMotorInput" disabled="true">
+		  <field name="motorOption">targetPosition</field>
+          <value name="power">
+            <shadow type="math_number"></shadow>
           </value>
         </block>
+		
+        <block type="getMotorData" disabled="true"><field name="motorOption">targetPosition</field></block>
 
-        <block type="isMotorBusy"></block>
+        <block type="isMotorBusy" disabled="true"></block>
         <!--Creation of the subcategory for the dual DC Motor block-->
         <category name="Dual" toolboxitemid="motorCategory2">
+          <block type="setMotorInputDual">
+            <value name="power1">
+              <shadow type="math_number"><field name="NUM">1</field></shadow>
+            </value>
+            <value name="power2">
+              <shadow type="math_number"><field name="NUM">1</field></shadow>
+            </value>
+          </block>
+
           <block type="setMotorInputDual">
             <value name="power1">
               <shadow type="math_number"></shadow>
@@ -693,29 +735,69 @@
             </value>
           </block>
 
-          <block type="setMotorZeroPowerBehaviorDual">
-            <value name="input1">
-              <shadow type="zeroPowerBehaviorOptions"></shadow>
+          <block type="setMotorInputDual" disabled="true">
+		    <field name="motorOption">targetPosition</field>
+            <value name="power1">
+              <shadow type="math_number"></shadow>
             </value>
-            <value name="input2">
-              <shadow type="zeroPowerBehaviorOptions"></shadow>
+            <value name="power2">
+              <shadow type="math_number"></shadow>
             </value>
           </block>
+
         </category>
 
         <category name="Extended">
-          <block type="setMotorVelocity">
-            <value name="input1">
+		
+		  <block type="setMotorInput" disabled="true">
+			<field name="motorOption">targetPositionTolerance</field>
+			<value name="power">
               <shadow type="math_number"></shadow>
+			</value>
+		  </block>
+		  
+		  <block type="getMotorData" disabled="true"><field name="motorOption">targetPositionTolerance</field></block>
+
+		  <block type="setMotorInput" disabled="true">
+			<field name="motorOption">velocity</field>
+			<value name="power">
+              <shadow type="math_number"></shadow>
+			</value>
+		  </block>
+		
+		  <block type="getMotorData" disabled="true"><field name="motorOption">velocity</field></block>
+		
+          <block type="setMotorVelocity" disabled="true">
+            <value name="input1">
+              <shadow type="math_number"><field name="NUM">10</field></shadow>
             </value>
             <value name="input2">
               <shadow type="setVelocityAngleUnitInput"></shadow>
             </value>
           </block>
-
-          <block type="setMotorEnable"></block>
-          <block type="setMotorDisable"></block>
+		  
         </category>
+      </category>
+    </category>
+
+    <category css-icon="customIcon fa fa-caret-right" name="Sensors" colour="#87CEEB" toolboxitemid="sensorCategory">
+      <category name="IMU-BNO055">
+      </category>
+	  <category name="IMU-BNO055.Parameters">
+      </category>
+    </category>
+
+    <category css-icon="customIcon fa fa-caret-right" name="Utilities" colour="250" toolboxitemid="utilitiesCategory">
+      <category name="Telemetry">
+        <block type="telemetryAddData" editable="false">
+          <value name="key">
+            <shadow type="text"><field name="TEXT">key</field></shadow>
+          </value>
+          <value name="data">
+            <shadow type="text"><field name="TEXT">text</field></shadow>
+          </value>
+        </block>
+        <block type="telemetryUpdate" editable="false"></block>
       </category>
     </category>
 
@@ -732,9 +814,31 @@
       <block type="logic_ternary"></block>
     </category>
     <category name="Loops" colour="110" toolboxitemid="loopsCategory">
-      <block type="controls_repeat"></block>
+      <block type="controls_repeat_ext">
+		<value name="TIMES">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+	  </block>
       <block type="controls_whileUntil"></block>
-      <block type="controls_for"></block>
+      <block type="controls_for">
+		<value name="FROM">
+		  <shadow type="math_number">
+			<field name="NUM">1</field>
+		  </shadow>
+		</value>
+		<value name="TO">
+		  <shadow type="math_number">
+			<field name="NUM">10</field>
+		  </shadow>
+		</value>
+		<value name="BY">
+		  <shadow type="math_number">
+			<field name="NUM">1</field>
+		  </shadow>
+		</value>
+	  </block>
       <block type="controls_forEach"></block>
       <block type="controls_flow_statements"></block>
     </category>
@@ -791,6 +895,17 @@
     localStorage.setItem('stopMatch', false);
     localStorage.setItem('resetField', false);
 
+	window.addEventListener("gamepadconnected", (event) => {
+	  if (event.gamepad.index < 2) {
+		document.getElementById("telemetryText").innerText = 'New Controller: "' + event.gamepad.id + '".\nSet Controller to gamepad' + (event.gamepad.index + 1) + ".";
+	  }
+	});
+
+	window.addEventListener("gamepaddisconnected", (event) => {
+	  if (event.gamepad.index < 2) {
+		document.getElementById("telemetryText").innerText = 'Controller disconnected: "' + event.gamepad.id + '".\nGamepad' + (event.gamepad.index + 1) + " lost.";
+	  }	});
+
     var isUsingBlocks = true;
     var delayTime = 0;
     var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
@@ -804,7 +919,6 @@
     var shouldBeUpdatingLoadingText = true;
     var counterForLoadingText = 1;
     document.getElementById('controlPanel').style.height = screen.height / 2 - 30 + "px";
-    //document.getElementById('lessonPanel').style.height = .485 * (screen.height / 2 - 30) + "px";
     document.getElementById('fieldView').style.height = screen.height / 2 - 30 + "px";
     document.getElementById('onBotJavaDiv').style.height = screen.height - 48 + "px";
 
@@ -916,6 +1030,21 @@
       document.getElementById("telemetryText").innerText = 'Saved new "' + programName + '" Program \n';
     }
 
+    function loadProgram() {
+      Blockly.mainWorkspace.clear();
+      var nameOfProject = "Program Name: " + document.getElementById("programSelect").value;
+      if (nameOfProject == "Program Name: Load Program") {
+        newProgram();
+      } else if (typeof (Storage) !== "undefined") {
+        document.getElementById('save').disabled = false;
+        document.getElementById('delete').disabled = false;
+        document.getElementById('download').disabled = false;
+        var xml = Blockly.Xml.textToDom(localStorage.getItem(nameOfProject));
+        Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+        document.getElementById("telemetryText").innerText = 'Loaded "' + document.getElementById("programSelect").value + '" Program \n';
+      }
+    }
+
     function autoSave() {
       var programName = document.getElementById('programSelect').value;
       var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
@@ -932,26 +1061,6 @@
       overlay(false, 0);
     }
 
-    function loadProgram() {
-      Blockly.mainWorkspace.clear();
-      var nameOfProject = "Program Name: " + document.getElementById("programSelect").value;
-      if (nameOfProject == "Program Name: Load Program") {
-        newProgram();
-      } else if (typeof (Storage) !== "undefined") {
-        document.getElementById('save').disabled = false;
-        document.getElementById('delete').disabled = false;
-        document.getElementById('download').disabled = false;
-        var xml = Blockly.Xml.textToDom(localStorage.getItem(nameOfProject));
-        Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
-        document.getElementById("telemetryText").innerText = 'Loaded "' + document.getElementById("programSelect").value + '" Program \n';
-      }
-    }
-
-    function resetField() {
-      localStorage.setItem('resetField', true);
-      document.getElementById("telemetryText").innerText = "Field Reset \n";
-    }
-
     function initApi(interpreter, globalObject) {
       // Add an API function for the alert() block.
       var wrapper = function (text) {
@@ -960,6 +1069,12 @@
         return console.log(arguments.length ? text : '');
       };
       interpreter.setProperty(globalObject, 'alert', interpreter.createNativeFunction(wrapper));
+
+      wrapper = function (delayTime) {
+        pauseTime = Math.max(100, Math.min(10000, delayTime));
+        return Math.max(100, Math.min(10000, delayTime));
+      };
+      interpreter.setProperty(globalObject, 'delay', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motorName, power) {
         power = Math.min(1, Math.max(power, -1));
@@ -1007,12 +1122,6 @@
         return encoderValue;
       };
       interpreter.setProperty(globalObject, 'getEncoders', interpreter.createNativeFunction(wrapper));
-
-      wrapper = function (delayTime) {
-        pauseTime = delayTime;
-        return delayTime;
-      };
-      interpreter.setProperty(globalObject, 'delay', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motor1Name, power, motor2Name, power2) {
         power = Math.min(1, Math.max(power, -1));
@@ -1071,29 +1180,58 @@
         return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       };
       interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
-
-      var wrapper = function (key, data) {
-        return (telemetryData.push(key + ": " + data));
+	  
+	  var wrapper = function (gamepadNum, buttonId, controllerType) {
+	    if (navigator.getGamepads()[gamepadNum] != null && (controllerType == "Both" || navigator.getGamepads()[gamepadNum].id.startsWith(controllerType))) {
+		  if (buttonId == -1) {
+			var atRest = true;
+			for (var i = 0; i < navigator.getGamepads()[gamepadNum].buttons.length; i++)
+			  if (navigator.getGamepads()[gamepadNum].buttons[i].pressed)
+				atRest = false;
+			for (var i = 0; i < navigator.getGamepads()[gamepadNum].axes.length; i++)
+			  if (Math.abs(navigator.getGamepads()[gamepadNum].axes[i]) > .2)
+				atRest = false;
+			return atRest;
+		  }
+		  return navigator.getGamepads()[gamepadNum].buttons[buttonId].pressed;
+		}
+        return false;
+      };
+      interpreter.setProperty(globalObject, 'gamepadBool', interpreter.createNativeFunction(wrapper));
+	  
+	  var wrapper = function (gamepadNum, buttonAxis) {
+	    if (navigator.getGamepads()[gamepadNum] != null) {
+		  if (buttonAxis < 4)
+			return navigator.getGamepads()[gamepadNum].axes[buttonAxis];
+		  else
+			return navigator.getGamepads()[gamepadNum].buttons[buttonAxis].value;
+		}
+        return 0;
+      };
+      interpreter.setProperty(globalObject, 'gamepadFloat', interpreter.createNativeFunction(wrapper));
+	  
+	  var wrapper = function (key, data) {
+        return (telemetryData += key + ": " + data + "\n");
       };
       interpreter.setProperty(globalObject, 'addTelemetryData', interpreter.createNativeFunction(wrapper));
 
       var wrapper = function () {
-        var telemetryOutput = "";
-        for (var i = 0; i < telemetryData.length; i++)
-          telemetryOutput += telemetryData[i] + "\n";
-        telemetryData = [];
-        return (document.getElementById("telemetryText").innerText = telemetryOutput);
+	    document.getElementById("telemetryText").innerText = telemetryData;
+		telemetryData = "";
+        return;
       };
       interpreter.setProperty(globalObject, 'updateTelemetry', interpreter.createNativeFunction(wrapper));
     }
 
-    var telemetryData = [];
+    var telemetryData = "";
 
     var myInterpreter = null;
     var runner;
     var pauseTime = 0;
 
     function resetInterpreter() {
+	  var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
+      localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       myInterpreter = null;
       pauseTime = 0;
       if (runner) {
@@ -1111,7 +1249,7 @@
       var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
       var code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
       console.log(code);
-      telemetryData = [];
+      telemetryData = "";
       myInterpreter = new Interpreter(code, initApi);
       nextStep();
       return;
@@ -1130,15 +1268,23 @@
     }
 
     function stopProgram() {
-      var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
-      localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       localStorage.setItem('stopMatch', true);
       resetInterpreter();
       document.getElementById("telemetryText").innerText = "Program Aborted \n";
     }
 
+    function resetField() {
+      localStorage.setItem('resetField', true);
+      document.getElementById("telemetryText").innerText = "Field Reset \n";
+    }
+
     Blockly.JavaScript['onOpmodeStart'] = function (block) {
       return 'alert("Start");\n'
+    };
+
+    Blockly.JavaScript['pause'] = function (block) {
+      delayTime = Blockly.JavaScript.valueToCode(block, 'delayTime', Blockly.JavaScript.ORDER_NONE);
+      return 'delay(' + delayTime + ');\n';
     };
 
     Blockly.JavaScript['setMotorInput'] = function (block) {
@@ -1153,17 +1299,20 @@
       return 'setDualPower(\"' + block.getFieldValue('motorName1') + '\", ' + Blockly.JavaScript.valueToCode(block, 'power1', Blockly.JavaScript.ORDER_NONE) + ', \"' + block.getFieldValue('motorName2') + '\", ' + Blockly.JavaScript.valueToCode(block, 'power2', Blockly.JavaScript.ORDER_NONE) + ');\n'
     };
 
+	Blockly.JavaScript['gamepadBooleans'] = function (block) {
+	  return ['gamepadBool(' + block.getFieldValue('gamepadSelection') + ', ' + block.getFieldValue('controller_component') + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL]
+	}
+
+	Blockly.JavaScript['gamepadFloats'] = function (block) {
+	  return ['gamepadFloat(' + block.getFieldValue('gamepadSelection') + ', ' + block.getFieldValue('controller_component') + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL]
+	}
+
     Blockly.JavaScript['telemetryAddData'] = function (block) {
       return 'addTelemetryData(' + Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_NONE) + ', ' + Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_NONE) + ');\n'
     };
 
     Blockly.JavaScript['telemetryUpdate'] = function (block) {
       return 'updateTelemetry();\n'
-    };
-
-    Blockly.JavaScript['pause'] = function (block) {
-      delayTime = block.getFieldValue('delayTime');
-      return 'delay(' + delayTime + ');\n';
     };
 
     Blockly.JavaScript['comment'] = function (block) {
@@ -1179,7 +1328,7 @@
         toolbox: document.getElementById('toolbox'),
         move: {
           scrollbars: true,
-          drag: false,
+          drag: true,
           wheel: false
         },
         theme: {
@@ -1211,11 +1360,12 @@
           minScale: 0.3,
           scaleSpeed: 1.2,
           pinch: true
-        },
+        }
 
       });
 
     Blockly.defineBlocksWithJsonArray([
+	// Define the parameters for how the physical blocks will look and function in the program
       {
         "type": "onOpmodeStart",
         "message0": "on opmode start",
@@ -1223,74 +1373,181 @@
         "nextStatement": null,
         "colour": "#4287f5",
       },
-      {
-        "type": "pause",
-        "message0": "Wait for %1 milliseconds",
-        "tooltip": "Waits for a time in milliseconds",
+	  
+	//LINEAR OPMODE
+	  {
+        "type": "waitForStart",
+        "message0": "call %1 . %2",
+        "tooltip": "Wait until Start is selected",
         "colour": "30",
         "nextStatement": null,
         "previousStatement": null,
         "args0": [
+		  {
+            "type": "field_input",
+            "name": "programName",
+            "text": "program"
+          },
+		  {
+            "type": "field_input",
+            "name": "waitText",
+            "text": "waitForStart",
+          }
+        ],
+      },
+	  
+      {
+        "type": "pause",
+        "message0": "call %1 . %2 %3 milliseconds %4",
+        "tooltip": "Delay for specified number of milliseconds",
+        "colour": "30",
+        "nextStatement": null,
+        "previousStatement": null,
+        "args0": [
+		  {
+            "type": "field_input",
+            "name": "programName",
+            "text": "program"
+          },
+		  {
+            "type": "field_input",
+            "name": "sleepText",
+            "text": "sleep",
+          },
+		  {
+            "type": "input_dummy"
+          },
           {
-            "type": "field_number",
+            "type": "input_value",
             "name": "delayTime",
-            "value": 1000,
-            "min": 100,
-            "max": 10000
+			"align": "RIGHT"
+          }
+        ],
+      },
+	  
+	  {
+        "type": "isStarted",
+        "message0": "call %1 . %2",
+        "tooltip": "Return true if Start has been selected",
+        "colour": "30",
+        "output": "Number",
+        "args0": [
+		  {
+            "type": "field_input",
+            "name": "programName",
+            "text": "program"
+          },
+		  {
+            "type": "field_input",
+            "name": "waitText",
+            "text": "isStarted",
           }
         ]
       },
-      // Define the parameters for how the physical blocks will look and function in the program
-
-
+	  
+	  {
+        "type": "getRuntime",
+        "message0": "call %1 . %2",
+        "tooltip": "Get elasped time in seconds since opmode was initialized",
+        "colour": "30",
+        "output": "Number",
+        "args0": [
+		  {
+            "type": "field_input",
+            "name": "programName",
+            "text": "program"
+          },
+		  {
+            "type": "field_input",
+            "name": "waitText",
+            "text": "getRuntime",
+          }
+        ]
+      },
+	  
+	//GAMEPAD
       {
-        "type": "gamepadInputs",
+        "type": "gamepadBooleans",
         "message0": "%1 . %2",
         "tooltip": "Provides inputs from the gamepads",
         "colour": "1",
-        "output": null,
+        "output": "Boolean",
         "args0": [
           {
             "type": "field_dropdown",
             "name": "gamepadSelection",
             "options": [
-              ["gamepad1", "gamepad1"],
-              ["gamepad2", "gamepad2"]
+              ["gamepad1", "0"],
+              ["gamepad2", "1"]
             ]
           },
           {
+		  //Button ID followed by Controller Type
             "type": "field_dropdown",
             "name": "controller_component",
             "options": [
-              ["A", "A"],
-              ["AtRest", "atRest"],
-              ["B", "B"],
-              ["Back", "back"],
-              ["Circle", "circle"],
-              ["Cross", "Cross"],
-              ["DpadDown", "dpadDown"],
-              ["DpadLeft", "dpadLeft"],
-              ["DpadRight", "dpadRight"],
-              ["DpadUp", "dpadUp"],
-              ["Guide", "guide"],
-              ["LeftBumper", "leftBumper"],
-              ["LeftStickButton", "leftStickButton"],
-              ["Options", "options"],
-              ["PS", "PS"],
-              ["RightBumper", "rightBumper"],
-              ["RightStickButton", "rightStickButton"],
-              ["Share", "share"],
-              ["Square", "square"],
-              ["Start", "start"],
-              ["Touchpad", "touchpad"],
-              ["Triangle", "triangle"],
-              ["X", "X"],
-              ["Y", "Y"]
+              ["A",					"0, \"Xbox\""],
+              ["AtRest",			"-1, \"Both\""],
+              ["B", 				"1, \"Xbox\""],
+              ["Back", 				"8, \"Xbox\""],
+              ["Circle", 			"1, \"P\""],
+              ["Cross", 			"0, \"P\""],
+              ["DpadDown", 			"13, \"Both\""],
+              ["DpadLeft", 			"14, \"Both\""],
+              ["DpadRight", 		"15, \"Both\""],
+              ["DpadUp", 			"12, \"Both\""],
+              ["Guide", 			"16, \"Xbox\""],
+              ["LeftBumper", 		"4, \"Both\""],
+              ["LeftStickButton", 	"10, \"Both\""],
+              ["Options", 			"9, \"P\""],
+              ["PS", 				"16, \"P\""],
+              ["RightBumper", 		"5, \"Both\""],
+              ["RightStickButton", 	"11, \"Both\""],
+              ["Share", 			"8, \"P\""],
+              ["Square", 			"2, \"P\""],
+              ["Start", 			"9, \"Xbox\""],
+              ["Touchpad", 			"17, \"P\""],
+              ["Triangle", 			"3, \"P\""],
+              ["X", 				"2, \"Xbox\""],
+              ["Y", 				"3, \"Xbox\""]
             ]
           }
         ]
       },
-      // Experimental block for incorporating both the set power and set target position blocks in one block
+	  
+	  {
+        "type": "gamepadFloats",
+        "message0": "%1 . %2",
+        "tooltip": "Provides inputs from the gamepads",
+        "colour": "1",
+        "output": "Number",
+        "args0": [
+          {
+            "type": "field_dropdown",
+            "name": "gamepadSelection",
+            "options": [
+              ["gamepad1", "0"],
+              ["gamepad2", "1"]
+            ]
+          },
+          {
+		  //Button ID / Axis Number
+            "type": "field_dropdown",
+            "name": "controller_component",
+            "options": [
+              ["LeftStickX",	"0"],
+              ["LeftStickY", 	"1"],
+              ["LeftTrigger", 	"6"],
+			  ["RightStickX", 	"2"],
+              ["RightStickY", 	"3"],
+              ["RightTrigger", 	"7"],
+            ]
+          }
+        ]
+      },
+	  
+    //ACTUATORS
+	  //Motor_Input/Data
       {
         "type": "setMotorInput",
         "message0": "set %1 . %2 to %3",
@@ -1329,7 +1586,6 @@
             "name": "power"
           }
         ]
-
       },
 
       {
@@ -1393,9 +1649,7 @@
             "align": "RIGHT"
           }
         ]
-
       },
-
 
       {
         "type": "getMotorData",
@@ -1424,17 +1678,75 @@
             "options": [
               ["CurrentPosition", "currentPosition"],
               ["MaxSpeed", "maxSpeed"],
-              ["Power", "Power"],
+              ["Power", "power"],
               ["TargetPosition", "targetPosition"],
               ["TargetPositionTolerance", "targetPositionTolerance"],
-              ["Velocity", "Velocity"]
+              ["Velocity", "velocity"]
             ]
           }
         ]
-
       },
 
-      // Get the direction of the selected motor
+	  //Motor_Direction
+      {
+        "type": "setMotorDirection",
+        "message0": "set %1 . %2 to %3",
+        "tooltip": "Sets the direction of a given motor",
+        "colour": "#f58a42",
+        "nextStatement": null,
+        "previousStatement": null,
+        "args0": [
+          {
+            "type": "field_dropdown",
+            "name": "motorName",
+            "options": [
+              ["frontLeft", "frontLeft"],
+              ["frontRight", "frontRight"],
+              ["backLeft", "backLeft"],
+              ["backRight", "backRight"],
+              ["ringCollection", "ringCollection"],
+              ["ringLoader", "ringLoader"],
+              ["ringShooter", "ringShooter"],
+              ["wobbleActuator", "wobbleActuator"],
+            ]
+          },
+          {
+            "type": "field_dropdown",
+            "name": "motorOption",
+            "options": [
+              ["Direction", "direction"]
+            ]
+          },
+          {
+            "type": "input_value",
+            "name": "motorOption2",
+          }
+        ]
+      },
+
+      {
+        "type": "directionInput",
+        "message0": "%1 . %2",
+        "tooltip": "Sets the targetPosition or Power of a given motor",
+        "colour": "#f58a42",
+        "output": "string",
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "text1",
+            "text": "Direction"
+          },
+          {
+            "type": "field_dropdown",
+            "name": "direction",
+            "options": [
+              ["REVERSE", "reverse"],
+              ["FORWARD", "forward"]
+            ]
+          }
+        ]
+      },
+
       {
         "type": "getMotorDirection",
         "message0": "%1 . %2",
@@ -1464,103 +1776,9 @@
             ]
           }
         ]
-
       },
 
-      {
-        "type": "isMotorBusy",
-        "message0": "call %1 . %2",
-        "tooltip": "Checks to see if the selected motor is rnning",
-        "colour": "#985ba5",
-        "output": "boolean",
-        "args0": [
-          {
-            "type": "field_dropdown",
-            "name": "motorName",
-            "options": [
-              ["frontLeft", "frontLeft"],
-              ["frontRight", "frontRight"],
-              ["backLeft", "backLeft"],
-              ["backRight", "backRight"],
-              ["ringCollection", "ringCollection"],
-              ["ringLoader", "ringLoader"],
-              ["ringShooter", "ringShooter"],
-              ["wobbleActuator", "wobbleActuator"],
-            ]
-          },
-          {
-            "type": "field_input",
-            "name": "motorOption",
-            "text": "isBusy"
-          }
-        ]
-
-      },
-
-      {
-        "type": "setMotorEnable",
-        "message0": "call %1 . %2",
-        "tooltip": "Enables the motor called",
-        "colour": "#985ba5",
-        "nextStatement": null,
-        "previousStatement": null,
-        "args0": [
-          {
-            "type": "field_dropdown",
-            "name": "motorName",
-            "options": [
-              ["frontLeft", "frontLeft"],
-              ["frontRight", "frontRight"],
-              ["backLeft", "backLeft"],
-              ["backRight", "backRight"],
-              ["ringCollection", "ringCollection"],
-              ["ringLoader", "ringLoader"],
-              ["ringShooter", "ringShooter"],
-              ["wobbleActuator", "wobbleActuator"],
-            ]
-          },
-          {
-            "type": "field_input",
-            "name": "enableMotor",
-            "text": "setMotorEnable"
-          }
-        ]
-
-      },
-
-      {
-        "type": "setMotorDisable",
-        "message0": "call %1 . %2",
-        "tooltip": "Disables the motor called",
-        "colour": "#985ba5",
-        "nextStatement": null,
-        "previousStatement": null,
-        "args0": [
-          {
-            "type": "field_dropdown",
-            "name": "motorName",
-            "options": [
-              ["frontLeft", "frontLeft"],
-              ["frontRight", "frontRight"],
-              ["backLeft", "backLeft"],
-              ["backRight", "backRight"],
-              ["ringCollection", "ringCollection"],
-              ["ringLoader", "ringLoader"],
-              ["ringShooter", "ringShooter"],
-              ["wobbleActuator", "wobbleActuator"],
-            ]
-          },
-          {
-            "type": "field_input",
-            "name": "enableMotor",
-            "text": "setMotorDisable"
-          }
-        ]
-
-      },
-
-
-      // Set the run mode for the motors
+      //Motor_RunMode
       {
         "type": "setMotorRunMode",
         "message0": "set %1 . %2 to %3",
@@ -1595,7 +1813,6 @@
             "name": "runMode",
           }
         ]
-
       },
 
       {
@@ -1655,10 +1872,7 @@
             "align": "RIGHT"
           }
         ]
-
       },
-
-
 
       {
         "type": "runModeOptions",
@@ -1683,17 +1897,14 @@
             ]
           }
         ]
-
       },
 
-      // Sets the Zero Power Behavior of the selected motor
       {
-        "type": "setMotorZeroPowerBehavior",
-        "message0": "set %1 . %2 to %3",
-        "tooltip": "Sets the zero power behavior of a given motor",
+        "type": "getMotorRunMode",
+        "message0": "%1 . %2",
+        "tooltip": "Get the mode of the selected motor",
         "colour": "#f58a42",
-        "nextStatement": null,
-        "previousStatement": null,
+        "output": "Number",
         "args0": [
           {
             "type": "field_dropdown",
@@ -1713,38 +1924,23 @@
             "type": "field_dropdown",
             "name": "motorOption",
             "options": [
-              ["ZeroPowerBehavior", "zeroPowerBehavior"]
+              ["Mode", "mode"]
             ]
-          },
-          {
-            "type": "input_value",
-            "name": "motorOption2",
           }
         ]
-
       },
 
+	  //Motor_Busy
       {
-        "type": "setMotorZeroPowerBehaviorDual",
-        "message0": "set %1 %2 %3 to %4 %5 to %6",
-        "tooltip": "Set the motor zero power behavior for two motors at once",
-        "colour": "#f58a42",
-        "nextStatement": null,
-        "previousStatement": null,
+        "type": "isMotorBusy",
+        "message0": "call %1 . %2",
+        "tooltip": "Checks to see if the selected motor is rnning",
+        "colour": "#985ba5",
+        "output": "boolean",
         "args0": [
           {
             "type": "field_dropdown",
-            "name": "motorOption",
-            "options": [
-              ["ZeroPowerBehavior", "mode"]
-            ]
-          },
-          {
-            "type": "input_dummy"
-          },
-          {
-            "type": "field_dropdown",
-            "name": "motorName1",
+            "name": "motorName",
             "options": [
               ["frontLeft", "frontLeft"],
               ["frontRight", "frontRight"],
@@ -1756,58 +1952,15 @@
               ["wobbleActuator", "wobbleActuator"],
             ]
           },
-          {
-            "type": "input_value",
-            "name": "input1",
-            "align": "RIGHT"
-          },
-          {
-            "type": "field_dropdown",
-            "name": "motorName2",
-            "options": [
-              ["frontRight", "frontRight"],
-              ["frontLeft", "frontLeft"],
-              ["backLeft", "backLeft"],
-              ["backRight", "backRight"],
-              ["ringCollection", "ringCollection"],
-              ["ringLoader", "ringLoader"],
-              ["ringShooter", "ringShooter"],
-              ["wobbleActuator", "wobbleActuator"],
-            ]
-          },
-          {
-            "type": "input_value",
-            "name": "input2",
-            "align": "RIGHT"
-          }
-        ]
-
-      },
-
-      {
-        "type": "zeroPowerBehaviorOptions",
-        "message0": "%1 . %2",
-        "tooltip": "Shadow block for the set zero power behavior block",
-        "colour": "#f58a42",
-        "output": "Number",
-        "args0": [
           {
             "type": "field_input",
-            "name": "text1",
-            "text": "ZeroPowerBehavior"
-          },
-          {
-            "type": "field_dropdown",
-            "name": "runMode",
-            "options": [
-              ["BRAKE", "brake"],
-              ["FLOAT", "float"]
-            ]
+            "name": "motorOption",
+            "text": "isBusy"
           }
         ]
-
       },
 
+	  //Motor_Velocity
       {
         "type": "setMotorVelocity",
         "message0": "call %1 . %2 %3 angularRate %4 angleUnit %5",
@@ -1849,7 +2002,6 @@
             "align": "RIGHT"
           }
         ]
-
       },
 
       {
@@ -1872,77 +2024,9 @@
             ]
           }
         ]
-
       },
 
-
-      {
-        "type": "directionInput",
-        "message0": "%1 . %2",
-        "tooltip": "Sets the targetPosition or Power of a given motor",
-        "colour": "#f58a42",
-        "output": "string",
-        "args0": [
-          {
-            "type": "field_input",
-            "name": "text1",
-            "text": "Direction"
-          },
-          {
-            "type": "field_dropdown",
-            "name": "direction",
-            "options": [
-              ["REVERSE", "reverse"],
-              ["FORWARD", "forward"]
-            ]
-          }
-        ]
-
-      },
-
-      // This next section defines the layout of the set direction block
-      {
-        "type": "setMotorDirection",
-        "message0": "set %1 . %2 to %3",
-        "tooltip": "Sets the direction of a given motor",
-        "colour": "#f58a42",
-        "nextStatement": null,
-        "previousStatement": null,
-        "args0": [
-          {
-            "type": "field_dropdown",
-            "name": "motorName",
-            "options": [
-              ["frontLeft", "frontLeft"],
-              ["frontRight", "frontRight"],
-              ["backLeft", "backLeft"],
-              ["backRight", "backRight"],
-              ["ringCollection", "ringCollection"],
-              ["ringLoader", "ringLoader"],
-              ["ringShooter", "ringShooter"],
-              ["wobbleActuator", "wobbleActuator"],
-            ]
-          },
-          {
-            "type": "field_dropdown",
-            "name": "motorOption",
-            "options": [
-              ["Direction", "direction"]
-            ]
-          },
-          {
-            "type": "input_value",
-            "name": "motorOption2",
-          }
-
-        ]
-      },
-
-      /**
-       * end of shadow block test section
-       * 
-       */
-
+	//TELEMETRY
       {
         "type": "telemetryUpdate",
         "message0": "call %1 . %2",
@@ -1964,30 +2048,17 @@
         ]
       },
 
-      {
-        "type": "comment",
-        "message0": "%1",
-        "args0": [
-          {
-            "type": "field_input",
-            "name": "commentText",
-            "text": "Enter your comment here!"
-          }
-        ],
-        "tooltip": "Update all active telemetry",
-        "colour": "230",
-        "nextStatement": null,
-        "previousStatement": null,
-      },
+
 
 
       {
         "type": "telemetryAddData",
-        "message0": "call %1 . %2 %3 key %4 %5 data %6",
+        "message0": "call %1 . %2 %3 key %4 data %5",
         "tooltip": "Add Data to active telemetry",
         "colour": "250",
         "nextStatement": null,
         "previousStatement": null,
+		"inputsInline": false,
         "args0": [
           {
             "type": "field_input",
@@ -2008,15 +2079,29 @@
             "align": "RIGHT"
           },
           {
-            "type": "input_dummy"
-          },
-          {
             "type": "input_value",
             "name": "data",
             "align": "RIGHT"
           }
         ]
       },
+
+	//MISCELLANEOUS
+      {
+        "type": "comment",
+        "message0": "%1",
+		"tooltip": "Allows you to describe your program so you and others can better understand.",
+        "colour": "230",
+        "nextStatement": null,
+        "previousStatement": null,
+        "args0": [
+          {
+            "type": "field_input",
+            "name": "commentText",
+            "text": "Enter your comment here!"
+          }
+        ]
+      }
 
     ]);
 
