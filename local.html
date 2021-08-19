@@ -744,7 +744,7 @@
           </value>
         </block>
 
-        <block type="getMotorData" disabled="true"><field name="motorOption">power</field></block>
+        <block type="getMotorData"><field name="motorOption">power</field></block>
 
         <block type="setMotorInput" disabled="true">
 		  <field name="motorOption">targetPosition</field>
@@ -1126,6 +1126,35 @@
       };
       interpreter.setProperty(globalObject, 'delay', interpreter.createNativeFunction(wrapper));
 
+	  var wrapper = function (gamepadNum, buttonId, controllerType) {
+	    if (navigator.getGamepads()[gamepadNum] != null && (controllerType == "Both" || navigator.getGamepads()[gamepadNum].id.startsWith(controllerType))) {
+		  if (buttonId == -1) {
+			var atRest = true;
+			for (var i = 0; i < navigator.getGamepads()[gamepadNum].buttons.length; i++)
+			  if (navigator.getGamepads()[gamepadNum].buttons[i].pressed)
+				atRest = false;
+			for (var i = 0; i < navigator.getGamepads()[gamepadNum].axes.length; i++)
+			  if (Math.abs(navigator.getGamepads()[gamepadNum].axes[i]) > .2)
+				atRest = false;
+			return atRest;
+		  }
+		  return navigator.getGamepads()[gamepadNum].buttons[buttonId].pressed;
+		}
+        return false;
+      };
+      interpreter.setProperty(globalObject, 'gamepadBool', interpreter.createNativeFunction(wrapper));
+	  
+	  var wrapper = function (gamepadNum, buttonAxis) {
+	    if (navigator.getGamepads()[gamepadNum] != null) {
+		  if (buttonAxis < 4)
+			return navigator.getGamepads()[gamepadNum].axes[buttonAxis];
+		  else
+			return navigator.getGamepads()[gamepadNum].buttons[buttonAxis].value;
+		}
+        return 0;
+      };
+      interpreter.setProperty(globalObject, 'gamepadFloat', interpreter.createNativeFunction(wrapper));
+
       wrapper = function (motorName, power) {
         power = Math.min(1, Math.max(power, -1));
         if (motorName == "frontLeft") {
@@ -1156,22 +1185,6 @@
         return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       };
       interpreter.setProperty(globalObject, 'setPower', interpreter.createNativeFunction(wrapper));
-
-      wrapper = function (motorName) {
-        motorEncoders = JSON.parse(localStorage.getItem('motorEncoders'));
-        encoderValue = 0;
-        if (motorName == "frontLeft") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[0]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
-        } else if (motorName == "frontRight") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[1]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
-        } else if (motorName == "backLeft") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[2]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
-        } else if (motorName == "backRight") {
-          encoderValue = motorEncoders[Object.keys(motorEncoders)[3]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
-        }
-        return encoderValue;
-      };
-      interpreter.setProperty(globalObject, 'getEncoders', interpreter.createNativeFunction(wrapper));
 
       wrapper = function (motor1Name, power, motor2Name, power2) {
         power = Math.min(1, Math.max(power, -1));
@@ -1230,35 +1243,25 @@
         return localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
       };
       interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
-	  
-	  var wrapper = function (gamepadNum, buttonId, controllerType) {
-	    if (navigator.getGamepads()[gamepadNum] != null && (controllerType == "Both" || navigator.getGamepads()[gamepadNum].id.startsWith(controllerType))) {
-		  if (buttonId == -1) {
-			var atRest = true;
-			for (var i = 0; i < navigator.getGamepads()[gamepadNum].buttons.length; i++)
-			  if (navigator.getGamepads()[gamepadNum].buttons[i].pressed)
-				atRest = false;
-			for (var i = 0; i < navigator.getGamepads()[gamepadNum].axes.length; i++)
-			  if (Math.abs(navigator.getGamepads()[gamepadNum].axes[i]) > .2)
-				atRest = false;
-			return atRest;
-		  }
-		  return navigator.getGamepads()[gamepadNum].buttons[buttonId].pressed;
-		}
-        return false;
+
+      wrapper = function (motorName, motorOption) {
+	    if (motorOption == "currentPosition")
+		  motorValues = JSON.parse(localStorage.getItem('motorEncoders'));
+		else
+		  motorValues = motorPowers;
+        motorValue = 0;
+        if (motorName == "frontLeft") {
+          motorValue = motorValues[Object.keys(motorValues)[0]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
+        } else if (motorName == "frontRight") {
+          motorValue = motorValues[Object.keys(motorValues)[1]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
+        } else if (motorName == "backLeft") {
+          motorValue = motorValues[Object.keys(motorValues)[2]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
+        } else if (motorName == "backRight") {
+          motorValue = motorValues[Object.keys(motorValues)[3]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
+        }
+        return motorValue;
       };
-      interpreter.setProperty(globalObject, 'gamepadBool', interpreter.createNativeFunction(wrapper));
-	  
-	  var wrapper = function (gamepadNum, buttonAxis) {
-	    if (navigator.getGamepads()[gamepadNum] != null) {
-		  if (buttonAxis < 4)
-			return navigator.getGamepads()[gamepadNum].axes[buttonAxis];
-		  else
-			return navigator.getGamepads()[gamepadNum].buttons[buttonAxis].value;
-		}
-        return 0;
-      };
-      interpreter.setProperty(globalObject, 'gamepadFloat', interpreter.createNativeFunction(wrapper));
+      interpreter.setProperty(globalObject, 'getMotorData', interpreter.createNativeFunction(wrapper));
 	  
 	  var wrapper = function (key, data) {
         return (telemetryData += key + ": " + data + "\n");
@@ -1337,25 +1340,25 @@
       return 'delay(' + delayTime + ');\n';
     };
 
+	Blockly.JavaScript['gamepadBooleans'] = function (block) {
+	  return ['gamepadBool(' + block.getFieldValue('gamepadSelection') + ', ' + block.getFieldValue('controller_component') + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL]
+	};
+
+	Blockly.JavaScript['gamepadFloats'] = function (block) {
+	  return ['gamepadFloat(' + block.getFieldValue('gamepadSelection') + ', ' + block.getFieldValue('controller_component') + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL]
+	};
+
     Blockly.JavaScript['setMotorInput'] = function (block) {
       return 'setPower(\"' + block.getFieldValue('motorName') + '\", ' + Blockly.JavaScript.valueToCode(block, 'power', Blockly.JavaScript.ORDER_NONE) + ');\n'
-    };
-
-    Blockly.JavaScript['getMotorData'] = function (block) {
-      return ['getEncoders(\"' + block.getFieldValue('motorName') + '\")', Blockly.JavaScript.ORDER_FUNCTION_CALL]
     };
 
     Blockly.JavaScript['setMotorInputDual'] = function (block) {
       return 'setDualPower(\"' + block.getFieldValue('motorName1') + '\", ' + Blockly.JavaScript.valueToCode(block, 'power1', Blockly.JavaScript.ORDER_NONE) + ', \"' + block.getFieldValue('motorName2') + '\", ' + Blockly.JavaScript.valueToCode(block, 'power2', Blockly.JavaScript.ORDER_NONE) + ');\n'
     };
 
-	Blockly.JavaScript['gamepadBooleans'] = function (block) {
-	  return ['gamepadBool(' + block.getFieldValue('gamepadSelection') + ', ' + block.getFieldValue('controller_component') + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL]
-	}
-
-	Blockly.JavaScript['gamepadFloats'] = function (block) {
-	  return ['gamepadFloat(' + block.getFieldValue('gamepadSelection') + ', ' + block.getFieldValue('controller_component') + ')', Blockly.JavaScript.ORDER_FUNCTION_CALL]
-	}
+    Blockly.JavaScript['getMotorData'] = function (block) {
+      return ['getMotorData(\"' + block.getFieldValue('motorName') + '\", \"' + block.getFieldValue('motorOption') + '\")', Blockly.JavaScript.ORDER_FUNCTION_CALL]
+    };
 
     Blockly.JavaScript['telemetryAddData'] = function (block) {
       return 'addTelemetryData(' + Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_NONE) + ', ' + Blockly.JavaScript.valueToCode(block, 'data', Blockly.JavaScript.ORDER_NONE) + ');\n'
