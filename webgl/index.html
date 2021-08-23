@@ -13,7 +13,7 @@
 
 <body>
   <div id="unity-container" class="unity-desktop">
-    <canvas id="unity-canvas" width=960 height=600></canvas>
+    <canvas id="unity-canvas" width=480 height=300></canvas>
     <div id="unity-loading-bar">
       <div id="unity-logo"></div>
       <div id="unity-progress-bar-empty">
@@ -66,8 +66,28 @@
         mobileWarning.style.display = "none";
       }, 5000);
     } else {
-      canvas.style.width = "960px";
-      canvas.style.height = "600px";
+      // canvas.style.width = "960px";
+      // canvas.style.height = "600px";
+
+      // const fieldView = parent.document.querySelector('#fieldView');
+
+      const resizeCanvas = () => {
+        const fieldView = parent.document.querySelector('#fieldView');
+
+        if(fieldView.offsetHeight > fieldView?.offsetWidth * 600 / 960) {
+          canvas.style.width = `${fieldView?.offsetWidth}px`;
+          canvas.style.height = `${fieldView?.offsetWidth * 600 / 960}px`;
+        } else {
+          canvas.style.width = `${fieldView?.offsetHeight * 960 / 600}px`;
+          canvas.style.height = `${fieldView.offsetHeight}px`;
+        }
+      }
+
+      resizeCanvas();
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+      })
     }
     loadingBar.style.display = "block";
 
