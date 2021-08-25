@@ -3,11 +3,11 @@ const electronInstaller = require('electron-winstaller');
 const createDMG = require('electron-installer-dmg');
 
 
-switch(process.platform) {
-    case "win32": 
+switch (process.platform) {
+    case "win32":
         buildForWin32();
         break;
-    case "darwin": 
+    case "darwin":
         buildForDarwin();
         break;
     default:
@@ -22,7 +22,7 @@ function buildForWin32() {
         // Specify the folder where the built app is located
         appDirectory: './VRS-win32-x64',
         // Specify the existing folder where 
-        outputDirectory: './VRS-win32-x64-Installer',
+        outputDirectory: './VRS-Windows-Installer',
         // The name of the Author of the app (the name of your company)
         authors: 'Virtual Robot Simulator',
         // The name of the executable of your built
@@ -44,7 +44,7 @@ function buildForDarwin() {
         // Specify the folder where the built app is located
         appPath: './VRS-darwin-x64/VRS.app',
         // Specify the existing folder where installer will be created
-        out: './VRS-darwin-x64-Installer',
+        out: './VRS-MacOS-Installer',
         // app icon
         icon: '../logo.ico',
         // The application name
