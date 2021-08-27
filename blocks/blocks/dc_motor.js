@@ -110,7 +110,7 @@ Blockly.JavaScript['dcMotor_setProperty'] = function(block) {
   var property = block.getFieldValue('PROP');
   var value = Blockly.JavaScript.valueToCode(
       block, 'VALUE', Blockly.JavaScript.ORDER_NONE);
-  return 'motor.setProperty(' + identifier.substring(identifier.length - 1) + ', \'' + property + '\', ' + value + ');\n';
+  return 'motor.setProperty([' + identifier.substring(identifier.length - 1) + '], \'' + property + '\', [' + value + ']);\n';
 };
 
 /*Blockly.FtcJava['dcMotor_setProperty'] = function(block) {
@@ -625,7 +625,6 @@ Blockly.Blocks['dcMotor_setDualProperty'] = {
   }
 };
 
-//VRS-Modified JavaScript code to double use setProperty instead of using more coding (should work the same)
 Blockly.JavaScript['dcMotor_setDualProperty'] = function(block) {
 	
   var identifier1 = block.getFieldValue('IDENTIFIER1');
@@ -635,8 +634,7 @@ Blockly.JavaScript['dcMotor_setDualProperty'] = function(block) {
       block, 'VALUE1', Blockly.JavaScript.ORDER_COMMA);
   var value2 = Blockly.JavaScript.valueToCode(
       block, 'VALUE2', Blockly.JavaScript.ORDER_COMMA);
-  return 'motor.setProperty(' + identifier1.substring(identifier1.length - 1) + ', \'' + property + '\', ' + value1 + ');\n' +
-	  'motor.setProperty(' + identifier2.substring(identifier2.length - 1) + ', \'' + property + '\', ' + value2 + ');\n';
+  return 'motor.setProperty([' + identifier1.substring(identifier1.length - 1) + ', ' + identifier2.substring(identifier2.length - 1) + '], \'' + property + '\', [' + value1 + ', ' + value2 + ']);\n';
 };
 
 /*Blockly.FtcJava['dcMotor_setDualProperty'] = function(block) {

@@ -5352,25 +5352,27 @@
 	  //Motor Blocks
 	  var motor = interpreter.nativeToPseudo({});
 	  interpreter.setProperty(globalObject, 'motor', motor);
-	  
-	  var wrapper = function (motorNum, property, value) {
-		var motorProperties = JSON.parse(localStorage.getItem('motor' + property + 's'));
-		//Translates Power to Velocity
-		if (property == 'Power') {
-		  value = Math.min(1, Math.max(value, -1));
-		  var motorVel = JSON.parse(localStorage.getItem('motorVelocitys'));
-		  motorVel[Object.keys(motorProperties)[motorNum]] = value * JSON.parse(localStorage.getItem('motorMaxSpeeds'))[Object.keys(motorProperties)[motorNum]];
-		  localStorage.setItem('motorVelocitys', JSON.stringify(motorVel));
+	  	  
+	  var wrapper = function (motorNums, property, values) {
+	    var motorProperties = JSON.parse(localStorage.getItem('motor' + property + 's'));
+	    for (var i = 0; i < motorNums.g.length; i++) {
+		  //Translates Power to Velocity
+		  if (property == 'Power') {
+		    values.g[i] = Math.min(1, Math.max(values.g[i], -1));
+		    var motorVel = JSON.parse(localStorage.getItem('motorVelocitys'));
+		    motorVel[Object.keys(motorProperties)[motorNums.g[i]]] = values.g[i] * JSON.parse(localStorage.getItem('motorMaxSpeeds'))[Object.keys(motorProperties)[motorNums.g[i]]];
+		    localStorage.setItem('motorVelocitys', JSON.stringify(motorVel));
+		  }
+		  //Translates Velocity to Power
+		  if (property == 'Velocity') {
+		    var motorPow = JSON.parse(localStorage.getItem('motorPowers'));
+		    motorPow[Object.keys(motorProperties)[motorNums.g[i]]] = Math.min(1, Math.max(values.g[i] / JSON.parse(localStorage.getItem('motorMaxSpeeds'))[Object.keys(motorProperties)[motorNums.g[i]]], -1));
+		    localStorage.setItem('motorPowers', JSON.stringify(motorPow));
+		    motorProperties[Object.keys(motorProperties)[motorNums.g[i]]] = Math.min(5760, Math.max(values.g[i], -5760)); //This value may change (1440 * 4)
+		  }
+		  else
+		    motorProperties[Object.keys(motorProperties)[motorNums.g[i]]] = values.g[i];
 		}
-		//Translates Velocity to Power
-		if (property == 'Velocity') {
-		  var motorPow = JSON.parse(localStorage.getItem('motorPowers'));
-		  motorPow[Object.keys(motorProperties)[motorNum]] = Math.min(1, Math.max(value / JSON.parse(localStorage.getItem('motorMaxSpeeds'))[Object.keys(motorProperties)[motorNum]], -1));
-		  localStorage.setItem('motorPowers', JSON.stringify(motorPow));
-		  motorProperties[Object.keys(motorProperties)[motorNum]] = Math.min(5760, Math.max(value, -5760)); //This value may change (1440 * 4)
-		}
-		else
-		  motorProperties[Object.keys(motorProperties)[motorNum]] = value
         return localStorage.setItem('motor' + property + 's', JSON.stringify(motorProperties));
       };
       interpreter.setProperty(motor, 'setProperty', interpreter.createNativeFunction(wrapper)); 
