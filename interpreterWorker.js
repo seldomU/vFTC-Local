@@ -180,7 +180,6 @@ function resetInterpreter() {
 importScripts('./blocks/interpreter/acorn_interpreter.js');
 
 onmessage = function (e) {
-    console.log("code: " + e.data[0] + ", " + e.data[1])
     if (e.data[0] == "data") {
         motorValues = JSON.parse(e.data[1]);
     } else if (e.data[0] == "code") {
@@ -194,9 +193,9 @@ function delayStartProgram(code) {
     console.log(code);
     telemetryData = "";
     myInterpreter = new Interpreter(code, initApi);
-    myInterpreter.run();
+    // myInterpreter.run();
 
-    //nextStep();
+    nextStep();
     return;
 }
 
@@ -208,6 +207,5 @@ function nextStep() {
         }
     } else {
         resetInterpreter();
-        document.getElementById("telemetryText").innerText = "Program Ended \n";
     }
 }
