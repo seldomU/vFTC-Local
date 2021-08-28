@@ -131,7 +131,6 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
 
     wrapper = function (motorName, motorOption) {
-        postMessage("request encoder");
         motorValue = 0;
         if (motorName == "frontLeft") {
             motorValue = motorValues[Object.keys(motorValues)[0]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
@@ -142,6 +141,7 @@ function initApi(interpreter, globalObject) {
         } else if (motorName == "backRight") {
             motorValue = motorValues[Object.keys(motorValues)[3]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
         }
+        console.log('enc; ' + motorValue);
         return motorValue;
     };
     interpreter.setProperty(globalObject, 'getMotorData', interpreter.createNativeFunction(wrapper));
@@ -152,11 +152,11 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'addTelemetryData', interpreter.createNativeFunction(wrapper));
 
     var wrapper = function () {
-        document.getElementById("telemetryText").innerText = telemetryData;
+        // document.getElementById("telemetryText").innerText = telemetryData;
         telemetryData = "";
         return;
     };
-    interpreter.setProperty(globalObject, 'updateTelemetry', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(globalObject, 'updateTelemetryData', interpreter.createNativeFunction(wrapper));
 }
 
 var telemetryData = "";
@@ -182,6 +182,7 @@ importScripts('./blocks/interpreter/acorn_interpreter.js');
 onmessage = function (e) {
     if (e.data[0] == "data") {
         motorValues = JSON.parse(e.data[1]);
+        nextStep();
     } else if (e.data[0] == "code") {
         resetInterpreter();
         delayStartProgram(e.data[1]);
@@ -201,10 +202,7 @@ function delayStartProgram(code) {
 
 function nextStep() {
     if (myInterpreter.step()) {
-        setTimeout(nextStep, pauseTime);
-        if (pauseTime != 0) {
-            pauseTime = 0;
-        }
+        postMessage("request encoder");
     } else {
         resetInterpreter();
     }
