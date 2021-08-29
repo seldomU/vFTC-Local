@@ -1,19 +1,51 @@
-
+//Custom Block JavaScript
 function initApi(interpreter, globalObject) {
-    // Add an API function for the alert() block.
-    var wrapper = function (text) {
-        return console.log(arguments.length ? text : '');
-    };
-    interpreter.setProperty(globalObject, 'alert', interpreter.createNativeFunction(wrapper));
+    //LinearOpMode Blocks
+    var linearOpMode = interpreter.nativeToPseudo({});
+    interpreter.setProperty(globalObject, 'linearOpMode', linearOpMode);
 
-    wrapper = function (delayTime) {
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(linearOpMode, 'waitForStart', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(linearOpMode, 'idle', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function (millis) {
         const end = Date.now() + Math.max(100, Math.min(10000, delayTime))
         while (Date.now() < end) {
 
         }
         return true;
     };
-    interpreter.setProperty(globalObject, 'delay', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(linearOpMode, 'sleep', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return true; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(linearOpMode, 'opModeIsActive', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return true; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(linearOpMode, 'isStarted', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return false; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(linearOpMode, 'isStopRequested', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return 0; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(linearOpMode, 'getRuntime', interpreter.createNativeFunction(wrapper));
+
+    //Gamepad Blocks
+    var gamepad = interpreter.nativeToPseudo({});
+    interpreter.setProperty(globalObject, 'gamepad', gamepad);
 
     var wrapper = function (gamepadNum, buttonId, controllerType) {
         if (navigator.getGamepads()[gamepadNum] != null && (controllerType == "Both" || navigator.getGamepads()[gamepadNum].id.startsWith(controllerType))) {
@@ -31,7 +63,7 @@ function initApi(interpreter, globalObject) {
         }
         return false;
     };
-    interpreter.setProperty(globalObject, 'gamepadBool', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(gamepad, 'boolValue', interpreter.createNativeFunction(wrapper));
 
     var wrapper = function (gamepadNum, buttonAxis) {
         if (navigator.getGamepads()[gamepadNum] != null) {
@@ -42,124 +74,191 @@ function initApi(interpreter, globalObject) {
         }
         return 0;
     };
-    interpreter.setProperty(globalObject, 'gamepadFloat', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(gamepad, 'numberValue', interpreter.createNativeFunction(wrapper));
 
-    wrapper = function (motorName, power) {
-        power = Math.min(1, Math.max(power, -1));
-        if (motorName == "frontLeft") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": power, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "frontRight") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": power, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "backLeft") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": power, "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "backRight") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": power, "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "ringCollection") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": power, "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "ringLoader") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": power, "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "ringShooter") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": power, "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motorName == "wobbleActuator") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power };
+    //Motor Blocks
+    var motor = interpreter.nativeToPseudo({});
+    interpreter.setProperty(globalObject, 'motor', motor);
+
+    var wrapper = function (motorNums, property, values) {
+        // var motorProperties = JSON.parse(localStorage.getItem('motor' + property + 's'));
+        for (var i = 0; i < motorNums.g.length; i++) {
+            //Translates Power to Velocity
+            if (property == 'Power') {
+                values.g[i] = Math.min(1, Math.max(values.g[i], -1));
+                // var motorVel = JSON.parse(localStorage.getItem('motorVelocitys'));
+                motorVel[Object.keys(motorProperties)[motorNums.g[i]]] = values.g[i] * 1;//JSON.parse(localStorage.getItem('motorMaxSpeeds'))[Object.keys(motorProperties)[motorNums.g[i]]];
+                postMessage(['motorVelocitys', JSON.stringify(motorVel)]);
+            }
+            //Translates Velocity to Power
+            if (property == 'Velocity') {
+                // var motorPow = JSON.parse(localStorage.getItem('motorPowers'));
+                motorPow[Object.keys(motorProperties)[motorNums.g[i]]] = Math.min(1, Math.max(values.g[i] / 1.0, -1));//JSON.parse(localStorage.getItem('motorMaxSpeeds'))[Object.keys(motorProperties)[motorNums.g[i]]], -1));
+                postMessage(['motorPowers', JSON.stringify(motorPow)]);
+                motorProperties[Object.keys(motorProperties)[motorNums.g[i]]] = Math.min(5760, Math.max(values.g[i], -5760)); //This value may change (1440 * 4)
+            }
+            else
+                motorProperties[Object.keys(motorProperties)[motorNums.g[i]]] = values.g[i];
         }
-        return postMessage(JSON.stringify(motorPowers));
+        return postMessage(['motor' + property + 's', JSON.stringify(motorPowers)]);
     };
-    interpreter.setProperty(globalObject, 'setPower', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(motor, 'setProperty', interpreter.createNativeFunction(wrapper));
 
-    wrapper = function (motor1Name, power, motor2Name, power2) {
-        power = Math.min(1, Math.max(power, -1));
-        power2 = Math.min(1, Math.max(power2, -1));
-        if (motor1Name == "frontLeft") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": power, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "frontRight") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": power, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "backLeft") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": power, "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "backRight") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": power, "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "ringCollection") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": power, "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "ringLoader") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": power, "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "ringShooter") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": power, "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor1Name == "wobbleActuator") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power };
+    var wrapper = function (motorNum, property) {
+        var returnVar;
+        if (property == 'PowerFloat') {
+            // var motorPowers = JSON.parse(localStorage.getItem('motorPowers'));
+            var motorPower = motorPowers[Object.keys(motorPowers)[motorNum]];
+            returnVar = (Math.round(motorPower) != motorPower);
         }
-
-        if (motor2Name == "frontLeft") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": power2, "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "frontRight") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": power2, "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "backLeft") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": power2, "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "backRight") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": power2, "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "ringCollection") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": power2, "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "ringLoader") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": power2, "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "ringShooter") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": power2, "motor8": motorPowers[Object.keys(motorPowers)[7]] };
-        } else if (motor2Name == "wobbleActuator") {
-            // power = power * motorReverseValues[Object.keys(motorPowers)[0]];
-            motorPowers = { "motor1": motorPowers[Object.keys(motorPowers)[0]], "motor2": motorPowers[Object.keys(motorPowers)[1]], "motor3": motorPowers[Object.keys(motorPowers)[2]], "motor4": motorPowers[Object.keys(motorPowers)[3]], "motor5": motorPowers[Object.keys(motorPowers)[4]], "motor6": motorPowers[Object.keys(motorPowers)[5]], "motor7": motorPowers[Object.keys(motorPowers)[6]], "motor8": power2 };
+        else if (property == 'Velocity') {
+            // var motorProperties = JSON.parse(localStorage.getItem('motorReturnVelocitys'));
+            returnVar = motorProperties[Object.keys(motorProperties)[motorNum]];
         }
-        return postMessage(JSON.stringify(motorPowers));
+        else {
+            // var motorProperties = JSON.parse(localStorage.getItem('motor' + property + 's'));
+            returnVar = motorProperties[Object.keys(motorProperties)[motorNum]];
+        }
+        return returnVar;
     };
-    interpreter.setProperty(globalObject, 'setDualPower', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(motor, 'getProperty', interpreter.createNativeFunction(wrapper));
 
-    wrapper = function (motorName, motorOption) {
-        motorValue = 0;
-        if (motorName == "frontLeft") {
-            motorValue = motorValues[Object.keys(motorValues)[0]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[0]];
-        } else if (motorName == "frontRight") {
-            motorValue = motorValues[Object.keys(motorValues)[1]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[1]];
-        } else if (motorName == "backLeft") {
-            motorValue = motorValues[Object.keys(motorValues)[2]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[2]];
-        } else if (motorName == "backRight") {
-            motorValue = motorValues[Object.keys(motorValues)[3]];// - motorEncoderBaseValues[Object.keys(motorEncoders)[3]];
-        }
-        console.log('enc; ' + motorValue);
-        return motorValue;
+    var wrapper = function (motorNum) {
+        // var motorProp = JSON.parse(localStorage.getItem('motorCurrentPositions'));
+        var motorPosition = 12;//motorProp[Object.keys(motorProp)[motorNum]];
+        // motorProp = JSON.parse(localStorage.getItem('motorTargetPositions'));
+        var motorTarget = 12;//motorProp[Object.keys(motorProp)[motorNum]];
+        // motorProp = JSON.parse(localStorage.getItem('motorTargetPositionTolerances'));
+        var motorTolerance = 1;//motorProp[Object.keys(motorProp)[motorNum]];
+        return (Math.abs(motorPosition - motorTarget) > motorTolerance);
     };
-    interpreter.setProperty(globalObject, 'getMotorData', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(motor, 'isBusy', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setMotorEnable', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setMotorDisable', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return true; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'isMotorEnabled', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setVelocity_withAngleUnit', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return 0; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'getVelocity_withAngleUnit', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setPIDFCoefficients', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return 0; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'getPIDFCoefficients', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setVelocityPIDFCoefficients', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setPositionPIDFCoefficients', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return 0; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'getCurrent', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return 0; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'getCurrentAlert', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'setCurrentAlert', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return false; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(motor, 'isOverCurrent', interpreter.createNativeFunction(wrapper));
+
+    //Telemetry Blocks
+    var telemetry = interpreter.nativeToPseudo({});
+    interpreter.setProperty(globalObject, 'telemetry', telemetry);
 
     var wrapper = function (key, data) {
         return (telemetryData += key + ": " + data + "\n");
     };
-    interpreter.setProperty(globalObject, 'addTelemetryData', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(telemetry, 'addData', interpreter.createNativeFunction(wrapper));
 
     var wrapper = function () {
-        // document.getElementById("telemetryText").innerText = telemetryData;
+        document.getElementById("telemetryText").innerText = telemetryData;
         telemetryData = "";
         return;
     };
-    interpreter.setProperty(globalObject, 'updateTelemetryData', interpreter.createNativeFunction(wrapper));
+    interpreter.setProperty(telemetry, 'update', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(telemetry, 'speak', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function () {
+        return; //NON FUNCTIONAL
+    };
+    interpreter.setProperty(telemetry, 'setDisplayFormat', interpreter.createNativeFunction(wrapper));
+
+    //Miscellaneous Blocks
+    var misc = interpreter.nativeToPseudo({});
+    interpreter.setProperty(globalObject, 'misc', misc);
+
+    var wrapper = function () {
+        return null;
+    };
+    interpreter.setProperty(misc, 'getNull', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function (value) {
+        return null == value;
+    };
+    interpreter.setProperty(misc, 'isNull', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function (value) {
+        return null !== value;
+    };
+    interpreter.setProperty(misc, 'isNotNull', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function (number, precision) {
+        var string = "" + Math.round((number + Number.EPSILON) * (10 ** precision)) / (10 ** precision);
+        if (precision > 0) {
+            if (!string.includes('.'))
+                string += '.';
+            string += (10 ** (precision - string.split('.')[1].length)).toString().substring(1);
+        }
+        return string;
+    };
+    interpreter.setProperty(misc, 'formatNumber', interpreter.createNativeFunction(wrapper));
+
+    var wrapper = function (number, precision) {
+        return Math.round((number + Number.EPSILON) * (10 ** precision)) / (10 ** precision);
+    };
+    interpreter.setProperty(misc, 'roundDecimal', interpreter.createNativeFunction(wrapper));
 }
 
 var telemetryData = "";
@@ -185,10 +284,23 @@ onmessage = function (e) {
 }
 
 function delayStartProgram(code) {
+    var finalCode = "runOpMode();\n";
+
+    var inFunction = false;
+    for (var line of code.split('\n')) {
+        if (line.startsWith('function '))
+            inFunction = true;
+        if (inFunction || line == '' || line.startsWith('var ') || line.startsWith('// '))
+            finalCode += line + '\n';
+        else
+            finalCode += '//' + line + '\n';
+        if (line == '}')
+            inFunction = false;
+    }
     motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
-    console.log(code);
+    console.log(finalCode);
     telemetryData = "";
-    myInterpreter = new Interpreter(code, initApi);
+    myInterpreter = new Interpreter(finalCode, initApi);
     nextStep();
     return;
 }
