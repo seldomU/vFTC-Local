@@ -7,8 +7,11 @@ function initApi(interpreter, globalObject) {
     interpreter.setProperty(globalObject, 'alert', interpreter.createNativeFunction(wrapper));
 
     wrapper = function (delayTime) {
-        pauseTime = Math.max(100, Math.min(10000, delayTime));
-        return Math.max(100, Math.min(10000, delayTime));
+        const end = Date.now() + Math.max(100, Math.min(10000, delayTime))
+        while (Date.now() < end) {
+
+        }
+        return true;
     };
     interpreter.setProperty(globalObject, 'delay', interpreter.createNativeFunction(wrapper));
 
@@ -162,19 +165,11 @@ function initApi(interpreter, globalObject) {
 var telemetryData = "";
 
 var myInterpreter = null;
-var runner;
-var pauseTime = 0;
 var motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
 var motorValues = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
 
 function resetInterpreter() {
-    motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
     myInterpreter = null;
-    pauseTime = 0;
-    if (runner) {
-        clearTimeout(runner);
-        runner = null;
-    }
 }
 
 importScripts('./blocks/interpreter/acorn_interpreter.js');
@@ -194,8 +189,6 @@ function delayStartProgram(code) {
     console.log(code);
     telemetryData = "";
     myInterpreter = new Interpreter(code, initApi);
-    // myInterpreter.run();
-
     nextStep();
     return;
 }
