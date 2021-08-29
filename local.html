@@ -1198,7 +1198,7 @@
       myWorker.postMessage(["code", Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace)]);
       myWorker.onmessage = function (e) {
         if (e.data == "request encoder") {
-          myWorker.postMessage(["data", localStorage.getItem('motorEncoders')]);
+          myWorker.postMessage(["data", localStorage.getItem('motorCurrentPositions')]);
         } else {
           localStorage.setItem('motorPowers', e.data);
         }
