@@ -19,6 +19,7 @@ function createWindow() {
       },
       fullscreen: true,
       frame: false,
+      backgroundColor: '#242424',
       icon: 'logo.png'
     })
 
