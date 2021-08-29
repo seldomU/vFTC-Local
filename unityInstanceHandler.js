@@ -32,22 +32,27 @@ function writeMotorPowers() {
         localStorage.setItem('resetField', false);
     }
 
-    var motorPowers = JSON.parse(localStorage.getItem('motorPowers'));
-    var motor1 = motorPowers[Object.keys(motorPowers)[0]];
-    var motor2 = motorPowers[Object.keys(motorPowers)[1]];
-    var motor3 = motorPowers[Object.keys(motorPowers)[2]];
-    var motor4 = motorPowers[Object.keys(motorPowers)[3]];
-    var motor5 = motorPowers[Object.keys(motorPowers)[4]];
-    var motor6 = motorPowers[Object.keys(motorPowers)[5]];
-    var motor7 = motorPowers[Object.keys(motorPowers)[6]];
-    var motor8 = motorPowers[Object.keys(motorPowers)[7]];
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontLeftVel", motor1);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontRightVel", motor2);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackLeftVel", motor3);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackRightVel", motor4);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor5", motor5);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor6", motor6);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor7", motor7);
-    UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor8", motor8);
-    check();
+    try {
+        var motorPowers = JSON.parse(localStorage.getItem('motorPowers'));
+        var motor1 = motorPowers[Object.keys(motorPowers)[0]];
+        var motor2 = motorPowers[Object.keys(motorPowers)[1]];
+        var motor3 = motorPowers[Object.keys(motorPowers)[2]];
+        var motor4 = motorPowers[Object.keys(motorPowers)[3]];
+        var motor5 = motorPowers[Object.keys(motorPowers)[4]];
+        var motor6 = motorPowers[Object.keys(motorPowers)[5]];
+        var motor7 = motorPowers[Object.keys(motorPowers)[6]];
+        var motor8 = motorPowers[Object.keys(motorPowers)[7]];
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontLeftVel", motor1);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setFrontRightVel", motor2);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackLeftVel", motor3);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setBackRightVel", motor4);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor5", motor5);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor6", motor6);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor7", motor7);
+        UnityInstance.SendMessage("PhotonNetworkPlayer(Clone)", "setMotor8", motor8);
+        check();
+    } catch (e) {
+        //ignore
+    }
+
 }
