@@ -74,15 +74,13 @@
       const resizeCanvas = () => {
         const fieldView = parent.document.querySelector('#fieldView');
 
-        /*if(fieldView.offsetHeight > fieldView?.offsetWidth * 600 / 960) {
+        if(fieldView.offsetHeight > fieldView?.offsetWidth * 600 / 960) {
           canvas.style.width = `${fieldView?.offsetWidth}px`;
           canvas.style.height = `${fieldView?.offsetWidth * 600 / 960}px`;
         } else {
           canvas.style.width = `${fieldView?.offsetHeight * 960 / 600}px`;
           canvas.style.height = `${fieldView.offsetHeight}px`;
-        }*/
-		canvas.style.width = `${fieldView?.offsetWidth}px`;
-		canvas.style.height = `${fieldView.offsetHeight}px`;
+        }
       }
 
       resizeCanvas();

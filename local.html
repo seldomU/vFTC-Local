@@ -54,6 +54,10 @@
       color: white;
     }
 
+    .textDisabled {
+      color: darkslategrey;
+    }
+
     .center {
       display: flex;
       justify-content: center;
@@ -225,26 +229,17 @@
       position: relative;
     }
 
-	#middleSlider {
-	  cursor: e-resize;
-	}
-	
-	#rightSlider {
-	  cursor: n-resize;
-	}
-
-	#multiSlider {
-	  cursor: move;
-	}
-
-    #scrollOverlay {
-      visibility: hidden;
+    #videoTab {
+      display: none;
       position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-	  z-index: 100;
+      top: 36.5px;
+      left: 50%;
+      margin-left: 6px;
+      padding: 8px;
+      padding-bottom: 10px;
+      background-color: #242424;
+      z-index: 100;
+      border: 1px solid white;
     }
 
     #overlay {
@@ -378,23 +373,19 @@
     <button class="button1" onclick="resetField()">Reset Field</button>
 
 
-    <button class="button1" onClick="playVideo(false)" style="position: absolute; right: 25px;">How to Use</button>
+    <button class="button1" onClick="playVideo(false)" style="position: absolute; right: 25px;">Program Stuck?</button>
   </div>
 
 
   <div class="container" style="display: flex; height: 100%; padding-top: 5px;">
-	<div id="leftScreen" style="display: flex; width: 50%;">
-      <div id="blocklyDiv" style="width: 100%; border:1px solid white;"></div>
-      <div id="onBotJavaDiv" style="width: 100%;border:1px solid white;" hidden>
-		<h1 id="loadingOBJText">HI</h1>
-      </div>
-	</div>
-	
-	<div id="middleSlider" style="width: 10px;"></div>
+    <div id="blocklyDiv" style="width: 50%; border:1px solid white;"></div>
+    <div id="onBotJavaDiv" style="width: 50%;border:1px solid white;" hidden>
+      <h1 id="loadingOBJText">HI</h1>
+    </div>
 
-    <div id="rightScreen" style="width: 50%; background-color: #242424;">
-      <div id="controlPanel" style="height: 50%; background-color: #242424; border:1px solid white; overflow: hidden;">
-        <div id="textSelection" style="white-space: nowrap; overflow: hidden;" class="buttonText">
+    <div style="width: 50%; background-color: #242424; padding-left: 10px;">
+      <div id="controlPanel" style="height: 50%; background-color: #242424; border:1px solid white;">
+        <div style="display: flex; display: inline;" class="buttonText">
           <div style="width: 20px; display: inline-block;"></div>
           <div id="firstTab" style="display: inline-block;" onclick="switchTab(this, 0)">Telemetry</div>
           <div class="divider"></div>
@@ -402,19 +393,19 @@
           <div class="divider"></div>
           <div style="display: inline-block;" onclick="switchTab(this, 2)" class="textNormal">LMS</div>
           <div class="divider"></div>
-          <div id="videoButton" style="display: inline-block;" onclick="switchTab(this, 3)" class="textNormal">Video</div>
-		  <div style="width: 20px; display: inline-block;"></div>
+          <div id="videoButton" style="display: inline-block;" onclick="switchTab(this, 3)" class="textDisabled">Video
+          </div>
         </div>
         <div style="width:100%; height: 10px; background-color: #4B4B4B; margin-top: 15px; margin-bottom: 20px;"></div>
         <div id="tabOptions" style="height: 80%;">
           <div style="height: 100%; overflow: scroll;">
             <div style="width:100%; overflow:hidden; background-color: #323232;">
-              <h2 id="telemetryText" style="font-size: 20px; padding-right: 17.5px;">-Telemetry Output-</h2>
+              <h2 id="telemetryText" style="font-size: 20px;">-Telemetry Output-</h2>
             </div>
           </div>
-          <div style="display: none; height: 100%;">
-            <div style="display: flex; justify-content: center; overflow: hidden; height: 11%">
-              <div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF; height: 24.8px;">
+          <div style="display: none;">
+            <div style="display: flex; justify-content: center;">
+              <div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF;">
                 <select id="lessonSelect" class="dropdown-select" onChange="loadLesson()" style="font-size:20px;">
                   <option value=-1>Coding Lessons</option>
                   <option value=0>Drive to White Line - 2 Motors</option> <!-- Timing			-->
@@ -430,27 +421,22 @@
                 </select>
               </div>
             </div>
-            <div style="width:100%; overflow:hidden; background-color: #323232;">
-              <h2 id="lessonText" style="font-size: 20px; overflow: auto; height: 91%;">[Select a Lesson]</h2>
+            <div style="width:100%; overflow:hidden; background-color: #323232; margin-top: 10px;">
+              <h2 id="lessonText" style="font-size: 20px;">[Select a Lesson]</h2>
             </div>
-            <div id="lessonButtons" style="display: none; justify-content: center; align-items: center; overflow: hidden; height: 14.5%;">
-              <button class="button1" style="font-size: 20px; white-space: nowrap; height: 29.2px;">Show the Task</button>
-			  <div style="width: 17.5%; display: inline-block;"></div>
+            <div id="lessonButtons" style="padding-top: 12.5px; display: none;">
+              <button class="button1" style="position: relative; left: 105px; font-size: 20px;">Show the Task</button>
+              <!-- Hello Mihir -->
               <button class="button1" onClick="playVideo(true)"
-                style="font-size:20px; white-space: nowrap; height: 29.2px;">Video Solution</button>
+                style="position: absolute; right: 112.5px; font-size:20px;">Show Video Solution</button>
             </div>
           </div>
           <iframe src="https://virtualftc.jasonbennett.work/courses/basic-movement-with-blocks/'" width="100%"
             height="100%" frameBorder="0" style="display: none;"></iframe>
-          <iframe src="https://www.youtube.com/embed/KXMlbdsr8fM" width="100%"
-            height="100%" frameBorder="0" style="display: none;"></iframe>
         </div>
       </div>
 
-	  <div id="multiSlider" style="width: 15px; height: 15px; position:absolute; transform: translate(-12.5px, -2.5px);"></div>
-	  <div id="rightSlider" style="height: 10px;"></div>
-
-      <div id="fieldView" style="height: 50%; background-color: #000000;">
+      <div id="fieldView" style="height: 50%; margin-top: 10px; background-color: #000000;">
         <iframe scrolling="no" src="./webgl/index.html" id="fieldViewiframe" width="100%" height="100%" frameBorder="0"
           hidden></iframe>
         <div class="center" id="loadingTextDiv">
@@ -460,7 +446,19 @@
     </div>
   </div>
 
-  <div id="scrollOverlay"></div>
+  <div id="videoTab">
+    <div style="display: flex;">
+      <a onClick="switchTab(this, 3)" id="backButton"><span class="chevron left"></span></a>
+    </div>
+
+    <div class="container" style="display: flex; padding-top: 5px;">
+      <div style="width: 100%; background-color: #242424;">
+        <div id="videoView" style="background-color: #000000;">
+          <iframe src="" width="100%" height="100%" frameBorder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="overlay">
     <div id="overlayInfo">
@@ -525,75 +523,23 @@
   </div>
 
   <script>
-    //Opens up File Menu
     function promptFiles() {
       document.getElementById('filePrompt').click();
     }
 
-	//Resize Screens
-	var xScreenSize = .5 * document.body.clientWidth;
-	document.getElementById('leftScreen').style.width = xScreenSize + "px";
-	document.getElementById('rightScreen').style.width = xScreenSize + "px";
-	var yScreenSize = screen.height / 2 - 30;
-	document.getElementById('controlPanel').style.height = yScreenSize + "px";
-	document.getElementById('tabOptions').style.height = (yScreenSize - 82) + "px";
-    document.getElementById('fieldView').style.height = yScreenSize + "px";
-	var mouseClicked = 0;
-	
-	document.getElementById('middleSlider').addEventListener('mousedown', function() {
-	  document.getElementById('scrollOverlay').style.cursor = "e-resize";
-	  document.getElementById('scrollOverlay').style.visibility = "visible";
-	  mouseClicked = 1;
-	});
-	
-	document.getElementById('rightSlider').addEventListener('mousedown', function() {
-	  document.getElementById('scrollOverlay').style.cursor = "n-resize";
-	  document.getElementById('scrollOverlay').style.visibility = "visible";
-	  mouseClicked = 2;
-	});
-	
-	document.getElementById('multiSlider').addEventListener('mousedown', function() {
-	  document.getElementById('scrollOverlay').style.cursor = "move";
-	  document.getElementById('scrollOverlay').style.visibility = "visible";
-	  mouseClicked = 3;
-	});
-	
-	window.addEventListener('mouseup', function() {
-	  document.getElementById('scrollOverlay').style.visibility = "hidden";
-	  xScreenSize = Math.min(document.body.clientWidth, Math.max(0, xScreenSize));
-	  yScreenSize = Math.min(screen.height - 60, Math.max(0, yScreenSize));
-	  mouseClicked = 0;
-	});
-	
-	window.addEventListener('mousemove', function(event) {
-	  if (mouseClicked != 0) {
-	    if (mouseClicked != 2) {
-	      xScreenSize += event.movementX * .8;
-		  var xScreenSizeLimit = Math.min(document.body.clientWidth - 10, Math.max(10, xScreenSize));
-	      document.getElementById('leftScreen').style.width = xScreenSizeLimit + "px";
-		  document.getElementById('rightScreen').style.width = (document.body.clientWidth - xScreenSizeLimit) + "px";
-		  Blockly.svgResize(Blockly.mainWorkspace);
-		}
-		if (mouseClicked != 1) {
-		  yScreenSize += event.movementY * .8;
-		  var yScreenSizeLimit = Math.min(screen.height - 70, Math.max(10, yScreenSize));
-	      document.getElementById('controlPanel').style.height = yScreenSizeLimit + "px";
-	      document.getElementById('tabOptions').style.height = (yScreenSizeLimit - 82) + "px";
-		  document.getElementById('fieldView').style.height = ((screen.height - 60) - yScreenSizeLimit) + "px";
-		}
-		event.preventDefault();
-	  }
-	});
+    document.getElementById('videoView').style.height = .5 * (screen.height) - 69 + "px";
+    document.getElementById('videoTab').style.width = .5 * (document.body.clientWidth) - 24 + "px";
 
-	var sideScroll = document.getElementById('textSelection')
-
-	sideScroll.addEventListener('wheel', function(event) { sideScroll.scrollLeft += event.deltaY * .5; });
-
-	//Switch Tabs
     var prevTabButton = document.getElementById('firstTab');
 
     function switchTab(button, tabNum) {
-	  if (button.className == 'textNormal') {
+      if (tabNum == 3) {
+        if (button.className == 'textNormal')
+          document.getElementById('videoTab').style.display = "inherit";
+        else
+          document.getElementById('videoTab').style.display = "none";
+      }
+      else if (button.className == 'textNormal') {
         for (var i = 0; i < document.getElementById('tabOptions').children.length; i++)
           document.getElementById('tabOptions').children[i].style.display = "none";
         document.getElementById('tabOptions').children[tabNum].style.display = "inherit";
@@ -617,14 +563,14 @@
       }
       else
         link = 'https://www.youtube.com/embed/KXMlbdsr8fM';
-      document.getElementById('tabOptions').children[3].src = link;
+      document.getElementById('videoTab').lastElementChild.firstElementChild.firstElementChild.firstElementChild.src = link;
+      document.getElementById('videoButton').classList.remove('textDisabled');
+      document.getElementById('videoButton').classList.add('textNormal');
       switchTab(document.getElementById('videoButton'), 3);
     }
 
-	//Load Lessons
     function loadLesson() {
-      document.getElementById('lessonButtons').style.display = "flex";
-	  document.getElementById('lessonText').parentElement.style.height = '75%';
+      document.getElementById('lessonButtons').style.display = "inherit";
       switch (document.getElementById('lessonSelect').value) {
         case "0":
           document.getElementById('lessonText').innerText = "Difficulty: Easy\n" +
@@ -679,15 +625,12 @@
         default:
           document.getElementById('lessonButtons').style.display = "none";
           document.getElementById('lessonText').innerText = "[Select Lesson]";
-		  document.getElementById('lessonText').parentElement.style.height = '';
           break;
       }
     }
 
-	//Prompts
     var overlayReturned = null;
 
-	//	Overrides Window.Prompt for Variable Renaming
     window.prompt = function overlayPrompt(message, placeholder) {
       overlayReturned = null;
       overlay(true, (message == "New variable name:" ? 2 : 3));
@@ -5327,6 +5270,9 @@
 
     var shouldBeUpdatingLoadingText = true;
     var counterForLoadingText = 1;
+    document.getElementById('controlPanel').style.height = screen.height / 2 - 30 + "px";
+    document.getElementById('fieldView').style.height = screen.height / 2 - 30 + "px";
+    document.getElementById('onBotJavaDiv').style.height = screen.height - 48 + "px";
 
     setTimeout(function () {
       shouldBeUpdatingLoadingText = false;
