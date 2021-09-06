@@ -80,6 +80,9 @@ Blockly.JavaScript['navigation_typedEnum_angleUnit'] =
 /*Blockly.FtcJava['navigation_typedEnum_angleUnit'] =
     Blockly.FtcJava['navigation_enum_angleUnit'];*/
 
+//VRS-Only used navigation_typedEnum_angleUnit and navigation_typedEnum_currentUnit for now
+
+/*
 Blockly.Blocks['navigation_angleUnit_normalize'] = {
   init: function() {
     this.setOutput(true, 'Number');
@@ -119,7 +122,7 @@ Blockly.JavaScript['navigation_angleUnit_normalize'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 };
 
-/*Blockly.FtcJava['navigation_angleUnit_normalize'] = function(block) {
+Blockly.FtcJava['navigation_angleUnit_normalize'] = function(block) {
   var angle = Blockly.FtcJava.valueToCode(
       block, 'ANGLE', Blockly.FtcJava.ORDER_NONE);
   var angleUnit = Blockly.FtcJava.valueToCode(
@@ -127,7 +130,7 @@ Blockly.JavaScript['navigation_angleUnit_normalize'] = function(block) {
   var code = angleUnit + '.normalize(' + angle + ')';
   Blockly.FtcJava.generateImport_('AngleUnit');
   return [code, Blockly.FtcJava.ORDER_FUNCTION_CALL];
-};*/
+};
 
 Blockly.Blocks['navigation_angleUnit_convert'] = {
   init: function() {
@@ -193,7 +196,7 @@ Blockly.JavaScript['navigation_angleUnit_convert'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_FUNCTION_CALL];
 };
 
-/*Blockly.FtcJava['navigation_angleUnit_convert'] = function(block) {
+Blockly.FtcJava['navigation_angleUnit_convert'] = function(block) {
   var angleUnitType = block.getFieldValue('ANGLE_UNIT_TYPE');
   var toAngleUnit = Blockly.FtcJava.valueToCode(
       block, 'TO_ANGLE_UNIT', Blockly.FtcJava.ORDER_MEMBER);
@@ -228,7 +231,7 @@ Blockly.JavaScript['navigation_angleUnit_convert'] = function(block) {
       throw 'Unexpected AngleUnit type ' + angleUnitType + ' (navigation_angleUnit_convert).';
   }
   return [code, Blockly.FtcJava.ORDER_FUNCTION_CALL];
-};*/
+};
 
 // AxesOrder
 Blockly.Blocks['navigation_enum_axesOrder'] = {
@@ -286,11 +289,11 @@ Blockly.JavaScript['navigation_enum_axesOrder'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_enum_axesOrder'] = function(block) {
+Blockly.FtcJava['navigation_enum_axesOrder'] = function(block) {
   var code = 'AxesOrder.' + block.getFieldValue('AXES_ORDER');
   Blockly.FtcJava.generateImport_('AxesOrder');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
 
 Blockly.Blocks['navigation_typedEnum_axesOrder'] =
     Blockly.Blocks['navigation_enum_axesOrder'];
@@ -298,8 +301,8 @@ Blockly.Blocks['navigation_typedEnum_axesOrder'] =
 Blockly.JavaScript['navigation_typedEnum_axesOrder'] =
     Blockly.JavaScript['navigation_enum_axesOrder'];
 
-/*Blockly.FtcJava['navigation_typedEnum_axesOrder'] =
-    Blockly.FtcJava['navigation_enum_axesOrder'];*/
+Blockly.FtcJava['navigation_typedEnum_axesOrder'] =
+    Blockly.FtcJava['navigation_enum_axesOrder'];
 
 // AxesReference
 Blockly.Blocks['navigation_enum_axesReference'] = {
@@ -337,11 +340,11 @@ Blockly.JavaScript['navigation_enum_axesReference'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_enum_axesReference'] = function(block) {
+Blockly.FtcJava['navigation_enum_axesReference'] = function(block) {
   var code = 'AxesReference.' + block.getFieldValue('AXES_REFERENCE');
   Blockly.FtcJava.generateImport_('AxesReference');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
 
 Blockly.Blocks['navigation_typedEnum_axesReference'] =
     Blockly.Blocks['navigation_enum_axesReference'];
@@ -349,8 +352,8 @@ Blockly.Blocks['navigation_typedEnum_axesReference'] =
 Blockly.JavaScript['navigation_typedEnum_axesReference'] =
     Blockly.JavaScript['navigation_enum_axesReference'];
 
-/*Blockly.FtcJava['navigation_typedEnum_axesReference'] =
-    Blockly.FtcJava['navigation_enum_axesReference'];*/
+Blockly.FtcJava['navigation_typedEnum_axesReference'] =
+    Blockly.FtcJava['navigation_enum_axesReference'];
 
 // CameraDirection
 Blockly.Blocks['navigation_enum_cameraDirection'] = {
@@ -388,11 +391,11 @@ Blockly.JavaScript['navigation_enum_cameraDirection'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_enum_cameraDirection'] = function(block) {
+Blockly.FtcJava['navigation_enum_cameraDirection'] = function(block) {
   var code = 'VuforiaLocalizer.CameraDirection.' + block.getFieldValue('CAMERA_DIRECTION');
   Blockly.FtcJava.generateImport_('VuforiaLocalizer');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
 
 Blockly.Blocks['navigation_typedEnum_cameraDirection'] =
     Blockly.Blocks['navigation_enum_cameraDirection'];
@@ -400,8 +403,8 @@ Blockly.Blocks['navigation_typedEnum_cameraDirection'] =
 Blockly.JavaScript['navigation_typedEnum_cameraDirection'] =
     Blockly.JavaScript['navigation_enum_cameraDirection'];
 
-/*Blockly.FtcJava['navigation_typedEnum_cameraDirection'] =
-    Blockly.FtcJava['navigation_enum_cameraDirection'];*/
+Blockly.FtcJava['navigation_typedEnum_cameraDirection'] =
+    Blockly.FtcJava['navigation_enum_cameraDirection'];
 
 // WebcamName
 Blockly.Blocks['navigation_webcamName'] = {
@@ -421,12 +424,12 @@ Blockly.JavaScript['navigation_webcamName'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_webcamName'] = function(block) {
+Blockly.FtcJava['navigation_webcamName'] = function(block) {
   // For java, we generate code to retrieve the WebcamName from the hardwareMap.
   var code = 'hardwareMap.get(WebcamName.class, "' + block.getFieldValue('WEBCAM_NAME') + '")';
   Blockly.FtcJava.generateImport_('WebcamName');
   return [code, Blockly.FtcJava.ORDER_FUNCTION_CALL];
-};*/
+};
 
 Blockly.Blocks['navigation_switchableCamera'] = {
   init: function() {
@@ -444,12 +447,12 @@ Blockly.JavaScript['navigation_switchableCamera'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_switchableCamera'] = function(block) {
+Blockly.FtcJava['navigation_switchableCamera'] = function(block) {
   // For java, we generate code to get a switchable camera.
   var code = 'VuforiaBase.getSwitchableCamera(hardwareMap)';
   Blockly.FtcJava.generateImport_('VuforiaBase');
   return [code, Blockly.FtcJava.ORDER_FUNCTION_CALL];
-};*/
+};
 
 // CameraMonitorFeedback
 Blockly.Blocks['navigation_enum_cameraMonitorFeedback'] = {
@@ -493,7 +496,7 @@ Blockly.JavaScript['navigation_enum_cameraMonitorFeedback'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_enum_cameraMonitorFeedback'] = function(block) {
+Blockly.FtcJava['navigation_enum_cameraMonitorFeedback'] = function(block) {
   var cameraMonitorFeedback = block.getFieldValue('CAMERA_MONITOR_FEEDBACK');
   if (cameraMonitorFeedback == 'DEFAULT') {
     return ['null', Blockly.FtcJava.ORDER_ATOMIC];
@@ -501,7 +504,7 @@ Blockly.JavaScript['navigation_enum_cameraMonitorFeedback'] = function(block) {
   var code = 'VuforiaLocalizer.Parameters.CameraMonitorFeedback.' + cameraMonitorFeedback;
   Blockly.FtcJava.generateImport_('VuforiaLocalizer');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
 
 Blockly.Blocks['navigation_typedEnum_cameraMonitorFeedback'] =
     Blockly.Blocks['navigation_enum_cameraMonitorFeedback'];
@@ -509,8 +512,8 @@ Blockly.Blocks['navigation_typedEnum_cameraMonitorFeedback'] =
 Blockly.JavaScript['navigation_typedEnum_cameraMonitorFeedback'] =
     Blockly.JavaScript['navigation_enum_cameraMonitorFeedback'];
 
-/*Blockly.FtcJava['navigation_typedEnum_cameraMonitorFeedback'] =
-    Blockly.FtcJava['navigation_enum_cameraMonitorFeedback'];*/
+Blockly.FtcJava['navigation_typedEnum_cameraMonitorFeedback'] =
+    Blockly.FtcJava['navigation_enum_cameraMonitorFeedback'];
 
 // DistanceUnit
 Blockly.Blocks['navigation_enum_distanceUnit'] = {
@@ -552,11 +555,11 @@ Blockly.JavaScript['navigation_enum_distanceUnit'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_enum_distanceUnit'] = function(block) {
+Blockly.FtcJava['navigation_enum_distanceUnit'] = function(block) {
   var code = 'DistanceUnit.' + block.getFieldValue('DISTANCE_UNIT');
   Blockly.FtcJava.generateImport_('DistanceUnit');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
 
 Blockly.Blocks['navigation_typedEnum_distanceUnit'] =
     Blockly.Blocks['navigation_enum_distanceUnit'];
@@ -564,8 +567,8 @@ Blockly.Blocks['navigation_typedEnum_distanceUnit'] =
 Blockly.JavaScript['navigation_typedEnum_distanceUnit'] =
     Blockly.JavaScript['navigation_enum_distanceUnit'];
 
-/*Blockly.FtcJava['navigation_typedEnum_distanceUnit'] =
-    Blockly.FtcJava['navigation_enum_distanceUnit'];*/
+Blockly.FtcJava['navigation_typedEnum_distanceUnit'] =
+    Blockly.FtcJava['navigation_enum_distanceUnit'];
 
 // TempUnit
 Blockly.Blocks['navigation_enum_tempUnit'] = {
@@ -605,11 +608,11 @@ Blockly.JavaScript['navigation_enum_tempUnit'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_enum_tempUnit'] = function(block) {
+Blockly.FtcJava['navigation_enum_tempUnit'] = function(block) {
   var code = 'TempUnit.' + block.getFieldValue('TEMP_UNIT');
   Blockly.FtcJava.generateImport_('TempUnit');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
 
 Blockly.Blocks['navigation_typedEnum_tempUnit'] =
     Blockly.Blocks['navigation_enum_tempUnit'];
@@ -617,8 +620,8 @@ Blockly.Blocks['navigation_typedEnum_tempUnit'] =
 Blockly.JavaScript['navigation_typedEnum_tempUnit'] =
     Blockly.JavaScript['navigation_enum_tempUnit'];
 
-/*Blockly.FtcJava['navigation_typedEnum_tempUnit'] =
-    Blockly.FtcJava['navigation_enum_tempUnit'];*/
+Blockly.FtcJava['navigation_typedEnum_tempUnit'] =
+    Blockly.FtcJava['navigation_enum_tempUnit'];
 
 // Axis
 Blockly.Blocks['navigation_typedEnum_axis'] = {
@@ -658,11 +661,12 @@ Blockly.JavaScript['navigation_typedEnum_axis'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-/*Blockly.FtcJava['navigation_typedEnum_axis'] = function(block) {
+Blockly.FtcJava['navigation_typedEnum_axis'] = function(block) {
   var code = 'Axis.' + block.getFieldValue('AXIS');
   Blockly.FtcJava.generateImport_('Axis');
   return [code, Blockly.FtcJava.ORDER_MEMBER];
-};*/
+};
+*/
 
 // CurrentUnit
 Blockly.Blocks['navigation_typedEnum_currentUnit'] = {

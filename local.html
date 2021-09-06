@@ -514,7 +514,6 @@
               <option value='BasicOpMode'>BasicOpMode</option>
               <option value='BasicPOVDrive'>BasicPOVDrive</option>
               <option value='BasicTankDrive'>BasicTankDrive</option>
-              <option value='SensorIMU'>SensorIMU</option>
             </select>
           </div>
         </div>
@@ -692,18 +691,12 @@
   </script>
 
   <!-- FTC Copied Files w/ slight modifications -->
-  <script src="./blocks/blocks/acceleration.js"></script>
-  <script src="./blocks/blocks/bno055imu.js"></script>
-  <script src="./blocks/blocks/bno055imu_parameters.js"></script>
   <script src="./blocks/blocks/dc_motor.js"></script>
-  <script src="./blocks/blocks/distance_sensor.js"></script>
   <script src="./blocks/blocks/gamepad.js"></script>
   <script src="./blocks/blocks/linear_op_mode.js"></script>
   <script src="./blocks/blocks/locale.js"></script>
   <script src="./blocks/blocks/misc.js"></script>
   <script src="./blocks/blocks/navigation.js"></script>
-  <script src="./blocks/blocks/orientation.js"></script>
-  <script src="./blocks/blocks/system.js"></script>
   <script src="./blocks/blocks/telemetry.js"></script>
   <script src="./blocks/blocks/vars.js"></script>
   <xml id="toolbox" style="display: none">
@@ -994,127 +987,6 @@
             </value>
           </block>
         </category>
-		<category css-icon="" name="Quad">
-	      <block type="dcMotor_setQuadProperty_Number">
-            <field name="PROP">Power</field>
-            <field name="IDENTIFIER1">dcMotor0</field>
-            <field name="IDENTIFIER2">dcMotor1</field>
-            <field name="IDENTIFIER3">dcMotor2</field>
-            <field name="IDENTIFIER4">dcMotor3</field>
-            <value name="VALUE1">
-              <shadow type="math_number">
-                <field name="NUM">1</field>
-              </shadow>
-            </value>
-            <value name="VALUE2">
-              <shadow type="math_number">
-                <field name="NUM">1</field>
-              </shadow>
-            </value>
-			<value name="VALUE3">
-              <shadow type="math_number">
-                <field name="NUM">1</field>
-              </shadow>
-            </value>
-            <value name="VALUE4">
-              <shadow type="math_number">
-                <field name="NUM">1</field>
-              </shadow>
-            </value>
-          </block>
-		  <block type="dcMotor_setQuadProperty_Number">
-            <field name="PROP">Power</field>
-            <field name="IDENTIFIER1">dcMotor0</field>
-            <field name="IDENTIFIER2">dcMotor1</field>
-			<field name="IDENTIFIER3">dcMotor2</field>
-            <field name="IDENTIFIER4">dcMotor3</field>
-            <value name="VALUE1">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-            <value name="VALUE2">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-			<value name="VALUE3">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-            <value name="VALUE4">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-          </block>
-		  <block type="dcMotor_setQuadProperty_RunMode">
-            <field name="PROP">Mode</field>
-            <field name="IDENTIFIER1">dcMotor0</field>
-            <field name="IDENTIFIER2">dcMotor1</field>
-            <field name="IDENTIFIER3">dcMotor2</field>
-            <field name="IDENTIFIER4">dcMotor3</field>
-            <value name="VALUE1">
-              <shadow type="dcMotor_typedEnum_runMode" />
-            </value>
-            <value name="VALUE2">
-              <shadow type="dcMotor_typedEnum_runMode" />
-            </value>
-			<value name="VALUE3">
-              <shadow type="dcMotor_typedEnum_runMode" />
-            </value>
-            <value name="VALUE4">
-              <shadow type="dcMotor_typedEnum_runMode" />
-            </value>
-          </block>
-		  <block type="dcMotor_setQuadProperty_Number">
-            <field name="PROP">TargetPosition</field>
-            <field name="IDENTIFIER1">dcMotor0</field>
-            <field name="IDENTIFIER2">dcMotor1</field>
-			<field name="IDENTIFIER3">dcMotor2</field>
-            <field name="IDENTIFIER4">dcMotor3</field>
-            <value name="VALUE1">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-            <value name="VALUE2">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-			<value name="VALUE3">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-            <value name="VALUE4">
-              <shadow type="math_number">
-                <field name="NUM">0</field>
-              </shadow>
-            </value>
-          </block>
-		  <block type="dcMotor_setQuadProperty_ZeroPowerBehavior">
-            <field name="PROP">ZeroPowerBehavior</field>
-            <field name="IDENTIFIER1">dcMotor0</field>
-            <field name="IDENTIFIER2">dcMotor1</field>
-			<field name="IDENTIFIER3">dcMotor2</field>
-            <field name="IDENTIFIER4">dcMotor3</field>
-            <value name="VALUE1">
-              <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
-            </value>
-            <value name="VALUE2">
-              <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
-            </value>
-			<value name="VALUE3">
-              <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
-            </value>
-			<value name="VALUE4">
-              <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
-            </value>
-          </block>
-		</category>
         <category css-icon="customIcon fa fa-caret-right" name="Extended">
           <block type="dcMotor_setProperty_Number">
             <field name="IDENTIFIER">dcMotor0</field>
@@ -1168,62 +1040,6 @@
                 </shadow>
               </value>
               <value name="VALUE2">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-            </block>
-          </category>
-          <category css-icon="" name="Quad">
-            <block type="dcMotor_setQuadProperty_Number">
-              <field name="PROP">TargetPositionTolerance</field>
-              <field name="IDENTIFIER1">dcMotor0</field>
-              <field name="IDENTIFIER2">dcMotor1</field>
-              <field name="IDENTIFIER3">dcMotor2</field>
-              <field name="IDENTIFIER4">dcMotor3</field>
-              <value name="VALUE1">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-              <value name="VALUE2">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-			  <value name="VALUE3">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-			  <value name="VALUE4">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-            </block>
-            <block type="dcMotor_setQuadProperty_Number">
-              <field name="PROP">Velocity</field>
-              <field name="IDENTIFIER1">dcMotor0</field>
-              <field name="IDENTIFIER2">dcMotor1</field>
-              <field name="IDENTIFIER3">dcMotor2</field>
-              <field name="IDENTIFIER4">dcMotor3</field>
-              <value name="VALUE1">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-              <value name="VALUE2">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-			  <value name="VALUE3">
-                <shadow type="math_number">
-                  <field name="NUM">10</field>
-                </shadow>
-              </value>
-			  <value name="VALUE4">
                 <shadow type="math_number">
                   <field name="NUM">10</field>
                 </shadow>
@@ -1376,16 +1192,8 @@
         </block>
       </category>
     </category>
-    <category css-icon="customIcon fa fa-caret-right" name="Sensors" colour="#2E8B57">
-	  <category css-icon="" name="DistanceSensor">
-	 	  <block type="distanceSensor_getDistance">
-	 		  <field name="IDENTIFIER">distanceSensor0</field>
-	 		  <value name="DISTANCE_UNIT">
-	 			  <shadow type="navigation_typedEnum_distanceUnit"/>
-	 		  </value>
-	 	  </block>
-	  </category>
-      <category css-icon="" name="IMU-BNO055">
+    <category css-icon="customIcon fa fa-caret-right" name="Sensors" colour="#87CEEB">
+      <category css-icon="" name="IMU-BNO055" hidden="true">
         <block type="bno055imu_getProperty_Acceleration">
           <field name="IDENTIFIER">imuAsBNO055IMU</field>
           <field name="PROP">Acceleration</field>
@@ -1468,7 +1276,7 @@
           <field name="IDENTIFIER">imuAsBNO055IMU</field>
           <field name="PROP">SystemStatus</field>
         </block>
-        <block type="bno055imu_typedEnum_systemStatus"></block>
+        <block type="bno055imu_typedEnum_systemStatus" />
         <block type="bno055imu_getProperty_Temperature">
           <field name="IDENTIFIER">imuAsBNO055IMU</field>
           <field name="PROP">Temperature</field>
@@ -1553,8 +1361,8 @@
           <field name="IDENTIFIER">imuAsBNO055IMU</field>
         </block>
       </category>
-      <category css-icon="" name="IMU-BNO055.Parameters">
-        <block type="bno055imuParameters_create"></block>
+      <category css-icon="" name="IMU-BNO055.Parameters" hidden="true">
+        <block type="bno055imuParameters_create" />
         <block type="bno055imuParameters_setAccelUnit">
           <value name="BNO055IMU_PARAMETERS">
             <block type="variables_get">
@@ -1629,6 +1437,7 @@
           </value>
           <value name="LOGGING_ENABLED">
             <shadow type="logic_boolean">
+              <field name="BOOL">true</field>
             </shadow>
           </value>
         </block>
@@ -1753,7 +1562,7 @@
       </category>
     </category>
     <category css-icon="customIcon fa fa-caret-right" name="Utilities" colour="250">
-      <category css-icon="" name="Acceleration">
+      <category css-icon="" name="Acceleration" hidden="true">
         <block type="acceleration_getProperty_DistanceUnit">
           <field name="PROP">DistanceUnit</field>
           <value name="ACCELERATION">
@@ -1811,7 +1620,7 @@
             </block>
           </value>
         </block>
-        <block type="acceleration_create"></block>
+        <block type="acceleration_create" />
         <block type="acceleration_create_withArgs">
           <value name="DISTANCE_UNIT">
             <shadow type="navigation_typedEnum_distanceUnit" />
@@ -3031,7 +2840,7 @@
           </value>
         </block>
       </category>
-      <category css-icon="" name="Orientation">
+      <category css-icon="" name="Orientation" hidden="true">
         <block type="orientation_getProperty_AxesReference">
           <field name="PROP">AxesReference</field>
           <value name="ORIENTATION">
@@ -3158,7 +2967,7 @@
             </shadow>
           </value>
         </block>
-        <block type="orientation_create"></block>
+        <block type="orientation_create" />
         <block type="orientation_create_withArgs">
           <value name="AXES_REFERENCE">
             <shadow type="navigation_typedEnum_axesReference" />
