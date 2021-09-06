@@ -53,7 +53,7 @@ var projectEnabled = true;
 var propertyColorLinearOpMode = 30;
 var propertyColorGamepad = 1;
 var propertyColorDCMotor = '#f58a42';
-var propertyColorSensors = '#87CEEB';
+var propertyColorSensors = '#2E8B57';
 var propertyColorUtilities = 250;
 var propertyColorMisc = 200;
 

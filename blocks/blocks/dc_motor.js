@@ -813,6 +813,251 @@ Blockly.JavaScript['dcMotor_setDualProperty_ZeroPowerBehavior'] =
 /*Blockly.FtcJava['dcMotor_setDualProperty_ZeroPowerBehavior'] =
     Blockly.FtcJava['dcMotor_setDualProperty'];*/
 
+//VRS-Quad Property Set
+
+Blockly.Blocks['dcMotor_setQuadProperty'] = {
+  init: function() {
+    var PROPERTY_CHOICES = [
+        ['MaxSpeed', 'MaxSpeed'],
+        ['Mode', 'Mode'],
+        ['Power', 'Power'],
+        ['TargetPosition', 'TargetPosition'],
+        ['TargetPositionTolerance', 'TargetPositionTolerance'],
+        ['Velocity', 'Velocity'],
+        ['ZeroPowerBehavior', 'ZeroPowerBehavior'],
+    ];
+    this.appendDummyInput()
+        .appendField('set')
+        .appendField(new Blockly.FieldDropdown(PROPERTY_CHOICES), 'PROP')
+    this.appendValueInput('VALUE1') // no type, for compatibility
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER1')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE2') // no type, for compatibility
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER2')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+	this.appendValueInput('VALUE3') // no type, for compatibility
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER3')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE4') // no type, for compatibility
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER4')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(propertyColorDCMotor);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    var TOOLTIPS = [
+        ['MaxSpeed', 'This block does nothing. MaxSpeed is deprecated.'],
+        ['Mode', 'Sets the RunMode for four motors.'],
+        ['Power', 'Sets the power for four motors. Valid values are between -1.0 and 1.0.'],
+        ['TargetPosition', 'Sets the target position for four motors.'],
+        ['TargetPositionTolerance', 'Sets the target positioning tolerance for four motors. ' +
+            'Not all DcMotors support this feature.'],
+        ['Velocity', 'Sets the velocity for four motors in ticks per second. ' +
+            'Not all DcMotors support this feature.'],
+        ['ZeroPowerBehavior', 'Sets the ZeroPowerBehavior for four motors. Valid values are BRAKE or FLOAT.'],
+    ];
+    this.setTooltip(function() {
+      var key = thisBlock.getFieldValue('PROP');
+      for (var i = 0; i < TOOLTIPS.length; i++) {
+        if (TOOLTIPS[i][0] == key) {
+          return TOOLTIPS[i][1];
+        }
+      }
+      return '';
+    });
+  }
+};
+
+Blockly.JavaScript['dcMotor_setQuadProperty'] = function(block) {
+	
+  var code = 'motor.setProperty([';
+  for (var i = 1; i <= 4; i++) {
+	  var identifier = block.getFieldValue('IDENTIFIER' + i);
+	  code += identifier.substring(identifier.length - 1) + (i < 4 ? ', ': '');
+  }
+  var property = block.getFieldValue('PROP');
+  code += '], \'' + property + '\', [';
+  for (var i = 1; i <= 4; i++) {
+	  var value = Blockly.JavaScript.valueToCode(block, 'VALUE' + i, Blockly.JavaScript.ORDER_COMMA);
+	  code += value + (i < 4 ? ', ': '');
+  }
+  code += ']);\n';
+  return code;
+};
+
+Blockly.Blocks['dcMotor_setQuadProperty_Number'] = {
+  init: function() {
+    var PROPERTY_CHOICES = [
+        ['MaxSpeed', 'MaxSpeed'],
+        ['Power', 'Power'],
+        ['TargetPosition', 'TargetPosition'],
+        ['TargetPositionTolerance', 'TargetPositionTolerance'],
+        ['Velocity', 'Velocity'],
+    ];
+    this.appendDummyInput()
+        .appendField('set')
+        .appendField(new Blockly.FieldDropdown(PROPERTY_CHOICES), 'PROP')
+    this.appendValueInput('VALUE1').setCheck('Number')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER1')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE2').setCheck('Number')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER2')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+	this.appendValueInput('VALUE3').setCheck('Number')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER3')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE4').setCheck('Number')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER4')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(propertyColorDCMotor);
+    // Assign 'this' to a variable for use in the closures below.
+    var thisBlock = this;
+    var TOOLTIPS = [
+        ['MaxSpeed', 'This block does nothing. MaxSpeed is deprecated.'],
+        ['Power', 'Sets the power for four motors. Valid values are between -1.0 and 1.0.'],
+        ['TargetPosition', 'Sets the target position for four motors.'],
+        ['TargetPositionTolerance', 'Sets the target positioning tolerance for four motors. ' +
+            'Not all DcMotors support this feature.'],
+        ['Velocity', 'Sets the velocity for four motors in ticks per second. ' +
+            'Not all DcMotors support this feature.'],
+    ];
+    this.setTooltip(function() {
+      var key = thisBlock.getFieldValue('PROP');
+      for (var i = 0; i < TOOLTIPS.length; i++) {
+        if (TOOLTIPS[i][0] == key) {
+          return TOOLTIPS[i][1];
+        }
+      }
+      return '';
+    });
+    this.getFtcJavaInputType = function(inputName) {
+      if (inputName == 'VALUE1' || inputName == 'VALUE2' || inputName == 'VALUE3' || inputName == 'VALUE4') {
+        var property = thisBlock.getFieldValue('PROP');
+        switch (property) {
+          case 'MaxSpeed':
+          case 'Power':
+          case 'Velocity':
+            return 'double';
+          case 'TargetPosition':
+          case 'TargetPositionTolerance':
+            return 'int';
+          default:
+            throw 'Unexpected property ' + property + ' (dcMotor_setQuadProperty_Number getArgumentType).';
+        }
+      }
+      return '';
+    };
+  }
+};
+
+Blockly.JavaScript['dcMotor_setQuadProperty_Number'] =
+    Blockly.JavaScript['dcMotor_setQuadProperty'];
+
+Blockly.Blocks['dcMotor_setQuadProperty_RunMode'] = {
+  init: function() {
+    var PROPERTY_CHOICES = [
+        ['Mode', 'Mode'],
+    ];
+    this.appendDummyInput()
+        .appendField('set')
+        .appendField(new Blockly.FieldDropdown(PROPERTY_CHOICES), 'PROP')
+    this.appendValueInput('VALUE1').setCheck('DcMotor.RunMode')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER1')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE2').setCheck('DcMotor.RunMode')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER2')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+	this.appendValueInput('VALUE3').setCheck('DcMotor.RunMode')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER3')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE4').setCheck('DcMotor.RunMode')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER4')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(propertyColorDCMotor);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    var TOOLTIPS = [
+        ['Mode', 'Sets the RunMode for four motors.'],
+    ];
+    this.setTooltip(function() {
+      var key = thisBlock.getFieldValue('PROP');
+      for (var i = 0; i < TOOLTIPS.length; i++) {
+        if (TOOLTIPS[i][0] == key) {
+          return TOOLTIPS[i][1];
+        }
+      }
+      return '';
+    });
+  }
+};
+
+Blockly.JavaScript['dcMotor_setQuadProperty_RunMode'] =
+    Blockly.JavaScript['dcMotor_setQuadProperty'];
+
+Blockly.Blocks['dcMotor_setQuadProperty_ZeroPowerBehavior'] = {
+  init: function() {
+    var PROPERTY_CHOICES = [
+        ['ZeroPowerBehavior', 'ZeroPowerBehavior'],
+    ];
+    this.appendDummyInput()
+        .appendField('set')
+        .appendField(new Blockly.FieldDropdown(PROPERTY_CHOICES), 'PROP')
+    this.appendValueInput('VALUE1').setCheck('DcMotor.ZeroPowerBehavior')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER1')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE2').setCheck('DcMotor.ZeroPowerBehavior')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER2')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+	this.appendValueInput('VALUE3').setCheck('DcMotor.ZeroPowerBehavior')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER3')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendValueInput('VALUE4').setCheck('DcMotor.ZeroPowerBehavior')
+        .appendField(createDcMotorDropdown(), 'IDENTIFIER4')
+        .appendField('to')
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(propertyColorDCMotor);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    var TOOLTIPS = [
+        ['ZeroPowerBehavior', 'Sets the ZeroPowerBehavior for four motors. Valid values are BRAKE or FLOAT.'],
+    ];
+    this.setTooltip(function() {
+      var key = thisBlock.getFieldValue('PROP');
+      for (var i = 0; i < TOOLTIPS.length; i++) {
+        if (TOOLTIPS[i][0] == key) {
+          return TOOLTIPS[i][1];
+        }
+      }
+      return '';
+    });
+  }
+};
+
+Blockly.JavaScript['dcMotor_setQuadProperty_ZeroPowerBehavior'] =
+    Blockly.JavaScript['dcMotor_setQuadProperty'];
+
 // Enums
 
 Blockly.Blocks['dcMotor_enum_runMode'] = {
