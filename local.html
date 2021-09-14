@@ -225,17 +225,17 @@
       position: relative;
     }
 
-	#middleSlider {
-	  cursor: e-resize;
-	}
-	
-	#rightSlider {
-	  cursor: n-resize;
-	}
+    #middleSlider {
+      cursor: e-resize;
+    }
 
-	#multiSlider {
-	  cursor: move;
-	}
+    #rightSlider {
+      cursor: n-resize;
+    }
+
+    #multiSlider {
+      cursor: move;
+    }
 
     #scrollOverlay {
       visibility: hidden;
@@ -244,7 +244,7 @@
       left: 0px;
       width: 100%;
       height: 100%;
-	  z-index: 100;
+      z-index: 100;
     }
 
     #overlay {
@@ -383,14 +383,14 @@
 
 
   <div class="container" style="display: flex; height: 100%; padding-top: 5px;">
-	<div id="leftScreen" style="display: flex; width: 50%;">
+    <div id="leftScreen" style="display: flex; width: 50%;">
       <div id="blocklyDiv" style="width: 100%; border:1px solid white;"></div>
       <div id="onBotJavaDiv" style="width: 100%;border:1px solid white;" hidden>
-		<h1 id="loadingOBJText">HI</h1>
+        <h1 id="loadingOBJText">HI</h1>
       </div>
-	</div>
-	
-	<div id="middleSlider" style="width: 10px;"></div>
+    </div>
+
+    <div id="middleSlider" style="width: 10px;"></div>
 
     <div id="rightScreen" style="width: 50%; background-color: #242424;">
       <div id="controlPanel" style="height: 50%; background-color: #242424; border:1px solid white; overflow: hidden;">
@@ -402,8 +402,9 @@
           <div class="divider"></div>
           <div style="display: inline-block;" onclick="switchTab(this, 2)" class="textNormal">LMS</div>
           <div class="divider"></div>
-          <div id="videoButton" style="display: inline-block;" onclick="switchTab(this, 3)" class="textNormal">Video</div>
-		  <div style="width: 20px; display: inline-block;"></div>
+          <div id="videoButton" style="display: inline-block;" onclick="switchTab(this, 3)" class="textNormal">Video
+          </div>
+          <div style="width: 20px; display: inline-block;"></div>
         </div>
         <div style="width:100%; height: 10px; background-color: #4B4B4B; margin-top: 15px; margin-bottom: 20px;"></div>
         <div id="tabOptions" style="height: 80%;">
@@ -414,7 +415,8 @@
           </div>
           <div style="display: none; height: 100%;">
             <div style="display: flex; justify-content: center; overflow: hidden; height: 11%">
-              <div class="dropdown dropdown-dark" style="display: inline-block; background-color: #FFFFFF; height: 24.8px;">
+              <div class="dropdown dropdown-dark"
+                style="display: inline-block; background-color: #FFFFFF; height: 24.8px;">
                 <select id="lessonSelect" class="dropdown-select" onChange="loadLesson()" style="font-size:20px;">
                   <option value=-1>Coding Lessons</option>
                   <option value=0>Drive to White Line - 2 Motors</option> <!-- Timing			-->
@@ -433,22 +435,25 @@
             <div style="width:100%; overflow:hidden; background-color: #323232;">
               <h2 id="lessonText" style="font-size: 20px; overflow: auto; height: 91%;">[Select a Lesson]</h2>
             </div>
-            <div id="lessonButtons" style="display: none; justify-content: center; align-items: center; overflow: hidden; height: 14.5%;">
-              <button class="button1" style="font-size: 20px; white-space: nowrap; height: 29.2px;">Show the Task</button>
-			  <div style="width: 17.5%; display: inline-block;"></div>
+            <div id="lessonButtons"
+              style="display: none; justify-content: center; align-items: center; overflow: hidden; height: 14.5%;">
+              <button class="button1" style="font-size: 20px; white-space: nowrap; height: 29.2px;">Show the
+                Task</button>
+              <div style="width: 17.5%; display: inline-block;"></div>
               <button class="button1" onClick="playVideo(true)"
                 style="font-size:20px; white-space: nowrap; height: 29.2px;">Video Solution</button>
             </div>
           </div>
           <iframe src="https://virtualftc.jasonbennett.work/courses/basic-movement-with-blocks/'" width="100%"
             height="100%" frameBorder="0" style="display: none;"></iframe>
-          <iframe src="https://www.youtube.com/embed/KXMlbdsr8fM" width="100%"
-            height="100%" frameBorder="0" style="display: none;"></iframe>
+          <iframe src="https://www.youtube.com/embed/KXMlbdsr8fM" width="100%" height="100%" frameBorder="0"
+            style="display: none;"></iframe>
         </div>
       </div>
 
-	  <div id="multiSlider" style="width: 15px; height: 15px; position:absolute; transform: translate(-12.5px, -2.5px);"></div>
-	  <div id="rightSlider" style="height: 10px;"></div>
+      <div id="multiSlider"
+        style="width: 15px; height: 15px; position:absolute; transform: translate(-12.5px, -2.5px);"></div>
+      <div id="rightSlider" style="height: 10px;"></div>
 
       <div id="fieldView" style="height: 50%; background-color: #000000;">
         <iframe scrolling="no" src="./webgl/index.html" id="fieldViewiframe" width="100%" height="100%" frameBorder="0"
@@ -530,70 +535,70 @@
       document.getElementById('filePrompt').click();
     }
 
-	//Resize Screens
-	var xScreenSize = .5 * document.body.clientWidth;
-	document.getElementById('leftScreen').style.width = xScreenSize + "px";
-	document.getElementById('rightScreen').style.width = xScreenSize + "px";
-	var yScreenSize = screen.height / 2 - 30;
-	document.getElementById('controlPanel').style.height = yScreenSize + "px";
-	document.getElementById('tabOptions').style.height = (yScreenSize - 82) + "px";
+    //Resize Screens
+    var xScreenSize = .5 * document.body.clientWidth;
+    document.getElementById('leftScreen').style.width = xScreenSize + "px";
+    document.getElementById('rightScreen').style.width = xScreenSize + "px";
+    var yScreenSize = screen.height / 2 - 30;
+    document.getElementById('controlPanel').style.height = yScreenSize + "px";
+    document.getElementById('tabOptions').style.height = (yScreenSize - 82) + "px";
     document.getElementById('fieldView').style.height = yScreenSize + "px";
-	var mouseClicked = 0;
-	
-	document.getElementById('middleSlider').addEventListener('mousedown', function() {
-	  document.getElementById('scrollOverlay').style.cursor = "e-resize";
-	  document.getElementById('scrollOverlay').style.visibility = "visible";
-	  mouseClicked = 1;
-	});
-	
-	document.getElementById('rightSlider').addEventListener('mousedown', function() {
-	  document.getElementById('scrollOverlay').style.cursor = "n-resize";
-	  document.getElementById('scrollOverlay').style.visibility = "visible";
-	  mouseClicked = 2;
-	});
-	
-	document.getElementById('multiSlider').addEventListener('mousedown', function() {
-	  document.getElementById('scrollOverlay').style.cursor = "move";
-	  document.getElementById('scrollOverlay').style.visibility = "visible";
-	  mouseClicked = 3;
-	});
-	
-	window.addEventListener('mouseup', function() {
-	  document.getElementById('scrollOverlay').style.visibility = "hidden";
-	  xScreenSize = Math.min(document.body.clientWidth, Math.max(0, xScreenSize));
-	  yScreenSize = Math.min(screen.height - 60, Math.max(0, yScreenSize));
-	  mouseClicked = 0;
-	});
-	
-	window.addEventListener('mousemove', function(event) {
-	  if (mouseClicked != 0) {
-	    if (mouseClicked != 2) {
-	      xScreenSize += event.movementX * .8;
-		  var xScreenSizeLimit = Math.min(document.body.clientWidth - 10, Math.max(10, xScreenSize));
-	      document.getElementById('leftScreen').style.width = xScreenSizeLimit + "px";
-		  document.getElementById('rightScreen').style.width = (document.body.clientWidth - xScreenSizeLimit) + "px";
-		  Blockly.svgResize(Blockly.mainWorkspace);
-		}
-		if (mouseClicked != 1) {
-		  yScreenSize += event.movementY * .8;
-		  var yScreenSizeLimit = Math.min(screen.height - 70, Math.max(10, yScreenSize));
-	      document.getElementById('controlPanel').style.height = yScreenSizeLimit + "px";
-	      document.getElementById('tabOptions').style.height = (yScreenSizeLimit - 82) + "px";
-		  document.getElementById('fieldView').style.height = ((screen.height - 60) - yScreenSizeLimit) + "px";
-		}
-		event.preventDefault();
-	  }
-	});
+    var mouseClicked = 0;
 
-	var sideScroll = document.getElementById('textSelection')
+    document.getElementById('middleSlider').addEventListener('mousedown', function () {
+      document.getElementById('scrollOverlay').style.cursor = "e-resize";
+      document.getElementById('scrollOverlay').style.visibility = "visible";
+      mouseClicked = 1;
+    });
 
-	sideScroll.addEventListener('wheel', function(event) { sideScroll.scrollLeft += event.deltaY * .5; });
+    document.getElementById('rightSlider').addEventListener('mousedown', function () {
+      document.getElementById('scrollOverlay').style.cursor = "n-resize";
+      document.getElementById('scrollOverlay').style.visibility = "visible";
+      mouseClicked = 2;
+    });
 
-	//Switch Tabs
+    document.getElementById('multiSlider').addEventListener('mousedown', function () {
+      document.getElementById('scrollOverlay').style.cursor = "move";
+      document.getElementById('scrollOverlay').style.visibility = "visible";
+      mouseClicked = 3;
+    });
+
+    window.addEventListener('mouseup', function () {
+      document.getElementById('scrollOverlay').style.visibility = "hidden";
+      xScreenSize = Math.min(document.body.clientWidth, Math.max(0, xScreenSize));
+      yScreenSize = Math.min(screen.height - 60, Math.max(0, yScreenSize));
+      mouseClicked = 0;
+    });
+
+    window.addEventListener('mousemove', function (event) {
+      if (mouseClicked != 0) {
+        if (mouseClicked != 2) {
+          xScreenSize += event.movementX * .8;
+          var xScreenSizeLimit = Math.min(document.body.clientWidth - 10, Math.max(10, xScreenSize));
+          document.getElementById('leftScreen').style.width = xScreenSizeLimit + "px";
+          document.getElementById('rightScreen').style.width = (document.body.clientWidth - xScreenSizeLimit) + "px";
+          Blockly.svgResize(Blockly.mainWorkspace);
+        }
+        if (mouseClicked != 1) {
+          yScreenSize += event.movementY * .8;
+          var yScreenSizeLimit = Math.min(screen.height - 70, Math.max(10, yScreenSize));
+          document.getElementById('controlPanel').style.height = yScreenSizeLimit + "px";
+          document.getElementById('tabOptions').style.height = (yScreenSizeLimit - 82) + "px";
+          document.getElementById('fieldView').style.height = ((screen.height - 60) - yScreenSizeLimit) + "px";
+        }
+        event.preventDefault();
+      }
+    });
+
+    var sideScroll = document.getElementById('textSelection')
+
+    sideScroll.addEventListener('wheel', function (event) { sideScroll.scrollLeft += event.deltaY * .5; });
+
+    //Switch Tabs
     var prevTabButton = document.getElementById('firstTab');
 
     function switchTab(button, tabNum) {
-	  if (button.className == 'textNormal') {
+      if (button.className == 'textNormal') {
         for (var i = 0; i < document.getElementById('tabOptions').children.length; i++)
           document.getElementById('tabOptions').children[i].style.display = "none";
         document.getElementById('tabOptions').children[tabNum].style.display = "inherit";
@@ -621,10 +626,10 @@
       switchTab(document.getElementById('videoButton'), 3);
     }
 
-	//Load Lessons
+    //Load Lessons
     function loadLesson() {
       document.getElementById('lessonButtons').style.display = "flex";
-	  document.getElementById('lessonText').parentElement.style.height = '75%';
+      document.getElementById('lessonText').parentElement.style.height = '75%';
       switch (document.getElementById('lessonSelect').value) {
         case "0":
           document.getElementById('lessonText').innerText = "Difficulty: Easy\n" +
@@ -679,15 +684,15 @@
         default:
           document.getElementById('lessonButtons').style.display = "none";
           document.getElementById('lessonText').innerText = "[Select Lesson]";
-		  document.getElementById('lessonText').parentElement.style.height = '';
+          document.getElementById('lessonText').parentElement.style.height = '';
           break;
       }
     }
 
-	//Prompts
+    //Prompts
     var overlayReturned = null;
 
-	//	Overrides Window.Prompt for Variable Renaming
+    //	Overrides Window.Prompt for Variable Renaming
     window.prompt = function overlayPrompt(message, placeholder) {
       overlayReturned = null;
       overlay(true, (message == "New variable name:" ? 2 : 3));
@@ -1051,8 +1056,8 @@
             </value>
           </block>
         </category>
-		<category css-icon="" name="Quad">
-	      <block type="dcMotor_setQuadProperty_Number">
+        <category css-icon="" name="Quad">
+          <block type="dcMotor_setQuadProperty_Number">
             <field name="PROP">Power</field>
             <field name="IDENTIFIER1">dcMotor0</field>
             <field name="IDENTIFIER2">dcMotor1</field>
@@ -1068,7 +1073,7 @@
                 <field name="NUM">1</field>
               </shadow>
             </value>
-			<value name="VALUE3">
+            <value name="VALUE3">
               <shadow type="math_number">
                 <field name="NUM">1</field>
               </shadow>
@@ -1079,11 +1084,11 @@
               </shadow>
             </value>
           </block>
-		  <block type="dcMotor_setQuadProperty_Number">
+          <block type="dcMotor_setQuadProperty_Number">
             <field name="PROP">Power</field>
             <field name="IDENTIFIER1">dcMotor0</field>
             <field name="IDENTIFIER2">dcMotor1</field>
-			<field name="IDENTIFIER3">dcMotor2</field>
+            <field name="IDENTIFIER3">dcMotor2</field>
             <field name="IDENTIFIER4">dcMotor3</field>
             <value name="VALUE1">
               <shadow type="math_number">
@@ -1095,7 +1100,7 @@
                 <field name="NUM">0</field>
               </shadow>
             </value>
-			<value name="VALUE3">
+            <value name="VALUE3">
               <shadow type="math_number">
                 <field name="NUM">0</field>
               </shadow>
@@ -1106,7 +1111,7 @@
               </shadow>
             </value>
           </block>
-		  <block type="dcMotor_setQuadProperty_RunMode">
+          <block type="dcMotor_setQuadProperty_RunMode">
             <field name="PROP">Mode</field>
             <field name="IDENTIFIER1">dcMotor0</field>
             <field name="IDENTIFIER2">dcMotor1</field>
@@ -1118,18 +1123,18 @@
             <value name="VALUE2">
               <shadow type="dcMotor_typedEnum_runMode" />
             </value>
-			<value name="VALUE3">
+            <value name="VALUE3">
               <shadow type="dcMotor_typedEnum_runMode" />
             </value>
             <value name="VALUE4">
               <shadow type="dcMotor_typedEnum_runMode" />
             </value>
           </block>
-		  <block type="dcMotor_setQuadProperty_Number">
+          <block type="dcMotor_setQuadProperty_Number">
             <field name="PROP">TargetPosition</field>
             <field name="IDENTIFIER1">dcMotor0</field>
             <field name="IDENTIFIER2">dcMotor1</field>
-			<field name="IDENTIFIER3">dcMotor2</field>
+            <field name="IDENTIFIER3">dcMotor2</field>
             <field name="IDENTIFIER4">dcMotor3</field>
             <value name="VALUE1">
               <shadow type="math_number">
@@ -1141,7 +1146,7 @@
                 <field name="NUM">0</field>
               </shadow>
             </value>
-			<value name="VALUE3">
+            <value name="VALUE3">
               <shadow type="math_number">
                 <field name="NUM">0</field>
               </shadow>
@@ -1152,11 +1157,11 @@
               </shadow>
             </value>
           </block>
-		  <block type="dcMotor_setQuadProperty_ZeroPowerBehavior">
+          <block type="dcMotor_setQuadProperty_ZeroPowerBehavior">
             <field name="PROP">ZeroPowerBehavior</field>
             <field name="IDENTIFIER1">dcMotor0</field>
             <field name="IDENTIFIER2">dcMotor1</field>
-			<field name="IDENTIFIER3">dcMotor2</field>
+            <field name="IDENTIFIER3">dcMotor2</field>
             <field name="IDENTIFIER4">dcMotor3</field>
             <value name="VALUE1">
               <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
@@ -1164,14 +1169,14 @@
             <value name="VALUE2">
               <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
             </value>
-			<value name="VALUE3">
+            <value name="VALUE3">
               <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
             </value>
-			<value name="VALUE4">
+            <value name="VALUE4">
               <shadow type="dcMotor_typedEnum_zeroPowerBehavior" />
             </value>
           </block>
-		</category>
+        </category>
         <category css-icon="customIcon fa fa-caret-right" name="Extended">
           <block type="dcMotor_setProperty_Number">
             <field name="IDENTIFIER">dcMotor0</field>
@@ -1248,12 +1253,12 @@
                   <field name="NUM">10</field>
                 </shadow>
               </value>
-			  <value name="VALUE3">
+              <value name="VALUE3">
                 <shadow type="math_number">
                   <field name="NUM">10</field>
                 </shadow>
               </value>
-			  <value name="VALUE4">
+              <value name="VALUE4">
                 <shadow type="math_number">
                   <field name="NUM">10</field>
                 </shadow>
@@ -1275,12 +1280,12 @@
                   <field name="NUM">10</field>
                 </shadow>
               </value>
-			  <value name="VALUE3">
+              <value name="VALUE3">
                 <shadow type="math_number">
                   <field name="NUM">10</field>
                 </shadow>
               </value>
-			  <value name="VALUE4">
+              <value name="VALUE4">
                 <shadow type="math_number">
                   <field name="NUM">10</field>
                 </shadow>
@@ -1434,14 +1439,14 @@
       </category>
     </category>
     <category css-icon="customIcon fa fa-caret-right" name="Sensors" colour="#2E8B57">
-	  <category css-icon="" name="DistanceSensor">
-	 	  <block type="distanceSensor_getDistance">
-	 		  <field name="IDENTIFIER">distanceSensor0</field>
-	 		  <value name="DISTANCE_UNIT">
-	 			  <shadow type="navigation_typedEnum_distanceUnit"/>
-	 		  </value>
-	 	  </block>
-	  </category>
+      <category css-icon="" name="DistanceSensor">
+        <block type="distanceSensor_getDistance">
+          <field name="IDENTIFIER">distanceSensor0</field>
+          <value name="DISTANCE_UNIT">
+            <shadow type="navigation_typedEnum_distanceUnit" />
+          </value>
+        </block>
+      </category>
       <category css-icon="" name="IMU-BNO055">
         <block type="bno055imu_getProperty_Acceleration">
           <field name="IDENTIFIER">imuAsBNO055IMU</field>
@@ -5800,10 +5805,32 @@
       }
     }
 
+    var myWorker;
     function startProgram() {
-      resetInterpreter();
-      setTimeout(delayStartProgram, 100);
+      myWorker = new Worker('interpreterWorker.js');
+      myWorker.postMessage(["code", Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace)]);
+      myWorker.onmessage = function (e) {
+        if (e.data == "request encoder") {
+          myWorker.postMessage(["data", localStorage.getItem('motorCurrentPositions')]);
+        } else {
+          localStorage.setItem('motorPowers', e.data);
+        }
+      }
     }
+
+    function stopProgram() {
+      myWorker.terminate();
+      motorPowers = { "m1": 0.0, "m2": 0.0, "m3": 0.0, "m4": 0.0, "m5": 0.0, "m6": 0.0, "m7": 0.0, "m8": 0.0 };
+      localStorage.setItem('motorPowers', JSON.stringify(motorPowers));
+      localStorage.setItem('stopMatch', true);
+      document.getElementById("telemetryText").innerText = "Program Aborted \n";
+    }
+
+
+    // function startProgram() {
+    //   resetInterpreter();
+    //   setTimeout(delayStartProgram, 100);
+    // }
 
     function delayStartProgram() {
       var code = Blockly.JavaScript.workspaceToCode(Blockly.mainWorkspace);
@@ -5841,11 +5868,11 @@
       }
     }
 
-    function stopProgram() {
-      localStorage.setItem('stopMatch', true);
-      resetInterpreter();
-      document.getElementById("telemetryText").innerText = "Program Aborted \n";
-    }
+    // function stopProgram() {
+    //   localStorage.setItem('stopMatch', true);
+    //   resetInterpreter();
+    //   document.getElementById("telemetryText").innerText = "Program Aborted \n";
+    // }
 
     function resetField() {
       localStorage.setItem('resetField', true);
